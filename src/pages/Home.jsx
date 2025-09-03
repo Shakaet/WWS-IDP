@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import banner from "../assets/banner2.jpg"
+import ContactHome from "../component/ContactHome"
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('Courses')
@@ -141,6 +142,9 @@ const Home = () => {
                </div>
              </div>
            </div>
+
+      {/* Contact Section */}
+      <ContactHome />
     </div>
   )
 }
