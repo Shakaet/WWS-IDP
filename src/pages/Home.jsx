@@ -9,13 +9,13 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative ">
+      <section className="relative min-h-[420px] sm:min-h-[480px] lg:min-h-[560px]">
         {/* Banner image: replace src with your images */}
         <div className="absolute inset-0 -z-10">
           <img
             src={banner}
             alt="Students studying"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-[center_30%] sm:object-center"
           />
           <div className="absolute inset-0 bg-white/20"></div>
         </div>
@@ -40,10 +40,15 @@ const Home = () => {
             </div>
 
             {/* Search Card */}
-            <div className="lg:justify-self-end w-full">
-              <div className="rounded-2xl bg-white shadow-md ring-1 ring-black/5 overflow-hidden">
+           
+          </div>
+        </div>
+        
+            </section>
+       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 lg:-mt-20 ">
+               <div className="rounded-2xl bg-white shadow-md ring-1 ring-black/5 overflow-hidden">
                 {/* Tabs */}
-                <div className="flex gap-6 px-4 sm:px-6 pt-4">
+                 <div className="flex gap-4 sm:gap-6 px-4 sm:px-6 pt-4 overflow-x-auto overflow-y-hidden">
                   {tabs.map((tab) => (
                     <button
                       key={tab}
@@ -61,7 +66,7 @@ const Home = () => {
 
                 {/* Form */}
                 <div className="px-4 sm:px-6 pb-5 pt-4">
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3">
                     <div className="lg:col-span-4">
                       <label className="sr-only">Course subject</label>
                       <input
@@ -89,7 +94,7 @@ const Home = () => {
                         <option>Canada</option>
                       </select>
                     </div>
-                    <div className="lg:col-span-12 flex justify-end pt-2">
+                    <div className="lg:col-span-12 flex justify-end pt-2 md:col-span-2">
                       <button className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors">
                         Search
                       </button>
@@ -98,9 +103,6 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
