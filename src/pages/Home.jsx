@@ -39,7 +39,7 @@ const Home = () => {
           <img
             src={banner}
             alt="Students studying"
-            className="h-full w-full object-cover object-[center_30%] sm:object-center"
+            className="hidden md:flex h-full w-full object-cover object-[center_30%] sm:object-center"
           />
           <div className="absolute inset-0 bg-white/20"></div>
         </div>
