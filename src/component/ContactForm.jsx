@@ -94,21 +94,21 @@ const ContactForm = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-700">First name*</label>
-                  <input type="text" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="" {...register('firstName')} />
+                  <input type="text" className="mt-1 w-full rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="" {...register('firstName')} />
                   {errors.firstName ? (
                     <p className="mt-1 text-sm text-red-600">{errors.firstName.message}</p>
                   ) : null}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700">Last name*</label>
-                  <input type="text" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="" {...register('lastName')} />
+                  <input type="text" className="mt-1 w-full rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="" {...register('lastName')} />
                   {errors.lastName ? (
                     <p className="mt-1 text-sm text-red-600">{errors.lastName.message}</p>
                   ) : null}
                 </div>
                 <div className="sm:col-span-2">
                   <label className="block text-sm font-medium text-slate-700">Email address*</label>
-                  <input type="email" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="" {...register('email')} />
+                  <input type="email" className="mt-1 w-full rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="" {...register('email')} />
                   {errors.email ? (
                     <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
                   ) : null}
@@ -125,7 +125,7 @@ const ContactForm = () => {
                     /> */}
                     <input
                       type="tel"
-                      className="flex-1 rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="flex-1 rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
                       {...register('phone')}
                     />
                   </div>

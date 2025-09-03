@@ -4,7 +4,7 @@ import ContactForm from './ContactForm'
 
 const ContactHome = () => {
   return (
-    <section className="bg-sky-50/60 py-10 sm:py-14 lg:py-16">
+    <section className=" py-10 sm:py-14 lg:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left: Copy + Form */}
