@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import icon from "../assets/wws1.png"
+import { Context } from '../AuthProvider/Provider'
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
+
+  let {user,signOuts}= useContext(Context)
+
+  console.log(user)
 
   const navItems = [
     { label: 'Study abroad steps', to: '/' },
@@ -12,6 +17,14 @@ const Header = () => {
     { label: 'IELTS', to: '/' },
     { label: 'Student Essentials', to: '/' },
   ]
+
+  const handleLogout = () => {
+    signOuts()
+      .then(() => {
+        // signed out
+      })
+      .catch(() => {})
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100 md:py-5">
@@ -42,12 +55,19 @@ const Header = () => {
 
           {/* Right: Actions */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link
-              to="/signin"
-              className="inline-flex items-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50 transition-colors"
-            >
-              Sign in
-            </Link>
+            {user ? (
+              <>
+                <span className="text-sm text-slate-700">{user.email}</span>
+                <button onClick={handleLogout} className="inline-flex items-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50 transition-colors">Logout</button>
+              </>
+            ) : (
+              <Link
+                to="/signin"
+                className="inline-flex items-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50 transition-colors"
+              >
+                Sign in
+              </Link>
+            )}
             {/* Heart icon */}
             <button
               type="button"
@@ -100,13 +120,22 @@ const Header = () => {
             </Link>
           ))}
           <div className="mt-2 flex items-center gap-3 px-1">
-            <Link
-              to="/signin"
-              onClick={() => setIsMobileOpen(false)}
-              className="flex-1 inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50"
-            >
-              Sign in
-            </Link>
+            {user ? (
+              <button
+                onClick={() => { setIsMobileOpen(false); handleLogout() }}
+                className="flex-1 inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/signin"
+                onClick={() => setIsMobileOpen(false)}
+                className="flex-1 inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50"
+              >
+                Sign in
+              </Link>
+            )}
             <button
               type="button"
               aria-label="Wishlist"
