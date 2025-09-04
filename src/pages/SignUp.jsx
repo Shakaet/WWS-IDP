@@ -1,8 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { motion as Motion } from 'framer-motion'
-import banner from '../assets/banner.jpg'
+import banner from '../assets/sinUp.jpg'
+import GoogleSign from '../component/GoogleSign'
+
+import { useNavigate } from 'react-router-dom'
+import { Context } from '../AuthProvider/Provider'
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const SignUp = () => {
+
+
+   let {createRegistered}= useContext(Context)
+   let link=useNavigate()
+
+  
+  const responsiveCss = `
+    /* Tailwind is used for layout; this block left intentionally empty now. */
+  `
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -57,46 +72,55 @@ export const SignUp = () => {
     }
     setSubmittedData(dataToSubmit)
     // For now, just log. Integrate API call here.
-    console.log('Sign up submit:', dataToSubmit)
-    alert('Account details captured. Check console for submitted data.')
+    // console.log('Sign up submit:', dataToSubmit)
+     createRegistered(formData.email, formData.password)
+            .then(()=>{
+              toast.success('Account created successfully!')
+              e.target.reset();
+              link("/")
+            })
+            .catch((error)=>{
+              toast.error(error.message || 'Failed to create account.')
+            })
+
+    // alert('Account details captured. Check console for submitted data.')
   }
 
-  const handleGoogleLogin = () => {
-    alert('Google login clicked')
-  }
+ 
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '24px', padding: '32px', alignItems: 'stretch' }}>
+    <div className="signup-grid grid md:grid-cols-2 gap-6 p-5 md:p-8 items-stretch">
+      <style dangerouslySetInnerHTML={{ __html: responsiveCss }} />
       <Motion.aside
         initial={{ opacity: 0, x: -24 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        style={{ background: '#fff', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 2px 14px rgba(0,0,0,0.08)' }}
+        className="bg-white rounded-2xl overflow-hidden shadow-[0_2px_14px_rgba(0,0,0,0.08)]"
       >
-        <div style={{ position: 'relative', height: 260, background: '#f6f7fb' }}>
-          <img src={banner} alt="Create account" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.0) 20%, rgba(0,0,0,0.45) 100%)' }}></div>
-          <div style={{ position: 'absolute', left: 20, bottom: 18, color: '#fff' }}>
-            <div style={{ fontSize: 22, fontWeight: 700 }}>Create your IDP account</div>
-            <div style={{ opacity: 0.9 }}>One account for all your study needs</div>
+        <div className="relative bg-slate-50 h-56 sm:h-64 md:h-80 lg:h-[420px]">
+          <img src={banner} alt="Create account" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/10 to-black/50"></div>
+          <div className="absolute left-5 bottom-4 text-white">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold">Create your IDP account</div>
+            <div className="opacity-90 text-sm sm:text-base">One account for all your study needs</div>
           </div>
         </div>
-        <div style={{ padding: '22px 22px 26px 22px' }}>
-          <ul style={{ margin: 0, paddingLeft: 0, listStyle: 'none', display: 'grid', gap: 12 }}>
-            <li style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ width: 18, height: 18, borderRadius: 999, background: '#4CAF50', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 12 }}>✓</span>
+        <div className="p-5 md:p-6">
+          <ul className="m-0 pl-0 list-none grid gap-3">
+            <li className="flex items-center gap-2">
+              <span className="w-[18px] h-[18px] rounded-full bg-green-600 text-white text-[12px] inline-flex items-center justify-center">✓</span>
               <span>Access your personalised dashboard</span>
             </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ width: 18, height: 18, borderRadius: 999, background: '#4CAF50', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 12 }}>✓</span>
+            <li className="flex items-center gap-2">
+              <span className="w-[18px] h-[18px] rounded-full bg-green-600 text-white text-[12px] inline-flex items-center justify-center">✓</span>
               <span>Shortlist and save your favourite courses</span>
             </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ width: 18, height: 18, borderRadius: 999, background: '#4CAF50', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 12 }}>✓</span>
+            <li className="flex items-center gap-2">
+              <span className="w-[18px] h-[18px] rounded-full bg-green-600 text-white text-[12px] inline-flex items-center justify-center">✓</span>
               <span>Same account for website and mobile app</span>
             </li>
           </ul>
-          <div style={{ marginTop: 14, fontSize: 12, color: '#555' }}>
+          <div className="mt-3 text-xs sm:text-sm text-slate-600">
             <strong>Note:</strong> We’ll only contact you after you submit a successful enquiry form.
           </div>
         </div>
@@ -107,27 +131,27 @@ export const SignUp = () => {
         initial={{ opacity: 0, x: 24 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        style={{ width: '100%', maxWidth: '540px', background: '#fff', padding: '24px', borderRadius: '12px', boxShadow: '0 2px 14px rgba(0,0,0,0.08)', justifySelf: 'center' }}
+        className="w-full max-w-xl bg-white p-5 md:p-6 rounded-xl shadow-[0_2px_14px_rgba(0,0,0,0.08)] justify-self-center"
       >
-        <h2 style={{ marginBottom: '16px' }}>Create your account</h2>
+        <h2 className="mb-4 text-2xl md:text-3xl font-semibold">Create your account</h2>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label style={{ display: 'block', fontSize: '14px', marginBottom: '6px' }}>First name *</label>
-            <input name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First name" style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid #ccc' }} />
-            {errors.firstName && <div style={{ color: '#d32f2f', fontSize: '12px', marginTop: '4px' }}>{errors.firstName}</div>}
+            <label className="block text-sm mb-1">First name *</label>
+            <input name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First name" className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            {errors.firstName && <div className="text-red-600 text-xs mt-1">{errors.firstName}</div>}
           </div>
           <div>
-            <label style={{ display: 'block', fontSize: '14px', marginBottom: '6px' }}>Last name *</label>
-            <input name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last name" style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid #ccc' }} />
-            {errors.lastName && <div style={{ color: '#d32f2f', fontSize: '12px', marginTop: '4px' }}>{errors.lastName}</div>}
+            <label className="block text-sm mb-1">Last name *</label>
+            <input name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last name" className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            {errors.lastName && <div className="text-red-600 text-xs mt-1">{errors.lastName}</div>}
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '12px', marginTop: '12px' }}>
+        <div className="grid grid-cols-[140px_1fr] gap-3 mt-3 max-[420px]:grid-cols-1">
           <div>
-            <label style={{ display: 'block', fontSize: '14px', marginBottom: '6px' }}>Dial code</label>
-            <select name="dialCode" value={formData.dialCode} onChange={handleChange} style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid #ccc' }}>
+            <label className="block text-sm mb-1">Dial code</label>
+            <select name="dialCode" value={formData.dialCode} onChange={handleChange} className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
               <option value="+880">+880</option>
               <option value="+1">+1</option>
               <option value="+44">+44</option>
@@ -136,64 +160,53 @@ export const SignUp = () => {
             </select>
           </div>
           <div>
-            <label style={{ display: 'block', fontSize: '14px', marginBottom: '6px' }}>Mobile number *</label>
-            <input name="mobile" value={formData.mobile} onChange={handleChange} placeholder="Mobile number" style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid #ccc' }} />
-            {errors.mobile && <div style={{ color: '#d32f2f', fontSize: '12px', marginTop: '4px' }}>{errors.mobile}</div>}
+            <label className="block text-sm mb-1">Mobile number *</label>
+            <input name="mobile" value={formData.mobile} onChange={handleChange} placeholder="Mobile number" className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            {errors.mobile && <div className="text-red-600 text-xs mt-1">{errors.mobile}</div>}
           </div>
         </div>
 
-        <div style={{ marginTop: '12px' }}>
-          <label style={{ display: 'block', fontSize: '14px', marginBottom: '6px' }}>Email *</label>
-          <input name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid #ccc' }} />
-          {errors.email && <div style={{ color: '#d32f2f', fontSize: '12px', marginTop: '4px' }}>{errors.email}</div>}
+        <div className="mt-3">
+          <label className="block text-sm mb-1">Email *</label>
+          <input name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          {errors.email && <div className="text-red-600 text-xs mt-1">{errors.email}</div>}
         </div>
 
-        <div style={{ marginTop: '12px' }}>
-          <label style={{ display: 'block', fontSize: '14px', marginBottom: '6px' }}>Create a password *</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" style={{ width: '100%', padding: '10px 12px', borderRadius: '8px', border: '1px solid #ccc' }} />
-          {errors.password && <div style={{ color: '#d32f2f', fontSize: '12px', marginTop: '4px' }}>{errors.password}</div>}
+        <div className="mt-3">
+          <label className="block text-sm mb-1">Create a password *</label>
+          <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          {errors.password && <div className="text-red-600 text-xs mt-1">{errors.password}</div>}
         </div>
 
-        <div style={{ marginTop: '12px', display: 'grid', gap: '8px' }}>
-          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-            <input type="checkbox" name="agreeTerms" checked={formData.agreeTerms} onChange={handleChange} />
+        <div className="mt-3 grid gap-2">
+          <label className="flex items-start gap-2 text-sm">
+            <input type="checkbox" name="agreeTerms" checked={formData.agreeTerms} onChange={handleChange} className="mt-0.5" />
             <span>I agree to Terms and privacy policy *</span>
           </label>
-          {errors.agreeTerms && <div style={{ color: '#d32f2f', fontSize: '12px' }}>{errors.agreeTerms}</div>}
+          {errors.agreeTerms && <div className="text-red-600 text-xs">{errors.agreeTerms}</div>}
 
-          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-            <input type="checkbox" name="allowContact" checked={formData.allowContact} onChange={handleChange} />
-            <span>Please contact me by phone, email or SMS to assist with my enquiry</span>
-          </label>
-
-          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-            <input type="checkbox" name="allowMarketing" checked={formData.allowMarketing} onChange={handleChange} />
-            <span>I agree to receive occasional communications about courses, offers and other information</span>
-          </label>
+          
         </div>
 
-        <button type="submit" style={{ marginTop: '16px', width: '100%', padding: '12px', borderRadius: '999px', background: '#74a7f7', color: '#fff', fontWeight: 600, border: 'none', cursor: 'pointer' }}>
+        <button type="submit" className="mt-4 w-full px-4 py-3 rounded-full bg-blue-400 hover:bg-blue-500 text-white font-semibold transition">
           Create an account
         </button>
 
-        <div style={{ marginTop: '12px', textAlign: 'center' }}>Already have an account? <a href="/signin">Sign in</a></div>
+        <div className="mt-3 text-center">Already have an account? <a href="/signin" className="text-blue-600 hover:underline">Sign in</a></div>
 
-        <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ height: '1px', background: '#e0e0e0', flex: 1 }}></div>
-          <div style={{ color: '#888', fontSize: '14px' }}>or</div>
-          <div style={{ height: '1px', background: '#e0e0e0', flex: 1 }}></div>
+        <div className="mt-4 flex items-center gap-2">
+          <div className="h-px bg-slate-200 flex-1"></div>
+          <div className="text-slate-500 text-sm">or</div>
+          <div className="h-px bg-slate-200 flex-1"></div>
         </div>
 
-        <button type="button" onClick={handleGoogleLogin} style={{ marginTop: '12px', width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-          <img alt="Google" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style={{ width: '18px', height: '18px' }} />
-          <span>Continue with Google</span>
-        </button>
+        <GoogleSign></GoogleSign>
 
-        {submittedData && (
-          <pre style={{ marginTop: '16px', background: '#f7f7f7', padding: '12px', borderRadius: '8px', overflow: 'auto' }}>
+        {/* {submittedData && (
+          <pre className="mt-4 bg-slate-50 p-3 rounded-lg overflow-auto text-xs">
 {JSON.stringify(submittedData, null, 2)}
           </pre>
-        )}
+        )} */}
       </Motion.form>
     </div>
   )
