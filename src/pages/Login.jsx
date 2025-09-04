@@ -1,20 +1,25 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion as Motion } from 'framer-motion'
 import banner from '../assets/login.jpg'
 import GoogleSign from '../component/GoogleSign'
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Context } from '../AuthProvider/Provider'
+// import { Context } from '../AuthProvider/Provider'
+import useAuth from '../Hooks/useAuth/useAuth'
 
 
 const Login = () => {
 
-  let {loginSetup}=useContext(Context)
+  const { user } = useAuth();
+  console.log(user);
+
+  // let { loginSetup } = useContext(Context)
+  let { loginSetup } = useAuth()
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
-   let navigate= useNavigate()
-  let location= useLocation()
+  let navigate = useNavigate()
+  let location = useLocation()
   const redirectPath = location.state?.from || "/";
 
   const handleChange = (e) => {
@@ -35,7 +40,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!validate()) return
-     loginSetup(formData.email.trim().toLowerCase(), formData.password)
+    loginSetup(formData.email.trim().toLowerCase(), formData.password)
       .then(() => {
         toast.success("Login successfully!");
         navigate(redirectPath);
@@ -45,7 +50,7 @@ const Login = () => {
       });
   }
 
- 
+
 
   return (
     <div className="grid md:grid-cols-2 gap-6 p-5 md:p-8 items-stretch">

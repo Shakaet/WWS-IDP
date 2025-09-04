@@ -1,20 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { motion as Motion } from 'framer-motion'
 import banner from '../assets/sinUp.jpg'
 import GoogleSign from '../component/GoogleSign'
 
 import { useNavigate } from 'react-router-dom'
-import { Context } from '../AuthProvider/Provider'
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth from '../Hooks/useAuth/useAuth'
 
 export const SignUp = () => {
 
 
-   let {createRegistered}= useContext(Context)
-   let link=useNavigate()
+  let { createRegistered } = useAuth()
+  let link = useNavigate()
 
-  
+
   const responsiveCss = `
     /* Tailwind is used for layout; this block left intentionally empty now. */
   `
@@ -73,20 +73,20 @@ export const SignUp = () => {
     setSubmittedData(dataToSubmit)
     // For now, just log. Integrate API call here.
     // console.log('Sign up submit:', dataToSubmit)
-     createRegistered(formData.email, formData.password)
-            .then(()=>{
-              toast.success('Account created successfully!')
-              e.target.reset();
-              link("/")
-            })
-            .catch((error)=>{
-              toast.error(error.message || 'Failed to create account.')
-            })
+    createRegistered(formData.email, formData.password)
+      .then(() => {
+        toast.success('Account created successfully!')
+        e.target.reset();
+        link("/")
+      })
+      .catch((error) => {
+        toast.error(error.message || 'Failed to create account.')
+      })
 
     // alert('Account details captured. Check console for submitted data.')
   }
 
- 
+
 
   return (
     <div className="signup-grid grid md:grid-cols-2 gap-6 p-5 md:p-8 items-stretch">
@@ -185,7 +185,7 @@ export const SignUp = () => {
           </label>
           {errors.agreeTerms && <div className="text-red-600 text-xs">{errors.agreeTerms}</div>}
 
-          
+
         </div>
 
         <button type="submit" className="mt-4 w-full px-4 py-3 rounded-full bg-blue-400 hover:bg-blue-500 text-white font-semibold transition">

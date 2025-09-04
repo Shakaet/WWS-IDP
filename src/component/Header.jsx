@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import icon from "../assets/wws1.png"
-import { Context } from '../AuthProvider/Provider'
+import useAuth from '../Hooks/useAuth/useAuth'
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
 
-  let {user,signOuts}= useContext(Context)
+  let { user, signOuts } = useAuth()
 
   console.log(user)
 
@@ -23,7 +23,7 @@ const Header = () => {
       .then(() => {
         // signed out
       })
-      .catch(() => {})
+      .catch(() => { })
   }
 
   return (
@@ -31,11 +31,11 @@ const Header = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Left: Logo */}
-          
+
           <div className="flex items-center gap-3">
             <Link to="/" className="flex items-center gap-2" aria-label="IDP home">
               {/* Simple logo mark */}
-              <img  width={200} src={icon} alt="" />
+              <img width={200} src={icon} alt="" />
               {/* <span className="ml-1 text-2xl font-semibold tracking-tight text-slate-800">idp</span> */}
             </Link>
           </div>
@@ -75,7 +75,7 @@ const Header = () => {
               className="p-2 rounded-full hover:bg-slate-100 text-orange-600"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z"/>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z" />
               </svg>
             </button>
           </div>
@@ -142,7 +142,7 @@ const Header = () => {
               className="p-2 rounded-full hover:bg-slate-100 text-orange-600"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z"/>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z" />
               </svg>
             </button>
           </div>
