@@ -8,7 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../Hooks/useAuth/useAuth'
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../Hooks/useAxiosSecure/useAxiosSecure'
+import axios from 'axios'
+ 
 
+let image_hosting_key=import.meta.env.VITE_image_Hosting_key
+
+let image_hosting_API =`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 export const SignUp = () => {
   const axiosSecure = useAxiosSecure()
 
@@ -29,10 +34,10 @@ export const SignUp = () => {
     agreeTerms: false,
     allowContact: false,
     allowMarketing: false,
+    file: null,
   })
 
   const [errors, setErrors] = useState({})
-  const [submittedData, setSubmittedData] = useState(null)
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -40,6 +45,10 @@ export const SignUp = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }))
+  }
+
+  const handleFileChange = (e) => {
+    setFormData((prev) => ({ ...prev, file: e.target.files[0] }));
   }
 
   const validate = () => {
@@ -53,6 +62,19 @@ export const SignUp = () => {
     if (!formData.password) newErrors.password = 'Password is required'
     if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters'
     if (!formData.agreeTerms) newErrors.agreeTerms = 'You must agree to the Terms and privacy policy'
+    
+    // Image validation
+    if (formData.file) {
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']
+      const maxSize = 5 * 1024 * 1024 // 5MB
+      
+      if (!allowedTypes.includes(formData.file.type)) {
+        newErrors.file = 'Please upload a valid image file (JPEG, PNG, GIF, or WebP)'
+      } else if (formData.file.size > maxSize) {
+        newErrors.file = 'Image size must be less than 5MB'
+      }
+    }
+    
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -62,28 +84,43 @@ export const SignUp = () => {
 
     if (!validate()) return;
 
-    const dataToSubmit = {
-      firstName: formData.firstName.trim(),
-      lastName: formData.lastName.trim(),
-      dialCode: formData.dialCode,
-      mobile: formData.mobile.trim(),
-      email: formData.email.trim().toLowerCase(),
-      password: formData.password,
-      agreeTerms: formData.agreeTerms,
-      allowContact: formData.allowContact,
-      allowMarketing: formData.allowMarketing,
-    };
-
     try {
+      // 0️⃣ Upload image to imgbb if provided
+      let photoURL = undefined;
+      if (formData.file) {
+        const fd = new FormData();
+        fd.append('image', formData.file);
+        const uploadRes = await axios.post(image_hosting_API, fd, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        if (uploadRes?.data?.success) {
+          photoURL = uploadRes.data.data.display_url;
+        } else {
+          throw new Error('Image upload failed');
+        }
+      }
+
       // 1️⃣ Create Firebase account
       const userCredential = await createRegistered(formData.email, formData.password);
       const user = userCredential.user;
 
-      // 2️⃣ Update user profile with display name
+      // 2️⃣ Update user profile with display name and optional photo
       const displayName = `${formData.firstName} ${formData.lastName}`;
-      await updateUserProfile(user, { displayName });
+      await updateUserProfile(user, photoURL ? { displayName, photoURL } : { displayName });
 
       // 3️⃣ Post to backend
+      const dataToSubmit = {
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        dialCode: formData.dialCode,
+        mobile: formData.mobile.trim(),
+        email: formData.email.trim().toLowerCase(),
+        password: formData.password,
+        agreeTerms: formData.agreeTerms,
+        allowContact: formData.allowContact,
+        allowMarketing: formData.allowMarketing,
+        photoURL: photoURL || '',
+      };
       await axiosSecure.post("post-users", dataToSubmit);
 
       // 4️⃣ Success message
@@ -106,6 +143,7 @@ export const SignUp = () => {
         agreeTerms: false,
         allowContact: false,
         allowMarketing: false,
+        file: null,
       });
 
       // 6️⃣ Redirect
@@ -115,7 +153,7 @@ export const SignUp = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: error.message || "Failed to create account.",
+        text: error?.response?.data?.message || error.message || "Failed to create account.",
       });
     }
   };
@@ -212,6 +250,23 @@ export const SignUp = () => {
           <label className="block text-sm mb-1">Create a password *</label>
           <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400" />
           {errors.password && <div className="text-red-600 text-xs mt-1">{errors.password}</div>}
+        </div>
+
+        <div className="mt-3">
+          <label className="block text-sm mb-1">Profile Image</label>
+          <input 
+            type="file" 
+            name="file" 
+            onChange={handleFileChange} 
+            accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+            className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+          />
+          {errors.file && <div className="text-red-600 text-xs mt-1">{errors.file}</div>}
+          {formData.file && (
+            <div className="mt-2 text-xs text-green-600">
+              Selected: {formData.file.name} ({(formData.file.size / 1024 / 1024).toFixed(2)} MB)
+            </div>
+          )}
         </div>
 
         <div className="mt-3 grid gap-2">
