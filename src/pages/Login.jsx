@@ -37,7 +37,7 @@ const Login = () => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!validate()) return
     loginSetup(formData.email.trim().toLowerCase(), formData.password)
