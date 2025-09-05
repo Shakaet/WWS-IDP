@@ -4,14 +4,15 @@ import banner from '../assets/sinUp.jpg'
 import GoogleSign from '../component/GoogleSign'
 
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../Hooks/useAuth/useAuth'
+import Swal from 'sweetalert2'
+import useAxiosSecure from '../Hooks/useAxiosSecure/useAxiosSecure'
 
 export const SignUp = () => {
+  const axiosSecure = useAxiosSecure()
 
-
-  let { createRegistered } = useAuth()
+  let { createRegistered, updateUserProfile } = useAuth()
   let link = useNavigate()
 
 
@@ -56,9 +57,11 @@ export const SignUp = () => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!validate()) return
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validate()) return;
+
     const dataToSubmit = {
       firstName: formData.firstName.trim(),
       lastName: formData.lastName.trim(),
@@ -69,22 +72,55 @@ export const SignUp = () => {
       agreeTerms: formData.agreeTerms,
       allowContact: formData.allowContact,
       allowMarketing: formData.allowMarketing,
-    }
-    setSubmittedData(dataToSubmit)
-    // For now, just log. Integrate API call here.
-    // console.log('Sign up submit:', dataToSubmit)
-    createRegistered(formData.email, formData.password)
-      .then(() => {
-        toast.success('Account created successfully!')
-        e.target.reset();
-        link("/")
-      })
-      .catch((error) => {
-        toast.error(error.message || 'Failed to create account.')
-      })
+    };
 
-    // alert('Account details captured. Check console for submitted data.')
-  }
+    try {
+      // 1️⃣ Create Firebase account
+      const userCredential = await createRegistered(formData.email, formData.password);
+      const user = userCredential.user;
+
+      // 2️⃣ Update user profile with display name
+      const displayName = `${formData.firstName} ${formData.lastName}`;
+      await updateUserProfile(user, { displayName });
+
+      // 3️⃣ Post to backend
+      await axiosSecure.post("post-users", dataToSubmit);
+
+      // 4️⃣ Success message
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Account created successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      // 5️⃣ Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        dialCode: "+880",
+        mobile: "",
+        email: "",
+        password: "",
+        agreeTerms: false,
+        allowContact: false,
+        allowMarketing: false,
+      });
+
+      // 6️⃣ Redirect
+      link("/");
+
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message || "Failed to create account.",
+      });
+    }
+  };
+
+
 
 
 
