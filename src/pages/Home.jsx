@@ -8,6 +8,11 @@ import Hero from '../component/Hero'
 import heroImg from "../assets/eaeaea.png"
 import Study from "../component/Study"
 import ServicesSection from "../component/ServicesSection"
+import BlogSection from '../component/BlogSection'
+import ReleventSection2 from '../component/ReleventSection2'
+import ReleventSection3 from '../component/releventSection3'
+import ReleventSection4 from '../component/ReleventSection4'
+import ReleventSection5 from '../component/ReleventSection5'
 
 const Home = () => {
   
@@ -79,6 +84,47 @@ const Home = () => {
         >
           <ServicesSection></ServicesSection>
         </Motion.div>
+         <Motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+        >
+          <BlogSection></BlogSection>
+        </Motion.div>
+
+        <Motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+        >
+          <ReleventSection2></ReleventSection2>
+        </Motion.div>
+        <Motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+        >
+          <ReleventSection3></ReleventSection3>
+        </Motion.div>
+         <Motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+        >
+          <ReleventSection4></ReleventSection4>
+        </Motion.div>
+          {/* <Motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+        >
+          <ReleventSection5></ReleventSection5>
+        </Motion.div> */}
       </Motion.div>
     </Motion.div>
   )
