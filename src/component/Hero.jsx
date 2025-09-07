@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import banner from "../assets/bn.jpg"
+import SearchCard from './SearchCard'
 const Hero = () => {
 
 
@@ -9,28 +10,28 @@ const Hero = () => {
 
   const tabs = ['Courses', 'Scholarships', 'Universities', 'Events', 'Guide me', 'Get instant offer']
 
-  const slides = [
-    {
-      titleLine1: '113,000 Students chose IDP in 2023',
-      titleLine2: 'for their Study Abroad Journey',
-      desc: 'With an IDP office near you, studying abroad has never been easier. Avail services from the world’s top consultant.'
-    },
-    {
-      titleLine1: 'Plan your future with confidence',
-      titleLine2: 'Explore top courses and universities',
-      desc: 'Discover programs that match your interests, goals, and budget across leading destinations.'
-    },
-    {
-      titleLine1: 'Ace your IELTS preparation',
-      titleLine2: 'Guidance and resources from experts',
-      desc: 'Get test strategies, practice materials, and support to achieve your target band score.'
-    },
-    {
-      titleLine1: 'Scholarships and offers',
-      titleLine2: 'Make study abroad more affordable',
-      desc: 'Find scholarships, fee waivers, and exclusive offers to support your education journey.'
-    },
-  ]
+const slides = [
+  {
+    titleLine1: 'Thousands of students trusted us in 2023',
+    titleLine2: 'to begin their Study Abroad Journey',
+    desc: 'With expert guidance and global support, studying abroad has never been easier.'
+  },
+  {
+    titleLine1: 'Plan your future with confidence',
+    titleLine2: 'Explore top courses and universities',
+    desc: 'Discover programs that match your interests, career goals, and budget across leading destinations.'
+  },
+  {
+    titleLine1: 'Ace your IELTS preparation',
+    titleLine2: 'Guidance and resources from experts',
+    desc: 'Access proven strategies, practice tests, and mentorship to achieve your dream score.'
+  },
+  {
+    titleLine1: 'Scholarships and financial support',
+    titleLine2: 'Make study abroad more affordable',
+    desc: 'Find scholarships, fee waivers, and funding opportunities to support your education journey.'
+  },
+];
 
   return (
     <div>
@@ -80,11 +81,15 @@ const Hero = () => {
             </div>
 
             {/* Search Card */}
+            
            
           </div>
+         
         </div>
+       
         
             </section>
+              <SearchCard></SearchCard>
       
     </div>
   )

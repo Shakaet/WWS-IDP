@@ -41,13 +41,14 @@ const BlogSection = () => {
       category: "Business",
       readTime: "9 min read"
     },
+    
     {
       id: 6,
       title: "Guide To Affordable Universities In The USA For International Students",
       image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=300&fit=crop",
       category: "Affordable",
       readTime: "10 min read"
-    }
+    },
   ]
 
   const containerVariants = {
@@ -147,108 +148,109 @@ const BlogSection = () => {
 
         {/* Blog Grid */}
         <Motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+  variants={containerVariants}
+  initial="hidden"
+  animate="visible"
+>
+  {blogPosts.map((post, index) => (
+    <Motion.div
+      key={post.id}
+      variants={itemVariants}
+      className="group h-full" // Added h-full to make cards fill grid cell height
+    >
+      <Motion.article
+        className="bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 h-full flex flex-col" // Added h-full and flex flex-col
+        variants={cardVariants}
+        whileHover="hover"
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Image Container */}
+        <Motion.div 
+          className="relative h-48 overflow-hidden flex-shrink-0" // Added flex-shrink-0
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.4 }}
         >
-          {blogPosts.map((post, index) => (
-            <Motion.div
-              key={post.id}
-              variants={itemVariants}
-              className="group"
-            >
-              <Motion.article
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300"
-                variants={cardVariants}
-                whileHover="hover"
-                initial="hidden"
-                animate="visible"
-              >
-                {/* Image Container */}
-                <Motion.div 
-                  className="relative h-48 overflow-hidden"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <Motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  
-                  {/* Category Badge */}
-                  <Motion.div 
-                    className="absolute top-4 left-4"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
-                  >
-                    <span className="bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-xs font-medium">
-                      {post.category}
-                    </span>
-                  </Motion.div>
-                </Motion.div>
-
-                {/* Content */}
-                <div className="p-6">
-                  {/* Calendar Icon & Read Time */}
-                  <Motion.div 
-                    className="flex items-center gap-2 mb-3"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
-                  >
-                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <span className="text-sm text-gray-500">{post.readTime}</span>
-                  </Motion.div>
-
-                  {/* Title */}
-                  <Motion.h3 
-                    className="text-lg font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-orange-600 transition-colors duration-300"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.7 }}
-                  >
-                    {post.title}
-                  </Motion.h3>
-
-                  {/* Read More Link */}
-                  <Motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.8 }}
-                  >
-                    <Link 
-                      to={`/blog/${post.id}`}
-                      className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 font-semibold text-sm transition-colors duration-300"
-                    >
-                      Read More
-                      <Motion.svg 
-                        className="w-4 h-4"
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                        animate={{ x: [0, 4, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
-                      </Motion.svg>
-                    </Link>
-                  </Motion.div>
-                </div>
-              </Motion.article>
-            </Motion.div>
-          ))}
+          <img 
+            src={post.image} 
+            alt={post.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <Motion.div 
+            className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+          
+          {/* Category Badge */}
+          <Motion.div 
+            className="absolute top-4 left-4"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
+          >
+            <span className="bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-xs font-medium">
+              {post.category}
+            </span>
+          </Motion.div>
         </Motion.div>
+        
+        {/* Content */}
+        <div className="p-6 flex-grow flex flex-col"> // Added flex-grow and flex flex-col
+          {/* Calendar Icon & Read Time */}
+          <Motion.div 
+            className="flex items-center gap-2 mb-3"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
+          >
+            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span className="text-sm text-gray-500">{post.readTime}</span>
+          </Motion.div>
+          
+          {/* Title */}
+          <Motion.h3 
+            className="text-lg font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-orange-600 transition-colors duration-300"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 + 0.7 }}
+          >
+            {post.title}
+          </Motion.h3>
+          
+          {/* Read More Link */}
+          <Motion.div
+            className="mt-auto" // Added mt-auto to push to bottom
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 + 0.8 }}
+          >
+            <Link 
+              to={`/blog/${post.id}`}
+              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 font-semibold text-sm transition-colors duration-300"
+            >
+              Read More
+              <Motion.svg 
+                className="w-4 h-4"
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
+              </Motion.svg>
+            </Link>
+          </Motion.div>
+        </div>
+      </Motion.article>
+    </Motion.div>
+  ))}
+</Motion.div>
 
         
       </div>

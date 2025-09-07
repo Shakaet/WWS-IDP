@@ -2,10 +2,10 @@ import React from 'react'
 
 const cards = [
   {
-    title: 'Loved by students',
+    title: 'Trusted by students worldwide',
     body:
-      'IDP is rated 4.8 out of 5 on Google, and 9 out of 10 students would recommend us to their friends and families.',
-    cta: { label: 'Discover the IDP difference', href: '#' },
+      'Rated highly by students for guidance and support, with most recommending us to their friends and families.',
+    cta: { label: 'See why students choose us', href: '#' },
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.737-.715-1.611-2.377-2.737-4.313-2.737C4.099 3.75 2 5.765 2 8.25c0 7.22 8 11.25 10 12.75 2-1.5 9-5.53 9-12.75z" />
@@ -13,9 +13,9 @@ const cards = [
     )
   },
   {
-    title: 'Counselling right by your side',
+    title: 'Expert counselling by your side',
     body:
-      'We have 2200+ expert education counsellors, many of whom are also comfortable speaking regional languages.',
+      'Get guidance from certified education counsellors who understand global admissions and local student needs.',
     cta: { label: 'Learn More', href: '#' },
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
@@ -24,9 +24,9 @@ const cards = [
     )
   },
   {
-    title: 'Trusted by 113K students',
+    title: 'Helping thousands achieve dreams',
     body:
-      "In 2024, IDP helped 1,13,000 students achieve their study abroad dreams! We're here to help you do the same.",
+      "Each year, we support thousands of students in securing admissions and visas for their dream destinations.",
     cta: { label: 'Learn More', href: '#' },
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
@@ -36,10 +36,10 @@ const cards = [
     )
   },
   {
-    title: 'Proud IELTS co-owner',
+    title: 'IELTS and test prep support',
     body:
-      'IDP co-owns IELTS test. We have 2,000+ test locations across 60+ nations and 260+ computer-delivered IELTS centres.',
-    cta: { label: 'Book now', href: '#' },
+      'Prepare with expert resources, test strategies, and access to official IELTS and English proficiency training.',
+    cta: { label: 'Start preparing', href: '#' },
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M5.25 5.25h10.5A2.25 2.25 0 0118 7.5v11.25H7.5A2.25 2.25 0 015.25 16.5V5.25z" />
@@ -50,7 +50,7 @@ const cards = [
   {
     title: 'Support through every step',
     body:
-      'We support you at every step, from university & visa applications to pre-departure briefings and post-arrival help.',
+      'From course selection and visa applications to pre-departure and post-arrival guidance, we’re here for you.',
     cta: null,
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
@@ -59,10 +59,10 @@ const cards = [
     )
   },
   {
-    title: 'Global reach, personalised care',
+    title: 'Global reach, local care',
     body:
-      'IDP has 210+ offices across 35+ nations. You can often meet expert counsellors face-to-face in your city, free of charge.',
-    cta: { label: 'Find the nearest IDP office', href: '#' },
+      'With offices and partners across multiple countries, you can access expert counsellors wherever you are.',
+    cta: { label: 'Find support near you', href: '#' },
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 21c4.97-4.97 7.5-8.25 7.5-11.25A7.5 7.5 0 1012 21z" />
@@ -76,7 +76,7 @@ const WhyIts = () => {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="mb-6 sm:mb-10">
-        <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 tracking-tight">Why IDP?</h2>
+        <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 tracking-tight">Why WWS?</h2>
         <div className="mt-2 h-1 w-10 rounded bg-blue-600" />
       </div>
 
