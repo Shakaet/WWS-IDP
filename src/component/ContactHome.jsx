@@ -4,13 +4,13 @@ import ContactForm from './ContactForm'
 
 const ContactHome = () => {
   return (
-    <section className=" py-10 sm:py-14 lg:py-16">
+    <section className="bg-white py-10 sm:py-14 lg:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left: Copy + Form */}
           <div>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-slate-800">WWS can help you</h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base max-w-2xl">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900">WWS can help you</h2>
+            <p className="mt-2 text-gray-600 text-sm sm:text-base max-w-2xl">
               Enter your details and one of our expert counsellors will reach out to you so we can
               connect you to the right course, country, university – and even scholarships!
             </p>

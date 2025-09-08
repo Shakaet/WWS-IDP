@@ -2,36 +2,35 @@ import React from 'react'
 
 const cards = [
   {
-    title: 'Trusted by students worldwide',
+    title: 'Fast & Efficient',
     body:
-      'Rated highly by students for guidance and support, with most recommending us to their friends and families.',
-    cta: { label: 'See why students choose us', href: '#' },
+      'Lightning-fast delivery without compromising on quality or attention to detail.',
+    cta: { label: 'Learn More', href: '#' },
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.737-.715-1.611-2.377-2.737-4.313-2.737C4.099 3.75 2 5.765 2 8.25c0 7.22 8 11.25 10 12.75 2-1.5 9-5.53 9-12.75z" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-8 w-8">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     )
   },
   {
-    title: 'Expert counselling by your side',
+    title: 'Creative Solutions',
     body:
-      'Get guidance from certified education counsellors who understand global admissions and local student needs.',
+      'Innovative designs that stand out and make a lasting impression on your audience.',
     cta: { label: 'Learn More', href: '#' },
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 6.75a3 3 0 110 6 3 3 0 010-6zM4.5 20.25a7.5 7.5 0 1115 0M4.5 9a2.25 2.25 0 110 4.5M19.5 9a2.25 2.25 0 110 4.5" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-8 w-8">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     )
   },
   {
-    title: 'Helping thousands achieve dreams',
+    title: 'Client Focused',
     body:
-      "Each year, we support thousands of students in securing admissions and visas for their dream destinations.",
+      "Your success is our priority. We work closely with you every step of the way.",
     cta: { label: 'Learn More', href: '#' },
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 3l8.485 4.243A2.25 2.25 0 0121 9.24V12a9 9 0 11-18 0V9.24a2.25 2.25 0 01.515-1.997L12 3z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M8.25 13.5a3.75 3.75 0 107.5 0" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-8 w-8">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     )
   },
@@ -74,43 +73,50 @@ const cards = [
 
 const WhyIts = () => {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <section className="bg-white mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="mb-6 sm:mb-10">
-        <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 tracking-tight">Why WWS?</h2>
-        <div className="mt-2 h-1 w-10 rounded bg-blue-600" />
+        <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">Why Choose Us</h2>
+        <p className="mt-2 text-green-600 text-lg">We combine creativity with technology to deliver exceptional results.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
         {cards.map((card, idx) => (
           <div
             key={idx}
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+            className="rounded-2xl bg-gray-50 p-6 shadow-sm transition hover:shadow-lg hover:shadow-gray-100"
           >
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                {card.icon}
+            <div className="text-center">
+              <div className="flex justify-center mb-4">
+                <div className={`flex h-16 w-16 items-center justify-center rounded-full text-white ${
+                  idx === 0 ? 'bg-blue-600' : 
+                  idx === 1 ? 'bg-green-600' : 
+                  idx === 2 ? 'bg-purple-600' :
+                  idx === 3 ? 'bg-blue-600' :
+                  idx === 4 ? 'bg-green-600' :
+                  'bg-purple-600'
+                }`}>
+                  {card.icon}
+                </div>
               </div>
-              <div className="flex-1">
-                <h3 className="text-lg sm:text-xl font-semibold text-slate-900">{card.title}</h3>
-                <p className="mt-2 text-sm sm:text-base leading-6 text-slate-600">{card.body}</p>
-                {card.cta ? (
-                  <a
-                    className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-700 hover:text-blue-800"
-                    href={card.cta.href}
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">{card.title}</h3>
+              <p className="text-sm sm:text-base leading-6 text-green-600">{card.body}</p>
+              {card.cta ? (
+                <a
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-green-600 hover:text-green-700"
+                  href={card.cta.href}
+                >
+                  {card.cta.label}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    className="h-4 w-4"
                   >
-                    {card.cta.label}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      className="h-4 w-4"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                ) : null}
-              </div>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              ) : null}
             </div>
           </div>
         ))}

@@ -51,16 +51,16 @@ const slides = [
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
             {/* Copy */}
             <div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-800">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
                 {slides[activeSlide].titleLine1}
                 <br />
                 {slides[activeSlide].titleLine2}
               </h1>
-              <p className="mt-4 text-slate-600 text-base sm:text-lg max-w-2xl">
+              <p className="mt-4 text-gray-600 text-base sm:text-lg max-w-2xl">
                 {slides[activeSlide].desc}
               </p>
               <div className="mt-6">
-                <button className="inline-flex items-center rounded-full bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors">
+                <button className="inline-flex items-center rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors">
                   Register Now
                 </button>
               </div>
@@ -73,7 +73,7 @@ const slides = [
                     aria-label={`Show slide ${idx + 1}`}
                     onClick={() => setActiveSlide(idx)}
                     className={`h-3 w-3 rounded-full transition-colors ${
-                      activeSlide === idx ? 'bg-slate-800' : 'bg-blue-500/70 hover:bg-blue-600'
+                      activeSlide === idx ? 'bg-gray-900' : 'bg-green-500/70 hover:bg-green-600'
                     }`}
                   />
                 ))}

@@ -17,18 +17,18 @@ const Study = () => {
     { title: 'Ireland', image: a6 }
   ]
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <section className="bg-white mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="mb-6 sm:mb-10">
-        <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 tracking-tight">Your dream study destination awaits</h2>
+        <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">Your dream study destination awaits</h2>
         <div className="mt-2 h-1 w-10 rounded bg-blue-600" />
-        <p className="mt-3 text-slate-600">Start your inspiring academic journey in these vibrant and welcoming study destinations!</p>
+        <p className="mt-3 text-gray-600">Start your inspiring academic journey in these vibrant and welcoming study destinations!</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {destinations.map((dest, idx) => (
           <Motion.div
             key={idx}
-            className="group relative overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/5"
+            className="group relative overflow-hidden rounded-2xl shadow-sm ring-1 ring-gray-200 hover:shadow-lg hover:shadow-gray-100 transition-shadow"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -52,7 +52,7 @@ const Study = () => {
               <Motion.div
                 initial={{ y: 16, opacity: 0 }}
                 whileHover={{ y: 0, opacity: 1 }}
-                className="rounded-full bg-white/90 px-5 py-2 text-slate-900 font-semibold shadow"
+                className="rounded-full bg-white/90 px-5 py-2 text-gray-900 font-semibold shadow"
               >
                 Study in {dest.title}
               </Motion.div>

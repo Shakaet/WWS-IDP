@@ -29,7 +29,8 @@ const Header = () => {
   }
 
   return (
-   <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    // bg-white/95
+   <header className="sticky top-0 z-50 bg-white backdrop-blur-sm border-b border-gray-100 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 md:h-18 items-center justify-between">
           {/* Left: Logo */}
@@ -106,7 +107,7 @@ const Header = () => {
             ) : (
               <Link
                 to="/signin"
-                className="inline-flex items-center rounded-full border border-slate-300 px-5 py-2 text-sm text-slate-800 hover:bg-slate-50 transition-colors"
+                className="inline-flex items-center rounded-full border-1 border-blue-400 px-5 py-2 text-sm text-slate-800 hover:bg-slate-50 transition-colors"
               >
                 Sign in
               </Link>
@@ -213,7 +214,7 @@ const Header = () => {
               <Link
                 to="/signin"
                 onClick={() => setIsMobileOpen(false)}
-                className="flex-1 inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50 transition-colors"
+                className="flex-1 inline-flex items-center justify-center rounded-full border-1 border-blue-400 px-5 py-2 text-slate-800 hover:bg-slate-50 transition-colors"
               >
                 Sign in
               </Link>

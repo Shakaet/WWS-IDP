@@ -13,6 +13,9 @@ import ReleventSection2 from '../component/ReleventSection2'
 import ReleventSection3 from '../component/releventSection3'
 import ReleventSection4 from '../component/ReleventSection4'
 import ReleventSection5 from '../component/ReleventSection5'
+import Service from '../component/Service'
+import Getready from '../component/Getready'
+import Calculate from '../component/Calculate'
 
 const Home = () => {
   
@@ -56,6 +59,30 @@ const Home = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
         >
           <WhyIts />
+        </Motion.div>
+        <Motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        ><Calculate></Calculate>
+        </Motion.div>
+        <Motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <Service></Service>
+        </Motion.div>
+
+        <Motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <Getready></Getready>
         </Motion.div>
         
         <Motion.div

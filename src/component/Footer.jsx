@@ -39,11 +39,12 @@ const Footer = () => {
   };
 
   return (
+    // bg-gray-900
     <motion.footer 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="bg-gray-900 text-white pt-12 pb-8 px-4 sm:px-6 lg:px-8"
+      className="bg-white text-gray-800 pt-12 pb-8 px-4 sm:px-6 lg:px-8 border-t border-gray-200"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
@@ -56,12 +57,11 @@ const Footer = () => {
             className="md:col-span-4 space-y-4"
           >
              <span><img src={img} className='w-40 h-40' alt="" /></span>
-            <h3 className="text-xl font-bold">
-             
+            <h3 className="text-xl font-bold text-gray-900">
               {footerData.organization.name}</h3>
-            <p className="text-gray-300">{footerData.organization.college}</p>
-            <p className="text-gray-300">{footerData.organization.university}</p>
-            <p className="text-gray-400 text-sm mt-4">{footerData.organization.address}</p>
+            <p className="text-gray-600">{footerData.organization.college}</p>
+            <p className="text-gray-600">{footerData.organization.university}</p>
+            <p className="text-gray-500 text-sm mt-4">{footerData.organization.address}</p>
           </motion.div>
 
           {/* Middle Column - About & Customer Service */}
@@ -73,7 +73,7 @@ const Footer = () => {
           >
             {/* About Extension */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 pb-2 border-b border-gray-700">ABOUT EXTENSION</h4>
+              <h4 className="text-lg font-semibold mb-4 pb-2 border-b border-blue-500 text-blue-600">ABOUT EXTENSION</h4>
               <ul className="space-y-3">
                 {footerData.aboutExtension.map((item, index) => (
                   <motion.li
@@ -83,7 +83,7 @@ const Footer = () => {
                   >
                     <a 
                       href={item.url} 
-                      className="text-gray-300 hover:text-white transition-colors duration-200"
+                      className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                     >
                       {item.name}
                     </a>
@@ -94,7 +94,7 @@ const Footer = () => {
 
             {/* Customer Service */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 pb-2 border-b border-gray-700">CUSTOMER SERVICE</h4>
+              <h4 className="text-lg font-semibold mb-4 pb-2 border-b border-green-500 text-green-600">CUSTOMER SERVICE</h4>
               <ul className="space-y-3">
                 {footerData.customerService.map((item, index) => (
                   <motion.li
@@ -104,7 +104,7 @@ const Footer = () => {
                   >
                     <a 
                       href={item.url} 
-                      className="text-gray-300 hover:text-white transition-colors duration-200"
+                      className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                     >
                       {item.name}
                     </a>
@@ -121,7 +121,7 @@ const Footer = () => {
             transition={{ delay: 0.6, duration: 0.5 }}
             className="md:col-span-3"
           >
-            <h4 className="text-lg font-semibold mb-4 pb-2 border-b border-gray-700">OTHER PROGRAMS</h4>
+            <h4 className="text-lg font-semibold mb-4 pb-2 border-b border-purple-500 text-purple-600">OTHER PROGRAMS</h4>
             <ul className="space-y-3">
               {footerData.otherPrograms.map((item, index) => (
                 <motion.li
@@ -131,7 +131,7 @@ const Footer = () => {
                 >
                   <a 
                     href={item.url} 
-                    className="text-gray-300 hover:text-white transition-colors duration-200"
+                      className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
                   >
                     {item.name}
                   </a>
@@ -146,7 +146,7 @@ const Footer = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.5 }}
-          className="mt-12 pt-6 border-t border-gray-800 text-center text-gray-500 text-sm"
+          className="mt-12 pt-6 border-t border-gray-200 text-center text-gray-500 text-sm"
         >
           <p>© {new Date().getFullYear()} The Pennsylvania State University. All rights reserved.</p>
         </motion.div>

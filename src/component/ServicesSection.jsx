@@ -45,7 +45,7 @@ const ServicesSection = () => {
         className="absolute inset-0 -z-10"
         style={{ y }}
       >
-        <div className="h-[120%] w-full bg-gradient-to-br from-blue-50 via-white to-teal-50" />
+        <div className="h-[120%] w-full bg-gradient-to-br from-blue-50 via-white to-gray-50" />
       </Motion.div>
 
       {/* Content */}
@@ -70,7 +70,7 @@ const ServicesSection = () => {
                 index % 2 === 0 ? 'mt-8' : 'mt-0'
               }`}
             >
-              <div className="bg-white rounded-2xl shadow-lg p-8 h-full hover:shadow-xl transition-shadow duration-300">
+              <div className="bg-white rounded-2xl shadow-lg p-8 h-full hover:shadow-xl hover:shadow-gray-100 transition-shadow duration-300 border border-gray-200">
                                  {/* Coral icon */}
                  <div className="flex justify-center mb-6">
                    <div className=" flex items-center justify-center p-2">
@@ -96,7 +96,7 @@ const ServicesSection = () => {
                 <div className="text-center">
                   <a 
                     href="#" 
-                    className="text-gray-900 font-medium underline hover:text-coral-500 transition-colors duration-200"
+                    className="text-green-600 font-medium underline hover:text-green-700 transition-colors duration-200"
                   >
                     MORE
                   </a>

@@ -28,15 +28,15 @@ const items = [
 
 const ShouldKnow = () => {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <section className="bg-gray-50 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="mb-6 sm:mb-10">
-        <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 tracking-tight">You should also know</h2>
-        <div className="mt-2 h-1 w-10 rounded bg-blue-600" />
+        <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">You should also know</h2>
+        <div className="mt-2 h-1 w-10 rounded bg-purple-600" />
       </div>
 
       <div className="space-y-4">
         {items.map((item, idx) => (
-          <div key={idx} className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div key={idx} className="rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg hover:shadow-gray-100 transition-shadow">
             <div className="flex flex-col items-start gap-5 p-4 sm:p-5 md:flex-row md:items-center">
               {/* Media */}
               <div className="shrink-0">
@@ -49,17 +49,17 @@ const ShouldKnow = () => {
                 </div>
               </div>
 
-              {/* Content block with subtle blue background */}
-              <div className="flex-1 w-full rounded-xl bg-blue-50/60 px-4 py-4">
-                <h3 className="text-lg sm:text-xl font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-2 text-sm sm:text-base leading-6 text-slate-600">{item.desc}</p>
+              {/* Content block with subtle gray background */}
+              <div className="flex-1 w-full rounded-xl bg-gray-50 px-4 py-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900">{item.title}</h3>
+                <p className="mt-2 text-sm sm:text-base leading-6 text-gray-600">{item.desc}</p>
               </div>
 
               {/* CTA */}
               <div className="w-full md:w-auto">
                 <a
                   href={item.cta.href}
-                  className="inline-flex w-full md:w-auto items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-slate-800 hover:bg-slate-50"
+                  className="inline-flex w-full md:w-auto items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-3 text-gray-800 hover:bg-gray-50 transition-colors"
                 >
                   {item.cta.label}
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-4 w-4">

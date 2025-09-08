@@ -108,7 +108,7 @@ const SearchCard = () => {
                 placeholder="Enter course subject e.g. Law"
                 value={coursesForm.subject}
                 onChange={(e) => setCoursesForm({...coursesForm, subject: e.target.value})}
-                className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="lg:col-span-4">
@@ -148,7 +148,7 @@ const SearchCard = () => {
               <button 
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Searching...' : 'Search'}
               </button>
@@ -195,7 +195,7 @@ const SearchCard = () => {
               <button 
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Searching...' : 'Search'}
               </button>
@@ -213,7 +213,7 @@ const SearchCard = () => {
                 placeholder="Search by university name"
                 value={universitiesForm.universityName}
                 onChange={(e) => setUniversitiesForm({...universitiesForm, universityName: e.target.value})}
-                className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="lg:col-span-6">
@@ -238,7 +238,7 @@ const SearchCard = () => {
               <button 
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Searching...' : 'Search'}
               </button>
@@ -308,7 +308,7 @@ const SearchCard = () => {
               <button 
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Searching...' : 'Search'}
               </button>
@@ -328,7 +328,7 @@ const SearchCard = () => {
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <div className="text-blue-600 text-3xl mb-3">🎓</div>
                   <h4 className="font-semibold text-gray-800 mb-2">University Selection</h4>
@@ -346,14 +346,14 @@ const SearchCard = () => {
                 </div>
               </div>
 
-              <div className="flex justify-center">
+              {/* <div className="flex justify-center">
                 <button 
                   onClick={() => window.location.href = '/contact'}
                   className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-white hover:bg-blue-700 transition-colors text-lg font-medium"
                 >
                   Contact Our Counselors
                 </button>
-              </div>
+              </div>  */}
             </div>
           </div>
         )
@@ -371,24 +371,24 @@ const SearchCard = () => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-orange-50 p-6 rounded-lg">
-                  <div className="text-orange-600 text-3xl mb-3">⚡</div>
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <div className="text-blue-600 text-3xl mb-3">⚡</div>
                   <h4 className="font-semibold text-gray-800 mb-2">Instant Response</h4>
                   <p className="text-gray-600 text-sm">Get immediate conditional offers within 24-48 hours of submission.</p>
                 </div>
-                <div className="bg-blue-50 p-6 rounded-lg">
-                  <div className="text-blue-600 text-3xl mb-3">🎯</div>
+                <div className="bg-green-50 p-6 rounded-lg">
+                  <div className="text-green-600 text-3xl mb-3">🎯</div>
                   <h4 className="font-semibold text-gray-800 mb-2">Direct University Access</h4>
                   <p className="text-gray-600 text-sm">Connect directly with university admission teams and decision makers.</p>
                 </div>
-                <div className="bg-green-50 p-6 rounded-lg">
-                  <div className="text-green-600 text-3xl mb-3">📄</div>
+                <div className="bg-purple-50 p-6 rounded-lg">
+                  <div className="text-purple-600 text-3xl mb-3">📄</div>
                   <h4 className="font-semibold text-gray-800 mb-2">Simplified Process</h4>
                   <p className="text-gray-600 text-sm">Minimal documentation required - just your academic credentials and preferences.</p>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg mb-6">
+              {/* <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg mb-6">
                 <h4 className="font-semibold text-gray-800 mb-3">How It Works:</h4>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
                   <div className="text-center">
@@ -417,7 +417,7 @@ const SearchCard = () => {
                 >
                   Start Your Instant Offer Process
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         )
@@ -429,7 +429,7 @@ const SearchCard = () => {
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 lg:-mt-20">
-      <div className="rounded-2xl bg-white opacity-100 shadow-md ring-1 ring-black/5 overflow-hidden">
+      <div className="rounded-2xl bg-white opacity-100 shadow-md ring-1 ring-gray-200 overflow-hidden hover:shadow-lg hover:shadow-gray-100 transition-shadow">
         {/* Debug info - remove this in production */}
         <div className="px-4 pt-2 text-xs text-gray-500">
           Active Tab: {activeTab}
@@ -443,7 +443,7 @@ const SearchCard = () => {
               className={`pb-3 text-sm sm:text-base whitespace-nowrap border-b-2 -mb-px transition-colors cursor-pointer ${
                 activeTab === tab
                   ? 'border-blue-600 text-blue-700'
-                  : 'border-transparent text-slate-600 hover:text-slate-800'
+                  : 'border-transparent text-gray-600 hover:text-blue-600'
               }`}
             >
               {tab}
