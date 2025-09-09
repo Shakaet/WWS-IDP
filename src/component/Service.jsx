@@ -12,7 +12,8 @@ const Service = () => {
           </h2>
           <p className="text-[#7A828E] text-lg">Elevate your brand with our exclusive offerings</p>
         </div>
-
+  
+  
         {/* Service Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Premium Design Card */}
