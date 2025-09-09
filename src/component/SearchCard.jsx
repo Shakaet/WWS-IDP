@@ -148,7 +148,7 @@ const SearchCard = () => {
               <button 
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded-full bg-[#11AD00] px-6 py-3 text-white hover:bg-[#4CADFF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Searching...' : 'Search'}
               </button>

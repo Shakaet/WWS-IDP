@@ -30,7 +30,7 @@ const cards = [
     cta: { label: 'Learn More', href: '#' },
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-8 w-8">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     )
   },
@@ -49,11 +49,13 @@ const cards = [
   {
     title: 'Support through every step',
     body:
-      'From course selection and visa applications to pre-departure and post-arrival guidance, we’re here for you.',
+      'From course selection and visa applications to pre-departure and post-arrival guidance, we are here for you.',
     cta: null,
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9.813 8.25l1.06-2.651a.75.75 0 011.394 0L13.313 8.25M8.25 12h7.5M6.75 15.75h10.5M12 21l-2.25-3h4.5L12 21z" />
+        <circle cx="12" cy="12" r="10" strokeWidth="2"/>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6l4 2"/>
+        <text x="12" y="16" textAnchor="middle" fontSize="3" fontWeight="bold" fill="currentColor">24/7</text>
       </svg>
     )
   },
@@ -64,8 +66,7 @@ const cards = [
     cta: { label: 'Find support near you', href: '#' },
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-7 w-7">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 21c4.97-4.97 7.5-8.25 7.5-11.25A7.5 7.5 0 1012 21z" />
-        <circle cx="12" cy="9.75" r="2.25" strokeWidth="1.8" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     )
   }
@@ -76,7 +77,11 @@ const WhyIts = () => {
     <section className="bg-white mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="mb-6 sm:mb-10">
         <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">Why Choose Us</h2>
-        <p className="mt-2 text-green-600 text-lg">We combine creativity with technology to deliver exceptional results.</p>
+        <div className="mt-2 h-1 w-10 rounded bg-purple-600" />
+        <p className="mt-2 text-[#7A828E] text-lg">We blend creativity with technology
+to craft innovative solutions <br />
+Our passion drives excellence,
+delivering results that truly stand out</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -85,21 +90,14 @@ const WhyIts = () => {
             key={idx}
             className="rounded-2xl bg-gray-50 p-6 shadow-sm transition hover:shadow-lg hover:shadow-gray-100"
           >
-            <div className="text-center">
-              <div className="flex justify-center mb-4">
-                <div className={`flex h-16 w-16 items-center justify-center rounded-full text-white ${
-                  idx === 0 ? 'bg-blue-600' : 
-                  idx === 1 ? 'bg-green-600' : 
-                  idx === 2 ? 'bg-purple-600' :
-                  idx === 3 ? 'bg-blue-600' :
-                  idx === 4 ? 'bg-green-600' :
-                  'bg-purple-600'
-                }`}>
-                  {card.icon}
+              <div className="text-center">
+                <div className="flex justify-center mb-2">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full text-white bg-[#11AD00] hover:bg-[#4CADFF] transition-colors duration-300">
+                    {card.icon}
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">{card.title}</h3>
-              <p className="text-sm sm:text-base leading-6 text-green-600">{card.body}</p>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{card.title}</h3>
+              <p className="text-sm sm:text-base leading-6 text-[#7A828E]">{card.body}</p>
               {card.cta ? (
                 <a
                   className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-green-600 hover:text-green-700"

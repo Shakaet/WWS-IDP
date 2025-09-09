@@ -8,15 +8,15 @@ const Service = () => {
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
             <span className="text-white">Premium </span>
-            <span className="text-blue-600">Services</span>
+            <span className="text-white">Services</span>
           </h2>
-          <p className="text-white text-lg">Elevate your brand with our exclusive offerings</p>
+          <p className="text-[#7A828E] text-lg">Elevate your brand with our exclusive offerings</p>
         </div>
 
         {/* Service Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Premium Design Card */}
-          <div className="bg-gray-800 rounded-lg p-8 border border-gray-600">
+          <div className="bg-gray-800 rounded-lg p-8 border border-blue-600">
             <div className="flex items-start gap-4 mb-6">
               <div className="bg-blue-600 p-3 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-6 w-6 text-yellow-400">
@@ -28,7 +28,7 @@ const Service = () => {
             <p className="text-gray-300 mb-6 leading-relaxed">
               Luxury design solutions that set you apart from the competition with premium quality.
             </p>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+            <button className="bg-blue-600 hover:bg-[#11AD00] text-white px-6 py-3 rounded-lg font-medium transition-colors">
               Learn More
             </button>
           </div>
@@ -46,7 +46,7 @@ const Service = () => {
             <p className="text-gray-300 mb-6 leading-relaxed">
               Comprehensive solutions designed to accelerate your business growth and market presence.
             </p>
-            <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+            <button className="bg-green-600 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
               Get Started
             </button>
           </div>

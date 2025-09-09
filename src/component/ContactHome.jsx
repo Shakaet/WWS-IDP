@@ -9,7 +9,8 @@ const ContactHome = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left: Copy + Form */}
           <div>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900">WWS can help you</h2>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">WWS can help you</h2>
+        <div className="mt-2 h-1 w-10 rounded bg-purple-600" />
             <p className="mt-2 text-gray-600 text-sm sm:text-base max-w-2xl">
               Enter your details and one of our expert counsellors will reach out to you so we can
               connect you to the right course, country, university – and even scholarships!

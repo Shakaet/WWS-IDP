@@ -60,7 +60,7 @@ const slides = [
                 {slides[activeSlide].desc}
               </p>
               <div className="mt-6">
-                <button className="inline-flex items-center rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors">
+                <button className="inline-flex items-center rounded-full bg-[#11AD00] hover:bg-[#4CADFF] px-6 py-3 text-white  transition-colors">
                   Register Now
                 </button>
               </div>

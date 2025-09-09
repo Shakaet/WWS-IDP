@@ -250,7 +250,7 @@ const ContactForm = () => {
 
           {/* Submit */}
           <div className="sm:col-span-2">
-            <button type="submit" disabled={isSubmitting} className="inline-flex items-center rounded-full bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed">
+            <button type="submit" disabled={isSubmitting} className="inline-flex items-center rounded-full bg-[#11AD00] px-6 py-3 text-white hover:bg-[#4CADFF] disabled:opacity-60 disabled:cursor-not-allowed">
               {isSubmitting ? 'Submitting...' : 'Enquire now'}
             </button>
           </div>

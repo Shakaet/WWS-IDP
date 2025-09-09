@@ -118,7 +118,7 @@ const BlogSection = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             Study abroad tips, insights{' '}
-            <span className="text-orange-500">and student experiences</span>
+            <span className="text-[#11AD00]">and student experiences</span>
           </Motion.h2>
 
           <Motion.div
@@ -129,7 +129,7 @@ const BlogSection = () => {
           >
             <Link 
               to="/blog"
-              className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-2 bg-[#11AD00] hover:bg-[#4CADFF] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               View All Articles
               <Motion.svg 
