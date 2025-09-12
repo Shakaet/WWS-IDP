@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import banner from "../assets/bn.jpg"
+import banner from "../assets/BannerImg.jpg"
 import SearchCard from './SearchCard'
 const Hero = () => {
 

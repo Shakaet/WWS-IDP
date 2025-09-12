@@ -6,17 +6,71 @@ import useAuth from '../Hooks/useAuth/useAuth'
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   let { user, signOuts } = useAuth()
 
   console.log(user)
 
  const navItems = [
-  { label: 'Study Abroad', to: '/' },
-  { label: 'Destinations', to: '/' },
-  { label: 'Courses', to: '/' },
-  { label: 'Scholarships', to: '/' },
-  { label: 'IELTS', to: '/' },
+  { 
+    label: 'Study Abroad', 
+    to: '/',
+    dropdown: [
+      { label: 'Why study abroad?', to: '/' },
+      { label: 'Where and what to study?', to: '/' },
+      { label: 'How do I apply?', to: '/' },
+      { label: 'After receiving an offer', to: '/' },
+      { label: 'Prepare to depart', to: '/' },
+      { label: 'Arrive and thrive', to: '/' }
+    ]
+  },
+  { 
+    label: 'Destinations', 
+    to: '/',
+    dropdown: [
+      { label: 'Study in Australia', to: '/' },
+      { label: 'Study in Canada', to: '/' },
+      { label: 'Study in Ireland', to: '/' },
+      { label: 'Study in New Zealand', to: '/' },
+      { label: 'Study in UK', to: '/' },
+      { label: 'Study in USA', to: '/' }
+    ]
+  },
+  { 
+    label: 'Courses', 
+    to: '/',
+    dropdown: [
+      { label: 'Course advice', to: '/' },
+      { label: 'FastLane courses', to: '/' },
+      { label: 'Study abroad courses', to: '/' },
+      { label: 'Find a scholarship', to: '/' },
+      { label: 'Find a university', to: '/' },
+      { label: 'University Rankings - THE', to: '/', hasArrow: true },
+      { label: 'Complete University Guide (CUG)', to: '/' }
+    ]
+  },
+  { 
+    label: 'Scholarships', 
+    to: '/',
+    dropdown: [
+      { label: 'Scholarship search', to: '/' },
+      { label: 'Merit-based scholarships', to: '/' },
+      { label: 'Need-based scholarships', to: '/' },
+      { label: 'Country-specific scholarships', to: '/' },
+      { label: 'University scholarships', to: '/' }
+    ]
+  },
+  { 
+    label: 'IELTS', 
+    to: '/',
+    dropdown: [
+      { label: 'What is IELTS?', to: '/' },
+      { label: 'Why IDP IELTS?', to: '/' },
+      { label: 'IELTS Preparation', to: '/' },
+      { label: 'Book an IELTS test', to: '/' }
+    ]
+  },
 ];
 
 
@@ -47,14 +101,60 @@ const Header = () => {
           </div>
           {/* Center: Desktop nav */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center">
-            {navItems.map((item) => (
-              <Link
+            {navItems.map((item, index) => (
+              <div 
                 key={item.label}
-                to={item.to}
-                className="text-sm xl:text-[15px] text-slate-700 hover:text-slate-900 transition-colors whitespace-nowrap"
+                className="relative group"
+                onMouseEnter={() => setActiveDropdown(index)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                {item.label}
-              </Link>
+                <Link
+                  to={item.to}
+                  className={`text-sm xl:text-[15px] transition-colors whitespace-nowrap flex items-center gap-1 ${
+                    activeDropdown === index 
+                      ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
+                      : 'text-slate-700 hover:text-blue-600'
+                  }`}
+                >
+                  {item.label}
+                  <svg 
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      activeDropdown === index ? 'rotate-180' : ''
+                    }`} 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Link>
+                
+                {/* Dropdown Menu */}
+                {item.dropdown && (
+                  <div className={`absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-gray-100 z-50 transition-all duration-300 ${
+                    activeDropdown === index 
+                      ? 'opacity-100 visible translate-y-0' 
+                      : 'opacity-0 invisible -translate-y-2'
+                  }`}>
+                    <div className="py-2">
+                      {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                        <Link
+                          key={dropdownIndex}
+                          to={dropdownItem.to}
+                          className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors"
+                        >
+                          <span>{dropdownItem.label}</span>
+                          {dropdownItem.hasArrow && (
+                            <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          )}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
           {/* Right: Actions */}
@@ -165,15 +265,31 @@ const Header = () => {
         <div className="px-4 py-4 space-y-3">
           {/* Navigation Links */}
           <div className="space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                onClick={() => setIsMobileOpen(false)}
-                className="block rounded-lg px-3 py-3 text-base text-slate-700 hover:bg-slate-50 transition-colors"
-              >
-                {item.label}
-              </Link>
+            {navItems.map((item, index) => (
+              <div key={item.label}>
+                <Link
+                  to={item.to}
+                  onClick={() => setIsMobileOpen(false)}
+                  className="block rounded-lg px-3 py-3 text-base text-slate-700 hover:bg-slate-50 transition-colors"
+                >
+                  {item.label}
+                </Link>
+                {/* Mobile Dropdown */}
+                {item.dropdown && (
+                  <div className="ml-4 space-y-1">
+                    {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                      <Link
+                        key={dropdownIndex}
+                        to={dropdownItem.to}
+                        onClick={() => setIsMobileOpen(false)}
+                        className="block rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                      >
+                        {dropdownItem.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
           {/* Mobile User Profile Section */}
