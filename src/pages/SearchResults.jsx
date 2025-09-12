@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Result1 from '../component/Result1'
 import Result2 from '../component/Result2'
@@ -10,9 +10,53 @@ const SearchResults = () => {
   
   // Handle nested data structure - extract actual results from nested data
   const actualResults = results && results.length > 0 && results[0].data ? results[0].data : results
+  
+  // Sort state
+  const [sortBy, setSortBy] = useState('popularity')
+
+  // Sort results based on selected criteria
+  const sortedResults = useMemo(() => {
+    if (!actualResults || actualResults.length === 0) return actualResults
+
+    const sorted = [...actualResults].sort((a, b) => {
+      switch (sortBy) {
+        case 'ranking':
+          // Sort by ranking (lower number = better ranking)
+          const aRanking = a.ranking || 999
+          const bRanking = b.ranking || 999
+          return aRanking - bRanking
+
+        case 'name':
+          // Sort alphabetically by name
+          const aName = a.universityName || a.name || a.title || ''
+          const bName = b.universityName || b.name || b.title || ''
+          return aName.localeCompare(bName)
+
+        case 'fee':
+          // Sort by tuition fee (extract numbers from fee strings)
+          const extractFee = (feeStr) => {
+            if (!feeStr) return 999999
+            const match = feeStr.match(/[\d,]+/)
+            return match ? parseInt(match[0].replace(/,/g, '')) : 999999
+          }
+          return extractFee(a.tuitionFee) - extractFee(b.tuitionFee)
+
+        case 'popularity':
+        default:
+          // Default sort by popularity (random for demo, you can implement actual popularity logic)
+          return Math.random() - 0.5
+      }
+    })
+
+    return sorted
+  }, [actualResults, sortBy])
 
   const handleBackToSearch = () => {
     navigate('/')
+  }
+
+  const handleSortChange = (e) => {
+    setSortBy(e.target.value)
   }
 
   const renderCourseCard = (course) => (
@@ -150,7 +194,7 @@ const SearchResults = () => {
   )
 
   const renderResults = () => {
-    if (!actualResults || actualResults.length === 0) {
+    if (!sortedResults || sortedResults.length === 0) {
       return (
         <div className="text-center py-12">
           <div className="text-gray-400 text-6xl mb-4">🔍</div>
@@ -168,7 +212,7 @@ const SearchResults = () => {
 
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {actualResults.map((item) => {
+        {sortedResults.map((item) => {
           switch (tab) {
             case 'Courses':
               return renderCourseCard(item)
@@ -203,7 +247,7 @@ const SearchResults = () => {
         {/* Main Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {actualResults?.length || 0} {tab} Found
+            {sortedResults?.length || 0} {tab} Found
           </h1>
           <p className="text-gray-600">
             Discover the best {tab.toLowerCase()} that match your criteria
@@ -222,7 +266,11 @@ const SearchResults = () => {
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2">
               <span className="text-gray-600 text-sm">Sort by:</span>
-              <select className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <select 
+                value={sortBy}
+                onChange={handleSortChange}
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
                 <option value="popularity">Popularity</option>
                 <option value="ranking">Ranking</option>
                 <option value="name">Name A-Z</option>
