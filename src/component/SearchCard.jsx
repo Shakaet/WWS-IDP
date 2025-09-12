@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import useAxiosSecure from '../Hooks/useAxiosSecure/useAxiosSecure'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const SearchCard = () => {
   const [activeTab, setActiveTab] = useState('Courses')
   const [loading, setLoading] = useState(false)
   const axiosSecure = useAxiosSecure()
+
+  let navigate=useNavigate()
   
   const tabs = ['Courses', 'Scholarships', 'Universities', 'Events', 'Guide me', 'Get instant offer']
 
@@ -58,7 +61,7 @@ const SearchCard = () => {
 
       switch (activeTab) {
         case 'Courses':
-          endpoint = '/api/search/courses'
+          endpoint = '/api/search/course'
           data = coursesForm
           break
         case 'Scholarships':
@@ -79,20 +82,21 @@ const SearchCard = () => {
 
       const response = await axiosSecure.post(endpoint, data)
       
-      if (response.data.success) {
-        toast.success('Search completed successfully!')
-        // Handle successful response - you can redirect or show results
-        console.log('Search results:', response.data.data)
-      } else {
-        toast.error(response.data.message || 'Search failed')
-      }
-    } catch (error) {
-      console.error('Search error:', error)
-      toast.error('An error occurred during search. Please try again.')
-    } finally {
-      setLoading(false)
+       if (response.data.success) {
+      toast.success('Search completed successfully!')
+       console.log(response.data.data)
+      // 👉 result data সহ navigate করা
+      navigate('/search-results', { state: { results: response.data.data, tab: activeTab } })
+    } else {
+      toast.error(response.data.message || 'Search failed')
     }
+  } catch (error) {
+    console.error('Search error:', error)
+    toast.error('An error occurred during search. Please try again.')
+  } finally {
+    setLoading(false)
   }
+}
 
   // Render different forms based on active tab
   const renderForm = () => {
