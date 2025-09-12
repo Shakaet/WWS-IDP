@@ -1,5 +1,7 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import Result1 from '../component/Result1'
+import Result2 from '../component/Result2'
 
 const SearchResults = () => {
   const location = useLocation()
@@ -255,7 +257,10 @@ const SearchResults = () => {
         </div>
 
         {/* Results */}
+        <Result1></Result1>
         {renderResults()}
+        <Result2></Result2>
+        
       </div>
     </div>
   )
