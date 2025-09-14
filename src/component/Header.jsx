@@ -16,14 +16,22 @@ const Header = () => {
   { 
     label: 'Study Abroad', 
     to: '/',
-    dropdown: [
-      { label: 'Why study abroad?', to: '/' },
-      { label: 'Where and what to study?', to: '/' },
-      { label: 'How do I apply?', to: '/' },
-      { label: 'After receiving an offer', to: '/' },
-      { label: 'Prepare to depart', to: '/' },
-      { label: 'Arrive and thrive', to: '/' }
-    ]
+    // dropdown: [
+    //   { label: 'Why study abroad?', to: '/' },
+    //   { label: 'Where and what to study?', to: '/' },
+    //   { label: 'How do I apply?', to: '/' },
+    //   { label: 'After receiving an offer', to: '/' },
+    //   { label: 'Prepare to depart', to: '/' },
+    //   { label: 'Arrive and thrive', to: '/' }
+    // ]
+    dropdown : [
+  { label: 'Why Go Global?', to: 'WhyStudyAbroad' },
+  { label: 'Study Destinations', to: '/' },
+  { label: 'Application Guide', to: '/' },
+  { label: 'Next Steps', to: '/' },
+  { label: 'Before You Fly', to: '/' },
+  { label: 'Thrive Abroad', to: '/' }
+]
   },
   { 
     label: 'Destinations', 

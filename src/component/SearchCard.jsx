@@ -84,9 +84,6 @@ const SearchCard = () => {
       
        if (response.data.success) {
       toast.success('Search completed successfully!')
-       console.log('SearchCard - Full response:', response.data)
-       console.log('SearchCard - Response data:', response.data.data)
-       console.log('SearchCard - Navigating with tab:', activeTab)
       // 👉 result data সহ navigate করা
       navigate('/search-results', { state: { results: response.data.data, tab: activeTab } })
     } else {

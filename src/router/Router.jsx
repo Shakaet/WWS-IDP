@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import { SignUp } from "../pages/SignUp";
 import SearchResults from "../pages/SearchResults";
+import WhyStudyAbroad from "../nav/studyAbroad/WhyStudyAbroad";
 
 
 export const router = createBrowserRouter([
@@ -33,6 +34,11 @@ export const router = createBrowserRouter([
           element:<SearchResults></SearchResults>
 
         },
+        {
+          path:"WhyStudyAbroad",
+          element:<WhyStudyAbroad></WhyStudyAbroad>
+
+        }
 
     ]
   },
