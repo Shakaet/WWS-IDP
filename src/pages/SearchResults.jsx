@@ -1,64 +1,82 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import Result1 from '../component/Result1'
-import Result2 from '../component/Result2'
 
 const SearchResults = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const { results, tab } = location.state || { results: [], tab: 'Courses' }
   
-  // Handle nested data structure - extract actual results from nested data
-  const actualResults = results && results.length > 0 && results[0].data ? results[0].data : results
+  // Debug logging
+  console.log('SearchResults - Location state:', location.state)
+  console.log('SearchResults - Results:', results)
+  console.log('SearchResults - Tab:', tab)
+  
+  // Redirect if accessed directly without state
+  useEffect(() => {
+    if (!location.state) {
+      navigate('/')
+    }
+  }, [location.state, navigate])
   
   // Sort state
   const [sortBy, setSortBy] = useState('popularity')
-
+  
   // Sort results based on selected criteria
   const sortedResults = useMemo(() => {
-    if (!actualResults || actualResults.length === 0) return actualResults
-
+    console.log('useMemo - Raw results:', results)
+    console.log('useMemo - Results type:', typeof results)
+    console.log('useMemo - Results length:', results?.length)
+    
+    const actualResults = results || []
+    console.log('useMemo - Actual results:', actualResults)
+    
+    if (!actualResults || actualResults.length === 0) {
+      console.log('useMemo - No results found')
+      return actualResults
+    }
+    
     const sorted = [...actualResults].sort((a, b) => {
       switch (sortBy) {
-        case 'ranking':
+        case 'ranking': {
           // Sort by ranking (lower number = better ranking)
-          const aRanking = a.ranking || 999
-          const bRanking = b.ranking || 999
+          const aRanking = a.ranking || a.rank || 999
+          const bRanking = b.ranking || b.rank || 999
           return aRanking - bRanking
-
-        case 'name':
+        }
+        case 'name': {
           // Sort alphabetically by name
           const aName = a.universityName || a.name || a.title || ''
           const bName = b.universityName || b.name || b.title || ''
           return aName.localeCompare(bName)
-
-        case 'fee':
+        }
+        case 'fee': {
           // Sort by tuition fee (extract numbers from fee strings)
           const extractFee = (feeStr) => {
             if (!feeStr) return 999999
             const match = feeStr.match(/[\d,]+/)
             return match ? parseInt(match[0].replace(/,/g, '')) : 999999
           }
-          return extractFee(a.tuitionFee) - extractFee(b.tuitionFee)
-
+          return extractFee(a.tuitionFee || a.fee) - extractFee(b.tuitionFee || b.fee)
+        }
         case 'popularity':
         default:
-          // Default sort by popularity (random for demo, you can implement actual popularity logic)
-          return Math.random() - 0.5
+          // Keep original order instead of random for consistency
+          return 0
       }
     })
-
+    
+    console.log('useMemo - Sorted results:', sorted)
     return sorted
-  }, [actualResults, sortBy])
-
+  }, [results, sortBy])
+  
   const handleBackToSearch = () => {
     navigate('/')
   }
-
+  
   const handleSortChange = (e) => {
     setSortBy(e.target.value)
   }
-
+  
   const renderCourseCard = (course) => (
     <div key={course._id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-all duration-200 h-full flex flex-col">
       {/* Available Tag */}
@@ -90,7 +108,7 @@ const SearchResults = () => {
       </div>
     </div>
   )
-
+  
   const renderScholarshipCard = (scholarship) => (
     <div key={scholarship._id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-all duration-200 h-full flex flex-col">
       {/* Available Tag */}
@@ -122,11 +140,19 @@ const SearchResults = () => {
       </div>
     </div>
   )
-
+  
   const renderUniversityCard = (university) => (
     <div key={university._id || university.universityName} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-all duration-200 h-full flex flex-col">
-      {/* Available Tag */}
-      <div className="flex justify-end mb-3">
+      {/* University Header */}
+      <div className="flex justify-between items-start mb-3">
+        <div className="flex-1">
+          <h3 className="text-lg font-bold text-gray-900 mb-1">{university.universityName}</h3>
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <span>📍 {university.campusLocation}</span>
+            <span>•</span>
+            <span>🏆 Rank #{university.ranking}</span>
+          </div>
+        </div>
         <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">
           Available
         </span>
@@ -134,12 +160,41 @@ const SearchResults = () => {
       
       {/* University Info */}
       <div className="mb-4 flex-grow">
-        <p className="text-gray-900 font-semibold text-sm mb-1">Study Level: All Levels</p>
-        <p className="text-gray-900 font-semibold text-sm mb-3">Destination: {university.destination}</p>
+        <div className="grid grid-cols-2 gap-2 mb-3 text-sm">
+          <div>
+            <span className="font-medium text-gray-700">Established:</span>
+            <span className="text-gray-600 ml-1">{university.established}</span>
+          </div>
+          <div>
+            <span className="font-medium text-gray-700">Destination:</span>
+            <span className="text-gray-600 ml-1">{university.destination}</span>
+          </div>
+        </div>
+        
+        {/* Courses Offered */}
+        <div className="mb-3">
+          <span className="font-medium text-gray-700 text-sm">Popular Courses:</span>
+          <div className="flex flex-wrap gap-1 mt-1">
+            {university.coursesOffered?.slice(0, 3).map((course, index) => (
+              <span key={index} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
+                {course}
+              </span>
+            ))}
+            {university.coursesOffered?.length > 3 && (
+              <span className="text-gray-500 text-xs">+{university.coursesOffered.length - 3} more</span>
+            )}
+          </div>
+        </div>
+        
+        {/* Tuition Fee */}
+        <div className="mb-3">
+          <span className="font-medium text-gray-700 text-sm">Tuition Fee:</span>
+          <span className="text-green-600 font-semibold ml-1">{university.tuitionFee}</span>
+        </div>
         
         {/* Description */}
         <p className="text-gray-600 text-sm leading-relaxed">
-          {university.description || `${university.universityName} in ${university.destination} offers comprehensive education across various fields including ${university.coursesOffered?.slice(0, 3).join(', ') || 'Engineering, Business, Arts'}. The university emphasizes research excellence, practical experience, and global career readiness.`}
+          {university.description}
         </p>
       </div>
       
@@ -160,7 +215,7 @@ const SearchResults = () => {
       </div>
     </div>
   )
-
+  
   const renderEventCard = (event) => (
     <div key={event._id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-all duration-200 h-full flex flex-col">
       {/* Available Tag */}
@@ -192,14 +247,20 @@ const SearchResults = () => {
       </div>
     </div>
   )
-
+  
   const renderResults = () => {
+    console.log('renderResults - sortedResults:', sortedResults)
+    console.log('renderResults - sortedResults length:', sortedResults?.length)
+    
     if (!sortedResults || sortedResults.length === 0) {
       return (
         <div className="text-center py-12">
           <div className="text-gray-400 text-6xl mb-4">🔍</div>
           <h3 className="text-xl font-semibold text-gray-800 mb-2">No results found</h3>
           <p className="text-gray-600 mb-6">Try adjusting your search criteria</p>
+          <div className="text-xs text-gray-500 mb-4">
+            Debug: Results = {JSON.stringify(sortedResults)}
+          </div>
           <button 
             onClick={handleBackToSearch}
             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
@@ -209,7 +270,7 @@ const SearchResults = () => {
         </div>
       )
     }
-
+    
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {sortedResults.map((item) => {
@@ -229,7 +290,7 @@ const SearchResults = () => {
       </div>
     )
   }
-
+  
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -243,7 +304,7 @@ const SearchResults = () => {
             Back to Search
           </button>
         </nav>
-
+        
         {/* Main Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -253,7 +314,7 @@ const SearchResults = () => {
             Discover the best {tab.toLowerCase()} that match your criteria
           </p>
         </div>
-
+        
         {/* Filter and Sort Controls */}
         <div className="bg-white rounded-lg border border-gray-200 p-4 mb-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
@@ -303,12 +364,9 @@ const SearchResults = () => {
             </div>
           </div>
         </div>
-
-        {/* Results */}
-        <Result1></Result1>
-        {renderResults()}
-        <Result2></Result2>
         
+        {/* Results - Removed Result1 and Result2 components */}
+        {renderResults()}
       </div>
     </div>
   )
