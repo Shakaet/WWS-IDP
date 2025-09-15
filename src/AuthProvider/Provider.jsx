@@ -17,7 +17,7 @@ const Provider = ({ children }) => {
     const provider = new GoogleAuthProvider();
     let googleSign = () => {
 
-        return signInWithPopup(auth, provider)
+        return signInWithPopup(auth, provider) 
     }
 
 
