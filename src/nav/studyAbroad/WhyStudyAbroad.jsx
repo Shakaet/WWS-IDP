@@ -8,15 +8,14 @@ import StudyAbroadQA from '../../component/StudyAbroadQA'
 
 const WhyStudyAbroad = () => {
   return (
-    <div>
-        <WhyStudyAbroadHeader></WhyStudyAbroadHeader>
-        <WhyStudyAbroadParagraph></WhyStudyAbroadParagraph>
-        <WhyStudyAbroadBookNow></WhyStudyAbroadBookNow>
-        <WhyStudyAbroadDetails></WhyStudyAbroadDetails>
-        <WhyStudyAbroadMoredetails></WhyStudyAbroadMoredetails>
-        <StudyAbroadQA></StudyAbroadQA>
-        
-    </div>
+    <>
+      <WhyStudyAbroadHeader></WhyStudyAbroadHeader>
+      <WhyStudyAbroadParagraph></WhyStudyAbroadParagraph>
+      <WhyStudyAbroadBookNow></WhyStudyAbroadBookNow>
+      <WhyStudyAbroadDetails></WhyStudyAbroadDetails>
+      <WhyStudyAbroadMoredetails></WhyStudyAbroadMoredetails>
+      <StudyAbroadQA></StudyAbroadQA>
+    </>
   )
 }
 
