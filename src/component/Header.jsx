@@ -25,7 +25,7 @@ const Header = () => {
     //   { label: 'Arrive and thrive', to: '/' }
     // ]
     dropdown : [
-  { label: 'Why Go Global?', to: 'WhyStudyAbroad' },
+  { label: 'Why Go Global?', to: '/WhyStudyAbroad' },
   { label: 'Study Destinations', to: '/' },
   { label: 'Application Guide', to: '/' },
   { label: 'Next Steps', to: '/' },
