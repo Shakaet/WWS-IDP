@@ -1,19 +1,59 @@
 import React from 'react';
-import abroad1 from "../assets/students.webp";
-import abroad2 from "../assets/graduation.jpg"; // Add this import for the second image
 
-const WhyStudyAbroadParagraph = () => {
+/**
+ * Reusable Paragraph Component for Study Abroad Pages
+ * 
+ * @param {Object} props - Component props
+ * @param {string} props.mainText - Main paragraph text content
+ * @param {string} props.image1 - First image source path
+ * @param {string} props.image2 - Second image source path
+ * @param {string} props.image1Alt - First image alt text
+ * @param {string} props.image2Alt - Second image alt text
+ * @param {string} props.galleryTitle - Gallery section title
+ * @param {string} props.gallerySubtitle - Gallery section subtitle
+ * @param {string} props.cardTitle - Sign-up card title
+ * @param {string} props.cardDescription - Sign-up card description
+ * @param {string} props.buttonText - Sign-up button text
+ * @param {Function} props.buttonAction - Sign-up button click handler
+ * 
+ * @example
+ * // Basic usage with default props
+ * <WhyStudyAbroadParagraph />
+ * 
+ * @example
+ * // Custom usage with props
+ * <WhyStudyAbroadParagraph 
+ *   mainText="Your custom paragraph text here..."
+ *   image1={customImage1}
+ *   image2={customImage2}
+ *   cardTitle="Custom Card Title"
+ *   buttonText="Get Started"
+ * />
+ */
+const WhyStudyAbroadParagraph = ({
+  mainText,
+  image1,
+  image2,
+  image1Alt,
+  image2Alt,
+  galleryTitle,
+  gallerySubtitle,
+  cardTitle,
+  cardDescription,
+  buttonText,
+  buttonAction = () => {}
+}) => {
   return (
     <div className="bg-white py-8 sm:py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Text Block */}
-        <div className="mb-8 sm:mb-12 lg:mb-16">
+        <div className="mb-8 sm:mb-12 lg:mb-16 text-center">
           <div className="max-w-5xl mx-auto">
             <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg">
               <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed">
                 <p className="text-base sm:text-lg lg:text-xl mb-4">
-                  Thinking about studying in another country? You are not alone! More students than ever are packing their bags to head overseas and experience their study abroad dream. But why? Well, studying abroad not only opens doors to high-paying jobs but also helps expand your horizons. It adds a new dimension to your life. You get to earn a foreign degree, gain skills that textbooks alone can't teach, and secure better pay. And who knows? Maybe, eventually, you will find an opportunity to settle down in a new country. Picture yourself in a new cultural setup, making friends globally and having life-altering experiences.
+                  {mainText}
                 </p>
               </div>
             </div>
@@ -32,8 +72,8 @@ const WhyStudyAbroadParagraph = () => {
                 {/* Top Image */}
                 <div className="flex-1 relative">
                   <img 
-                    src={abroad1}
-                    alt="Students studying in a library"
+                    src={image1}
+                    alt={image1Alt}
                     className="w-full h-full object-cover"
                   />
                   {/* Light overlay for better text readability */}
@@ -43,8 +83,8 @@ const WhyStudyAbroadParagraph = () => {
                 {/* Bottom Image */}
                 <div className="flex-1 relative">
                   <img 
-                    src={abroad2}
-                    alt="Students walking on campus"
+                    src={image2}
+                    alt={image2Alt}
                     className="w-full h-full object-cover"
                   />
                   {/* Light overlay for better text readability */}
@@ -64,8 +104,8 @@ const WhyStudyAbroadParagraph = () => {
                 {/* Gallery Info */}
                 <div className="text-center text-white">
                   <p className="text-xs sm:text-sm mb-2 opacity-80">Gallery</p>
-                  <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-2">Why study abroad?</h3>
-                  <p className="text-xs sm:text-sm opacity-80">Study abroad student journey</p>
+                  <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-2">{galleryTitle}</h3>
+                  <p className="text-xs sm:text-sm opacity-80">{gallerySubtitle}</p>
                 </div>
               </div>
             </div>
@@ -75,15 +115,18 @@ const WhyStudyAbroadParagraph = () => {
           <div className="bg-blue-50 rounded-2xl p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
             <div className="text-center lg:text-left">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
-                One account for all your study abroad needs
+                {cardTitle}
               </h2>
               
               <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed mb-6 sm:mb-8">
-                Create your profile and unlock a wide array of features including personalised recommendations, fast-tracked applications and much more.
+                {cardDescription}
               </p>
               
-              <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base lg:text-lg font-semibold transition-colors duration-200 shadow-lg hover:shadow-xl">
-                Sign up
+              <button 
+                onClick={buttonAction}
+                className="w-full sm:w-auto bg-[#11AD00] hover:bg-[#4CADFF] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base lg:text-lg font-semibold transition-colors duration-200 shadow-lg hover:shadow-xl"
+              >
+                {buttonText}
               </button>
             </div>
           </div>

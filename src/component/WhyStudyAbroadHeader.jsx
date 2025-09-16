@@ -1,7 +1,38 @@
 import React from 'react'
-import abroad1 from "../assets/abroad.jpg"
 
-const WhyStudyAbroadHeader = () => {
+/**
+ * Reusable Header Component for Study Abroad Pages
+ * 
+ * @param {Object} props - Component props
+ * @param {Array} props.breadcrumbItems - Array of breadcrumb items (default: ["WWS Bangladesh", "Why Go Abroad?"])
+ * @param {string} props.title - Main heading text (default: "Why study abroad?")
+ * @param {string} props.description - Description text (default: "Choosing to study abroad means choosing growth, adventure, and opportunity")
+ * @param {string} props.buttonText - Button text (default: "Explore Opportunities")
+ * @param {Function} props.buttonAction - Button click handler (default: empty function)
+ * @param {string} props.image - Image source path (default: "../assets/abroad.jpg")
+ * 
+ * @example
+ * // Basic usage with default props
+ * <WhyStudyAbroadHeader />
+ * 
+ * @example
+ * // Custom usage with props
+ * <WhyStudyAbroadHeader 
+ *   title="Study in Canada"
+ *   description="Discover world-class education in Canada"
+ *   buttonText="Apply Now"
+ *   buttonAction={() => navigate('/apply')}
+ *   image={canadaImage}
+ * />
+ */
+const WhyStudyAbroadHeader = ({ 
+  breadcrumbItems,
+  title,
+  description,
+  buttonText,
+  buttonAction = () => {},
+  image ,
+}) => {
   return (
     <div className="relative bg-gray-100 min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] overflow-hidden">
       {/* Main Container */}
@@ -12,25 +43,33 @@ const WhyStudyAbroadHeader = () => {
           <div className="flex flex-col justify-center space-y-4 sm:space-y-6 lg:space-y-8">
             {/* Breadcrumb */}
             <nav className="text-sm sm:text-base text-gray-600">
-              <span>WWS Bangladesh</span>
-              <span className="mx-2">/</span>
-              <span className="text-gray-800 font-medium">Why Go Abroad?</span>
+              {breadcrumbItems.map((item, index) => (
+                <React.Fragment key={index}>
+                  <span className={index === breadcrumbItems.length - 1 ? "text-gray-800 font-medium" : ""}>
+                    {item}
+                  </span>
+                  {index < breadcrumbItems.length - 1 && <span className="mx-2">/</span>}
+                </React.Fragment>
+              ))}
             </nav>
             
             {/* Main Heading */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
-              Why study abroad?
+              {title}
             </h1>
             
             {/* Description */}
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed max-w-lg">
-              Choosing to study abroad means choosing growth, adventure, and opportunity
+              {description}
             </p>
             
             {/* CTA Button */}
             <div className="pt-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base lg:text-lg font-semibold transition-colors duration-200 shadow-lg hover:shadow-xl">
-                Explore Opportunities
+              <button 
+                onClick={buttonAction}
+                className="bg-[#11AD00] hover:bg-[#4CADFF] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base lg:text-lg font-semibold transition-colors duration-200 shadow-lg hover:shadow-xl"
+              >
+                {buttonText}
               </button>
             </div>
           </div>
@@ -43,7 +82,7 @@ const WhyStudyAbroadHeader = () => {
               <div className="absolute inset-0">
                 {/* Students studying image */}
                 <img 
-                  src={abroad1}
+                  src={image}
                   alt="Students studying abroad" 
                   className="w-full h-full object-cover"
                 />
