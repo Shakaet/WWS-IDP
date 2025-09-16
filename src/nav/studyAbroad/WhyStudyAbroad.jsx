@@ -186,6 +186,16 @@ const WhyStudyAbroad = () => {
   };
 
   return (
+ 
+//     <>
+//       <WhyStudyAbroadHeader></WhyStudyAbroadHeader>
+//       <WhyStudyAbroadParagraph></WhyStudyAbroadParagraph>
+//       <WhyStudyAbroadBookNow></WhyStudyAbroadBookNow>
+//       <WhyStudyAbroadDetails></WhyStudyAbroadDetails>
+//       <WhyStudyAbroadMoredetails></WhyStudyAbroadMoredetails>
+//       <StudyAbroadQA></StudyAbroadQA>
+//     </>
+
     <div>
         <WhyStudyAbroadHeader {...headerProps} />
         <WhyStudyAbroadParagraph {...paragraphProps} />
@@ -195,6 +205,7 @@ const WhyStudyAbroad = () => {
         <StudyAbroadQA {...qaProps} />
         
     </div>
+
   )
 }
 
