@@ -48,7 +48,7 @@ const WhyStudyAbroadParagraph = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Text Block */}
-        <div className="mb-8 sm:mb-12 lg:mb-16">
+        <div className="mb-8 sm:mb-12 lg:mb-16 text-center">
           <div className="max-w-5xl mx-auto">
             <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg">
               <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed">

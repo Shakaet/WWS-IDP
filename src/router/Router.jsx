@@ -8,6 +8,9 @@ import Login from "../pages/Login";
 import { SignUp } from "../pages/SignUp";
 import SearchResults from "../pages/SearchResults";
 import WhyStudyAbroad from "../nav/studyAbroad/WhyStudyAbroad";
+import StudyDestination from "../nav/studyAbroad/StudyDestination";
+import ApplicationGuide from "../nav/studyAbroad/ApplicationGuide";
+import ThriveAbroad from "../nav/studyAbroad/ThriveAbroad";
 
 
 export const router = createBrowserRouter([
@@ -38,6 +41,19 @@ export const router = createBrowserRouter([
           path:"WhyStudyAbroad",
           element:<WhyStudyAbroad></WhyStudyAbroad>
 
+        },
+        {
+          path:"studyDestination",
+          element:<StudyDestination></StudyDestination>
+
+        },
+        {
+          path:"applicationGuide",
+          element:<ApplicationGuide></ApplicationGuide>
+        },
+        {
+          path:"thriveAbroad",
+          element:<ThriveAbroad></ThriveAbroad>
         }
 
     ]
