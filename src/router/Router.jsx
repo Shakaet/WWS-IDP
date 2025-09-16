@@ -11,50 +11,60 @@ import WhyStudyAbroad from "../nav/studyAbroad/WhyStudyAbroad";
 import StudyDestination from "../nav/studyAbroad/StudyDestination";
 import ApplicationGuide from "../nav/studyAbroad/ApplicationGuide";
 import ThriveAbroad from "../nav/studyAbroad/ThriveAbroad";
+import NextStep from "../nav/studyAbroad/NextStep";
+import BeforeYouFly from "../nav/studyAbroad/BeforeYouFly";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    children:[
-        {
-            path:"/",
-            element:<Home></Home>
-        },
-        {
-          path:"signin",
-          element:<Login></Login>
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>
+      },
+      {
+        path: "signin",
+        element: <Login></Login>
 
-        },
-        {
-          path:"signup",
-          element:<SignUp></SignUp>
+      },
+      {
+        path: "signup",
+        element: <SignUp></SignUp>
 
-        },
-        {
-          path:"search-results",
-          element:<SearchResults></SearchResults>
+      },
+      {
+        path: "search-results",
+        element: <SearchResults></SearchResults>
 
-        },
-        {
-          path:"WhyStudyAbroad",
-          element:<WhyStudyAbroad></WhyStudyAbroad>
+      },
+      {
+        path: "WhyStudyAbroad",
+        element: <WhyStudyAbroad></WhyStudyAbroad>
 
-        },
-        {
-          path:"studyDestination",
-          element:<StudyDestination></StudyDestination>
+      },
+      {
+        path: "studyDestination",
+        element: <StudyDestination></StudyDestination>
 
-        },
-        {
-          path:"applicationGuide",
-          element:<ApplicationGuide></ApplicationGuide>
-        },
-        {
-          path:"thriveAbroad",
-          element:<ThriveAbroad></ThriveAbroad>
-        }
+      },
+      {
+        path: "applicationGuide",
+        element: <ApplicationGuide></ApplicationGuide>
+      },
+      {
+        path: "thriveAbroad",
+        element: <ThriveAbroad></ThriveAbroad>
+      },
+      {
+        path: "next-step",
+        element: <NextStep />
+      },
+      {
+        path: "before-you-fly",
+        element: <BeforeYouFly />
+      },
 
     ]
   },

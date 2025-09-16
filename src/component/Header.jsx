@@ -12,74 +12,74 @@ const Header = () => {
 
   console.log(user)
 
- const navItems = [
-  { 
-    label: 'Study Abroad', 
-    to: '/',
-    // dropdown: [
-    //   { label: 'Why study abroad?', to: '/' },
-    //   { label: 'Where and what to study?', to: '/' },
-    //   { label: 'How do I apply?', to: '/' },
-    //   { label: 'After receiving an offer', to: '/' },
-    //   { label: 'Prepare to depart', to: '/' },
-    //   { label: 'Arrive and thrive', to: '/' }
-    // ]
-    dropdown : [
-  { label: 'Why Go Global?', to: '/WhyStudyAbroad' },
-  { label: 'Study Destinations', to: '/studyDestination' },
-  { label: 'Application Guide', to: '/applicationGuide' },
-  { label: 'Next Steps', to: '/' },
-  { label: 'Before You Fly', to: '/' },
-  { label: 'Thrive Abroad', to: '/thriveAbroad' }
-]
-  },
-  { 
-    label: 'Destinations', 
-    to: '/',
-    dropdown: [
-      { label: 'Study in Australia', to: '/' },
-      { label: 'Study in Canada', to: '/' },
-      { label: 'Study in Ireland', to: '/' },
-      { label: 'Study in New Zealand', to: '/' },
-      { label: 'Study in UK', to: '/' },
-      { label: 'Study in USA', to: '/' }
-    ]
-  },
-  { 
-    label: 'Courses', 
-    to: '/',
-    dropdown: [
-      { label: 'Course advice', to: '/' },
-      { label: 'FastLane courses', to: '/' },
-      { label: 'Study abroad courses', to: '/' },
-      { label: 'Find a scholarship', to: '/' },
-      { label: 'Find a university', to: '/' },
-      { label: 'University Rankings - THE', to: '/', hasArrow: true },
-      { label: 'Complete University Guide (CUG)', to: '/' }
-    ]
-  },
-  { 
-    label: 'Scholarships', 
-    to: '/',
-    dropdown: [
-      { label: 'Scholarship search', to: '/' },
-      { label: 'Merit-based scholarships', to: '/' },
-      { label: 'Need-based scholarships', to: '/' },
-      { label: 'Country-specific scholarships', to: '/' },
-      { label: 'University scholarships', to: '/' }
-    ]
-  },
-  { 
-    label: 'IELTS', 
-    to: '/',
-    dropdown: [
-      { label: 'What is IELTS?', to: '/' },
-      { label: 'Why IDP IELTS?', to: '/' },
-      { label: 'IELTS Preparation', to: '/' },
-      { label: 'Book an IELTS test', to: '/' }
-    ]
-  },
-];
+  const navItems = [
+    {
+      label: 'Study Abroad',
+      to: '/',
+      // dropdown: [
+      //   { label: 'Why study abroad?', to: '/' },
+      //   { label: 'Where and what to study?', to: '/' },
+      //   { label: 'How do I apply?', to: '/' },
+      //   { label: 'After receiving an offer', to: '/' },
+      //   { label: 'Prepare to depart', to: '/' },
+      //   { label: 'Arrive and thrive', to: '/' }
+      // ]
+      dropdown: [
+        { label: 'Why Go Global?', to: '/WhyStudyAbroad' },
+        { label: 'Study Destinations', to: '/studyDestination' },
+        { label: 'Application Guide', to: '/applicationGuide' },
+        { label: 'Next Steps', to: '/next-step' },
+        { label: 'Before You Fly', to: '/before-you-fly' },
+        { label: 'Thrive Abroad', to: '/thriveAbroad' }
+      ]
+    },
+    {
+      label: 'Destinations',
+      to: '/',
+      dropdown: [
+        { label: 'Study in Australia', to: '/' },
+        { label: 'Study in Canada', to: '/' },
+        { label: 'Study in Ireland', to: '/' },
+        { label: 'Study in New Zealand', to: '/' },
+        { label: 'Study in UK', to: '/' },
+        { label: 'Study in USA', to: '/' }
+      ]
+    },
+    {
+      label: 'Courses',
+      to: '/',
+      dropdown: [
+        { label: 'Course advice', to: '/' },
+        { label: 'FastLane courses', to: '/' },
+        { label: 'Study abroad courses', to: '/' },
+        { label: 'Find a scholarship', to: '/' },
+        { label: 'Find a university', to: '/' },
+        { label: 'University Rankings - THE', to: '/', hasArrow: true },
+        { label: 'Complete University Guide (CUG)', to: '/' }
+      ]
+    },
+    {
+      label: 'Scholarships',
+      to: '/',
+      dropdown: [
+        { label: 'Scholarship search', to: '/' },
+        { label: 'Merit-based scholarships', to: '/' },
+        { label: 'Need-based scholarships', to: '/' },
+        { label: 'Country-specific scholarships', to: '/' },
+        { label: 'University scholarships', to: '/' }
+      ]
+    },
+    {
+      label: 'IELTS',
+      to: '/',
+      dropdown: [
+        { label: 'What is IELTS?', to: '/' },
+        { label: 'Why IDP IELTS?', to: '/' },
+        { label: 'IELTS Preparation', to: '/' },
+        { label: 'Book an IELTS test', to: '/' }
+      ]
+    },
+  ];
 
 
   const handleLogout = () => {
@@ -92,17 +92,17 @@ const Header = () => {
 
   return (
     // bg-white/95
-   <header className="sticky top-0 z-50 bg-white backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white backdrop-blur-sm border-b border-gray-100 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 md:h-18 items-center justify-between">
           {/* Left: Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <Link to="/" className="flex items-center gap-2" aria-label="IDP home">
-              <img 
-                width={220} 
+              <img
+                width={220}
                 height={48}
-                src={icon} 
-                alt="World Wise Scholars" 
+                src={icon}
+                alt="World Wise Scholars"
                 className="h-28 md:h-32 w-auto object-contain"
               />
             </Link>
@@ -110,7 +110,7 @@ const Header = () => {
           {/* Center: Desktop nav */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center">
             {navItems.map((item, index) => (
-              <div 
+              <div
                 key={item.label}
                 className="relative group"
                 onMouseEnter={() => setActiveDropdown(index)}
@@ -118,32 +118,29 @@ const Header = () => {
               >
                 <Link
                   to={item.to}
-                  className={`text-sm xl:text-[15px] transition-colors whitespace-nowrap flex items-center gap-1 ${
-                    activeDropdown === index 
-                      ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
-                      : 'text-slate-700 hover:text-blue-600'
-                  }`}
+                  className={`text-sm xl:text-[15px] transition-colors whitespace-nowrap flex items-center gap-1 ${activeDropdown === index
+                    ? 'text-blue-600 border-b-2 border-blue-600 pb-1'
+                    : 'text-slate-700 hover:text-blue-600'
+                    }`}
                 >
                   {item.label}
-                  <svg 
-                    className={`w-4 h-4 transition-transform duration-200 ${
-                      activeDropdown === index ? 'rotate-180' : ''
-                    }`} 
-                    fill="none" 
-                    stroke="currentColor" 
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === index ? 'rotate-180' : ''
+                      }`}
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </Link>
-                
+
                 {/* Dropdown Menu */}
                 {item.dropdown && (
-                  <div className={`absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-gray-100 z-50 transition-all duration-300 ${
-                    activeDropdown === index 
-                      ? 'opacity-100 visible translate-y-0' 
-                      : 'opacity-0 invisible -translate-y-2'
-                  }`}>
+                  <div className={`absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-gray-100 z-50 transition-all duration-300 ${activeDropdown === index
+                    ? 'opacity-100 visible translate-y-0'
+                    : 'opacity-0 invisible -translate-y-2'
+                    }`}>
                     <div className="py-2">
                       {item.dropdown.map((dropdownItem, dropdownIndex) => (
                         <Link
@@ -172,14 +169,14 @@ const Header = () => {
                 {/* User Profile Section */}
                 <div className="relative">
                   {/* User Avatar */}
-                  <button 
+                  <button
                     onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
                     className="flex items-center gap-2 focus:outline-none"
                   >
                     {user.photoURL ? (
-                      <img 
-                        src={user.photoURL} 
-                        alt="Profile" 
+                      <img
+                        src={user.photoURL}
+                        alt="Profile"
                         className="w-10 h-10 rounded-full object-cover border-2 border-slate-200"
                       />
                     ) : (
@@ -188,7 +185,7 @@ const Header = () => {
                       </div>
                     )}
                   </button>
-                  
+
                   {/* Profile Dropdown */}
                   {isProfileDropdownOpen && (
                     <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
@@ -201,7 +198,7 @@ const Header = () => {
                         </p>
                       </div>
                       <div className="px-4 py-2">
-                        <button 
+                        <button
                           onClick={() => { setIsProfileDropdownOpen(false); handleLogout(); }}
                           className="w-full text-left text-sm text-slate-700 hover:bg-slate-50 rounded px-3 py-2 transition-colors"
                         >
@@ -220,7 +217,7 @@ const Header = () => {
                 Sign in
               </Link>
             )}
-            
+
             {/* Heart icon */}
             <button
               type="button"
@@ -244,7 +241,7 @@ const Header = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z" />
               </svg>
             </button>
-            
+
             <button
               type="button"
               aria-controls="mobile-menu"
@@ -305,9 +302,9 @@ const Header = () => {
             <div className="mt-3 px-3 py-3 bg-slate-50 rounded-lg">
               <div className="flex items-center gap-3">
                 {user.photoURL ? (
-                  <img 
-                    src={user.photoURL} 
-                    alt="Profile" 
+                  <img
+                    src={user.photoURL}
+                    alt="Profile"
                     className="w-12 h-12 rounded-full object-cover border-2 border-slate-200"
                   />
                 ) : (
