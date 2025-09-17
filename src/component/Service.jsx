@@ -1,5 +1,5 @@
 import React from 'react'
-import banner from "../assets/BannerImg.jpg"
+import banner from "../assets/Banner22.jpg"
 
 const Service = () => {
   return (
@@ -73,7 +73,7 @@ const Service = () => {
   {/* ব্যাকগ্রাউন্ড ওভারলে */}
   <div className="absolute inset-0 bg-black/70"></div>
   
-  <div className="relative max-w-7xl mx-auto">
+  <div className="relative max-w-7xl mx-auto mt-30">
     {/* Header */}
     <div className="text-center mb-12">
       <h2 className="text-4xl sm:text-5xl font-bold mb-4">

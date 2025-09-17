@@ -6,9 +6,9 @@ import WhyStudyAbroadDetails from "../../component/WhyStudyAbroadDetails";
 import WhyStudyAbroadMoredetails from "../../component/WhyStudyAbroadMoredetails";
 import StudyAbroadQA from "../../component/StudyAbroadQA";
 
-import abroadImg from "../../assets/abroad.jpg";
+import abroadImg from "../../assets/nextstep.jpg";
 import stepImg from "../../assets/graduation.jpg";
-import guideImg from "../../assets/students.webp";
+import guideImg from "../../assets/nextstep.jpg";
 import counsellorImg from "../../assets/graduation.jpg";
 
 const NextStep = () => {

@@ -6,8 +6,8 @@ import WhyStudyAbroadDetails from "../../component/WhyStudyAbroadDetails";
 import WhyStudyAbroadMoredetails from "../../component/WhyStudyAbroadMoredetails";
 import StudyAbroadQA from "../../component/StudyAbroadQA";
 
-import flyImg from "../../assets/abroad.jpg";
-import luggageImg from "../../assets/students.webp";
+import flyImg from "../../assets/fly.jpg";
+import luggageImg from "../../assets/fly.jpg";
 import docImg from "../../assets/graduation.jpg";
 import mentorImg from "../../assets/graduation.jpg";
 
