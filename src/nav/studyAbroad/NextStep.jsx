@@ -17,7 +17,7 @@ const NextStep = () => {
         breadcrumbItems: ["WWS Bangladesh", "Next Step"],
         title: "Take the Next Step in Your Study Abroad Journey",
         description:
-            "From research to application – plan every stage of your international education with confidence.",
+            "From researching universities to submitting applications and preparing for life abroad, we guide you through every stage with actionable steps, personalised advice, and practical tools.",
         buttonText: "Start Planning",
         buttonAction: () => console.log("Planning started"),
         image: abroadImg,
@@ -26,89 +26,109 @@ const NextStep = () => {
     /** ---------- Paragraph ---------- **/
     const paragraphProps = {
         mainText:
-            "Ready to move forward? Understanding each stage of the application process will make your journey smoother. From shortlisting universities to preparing documents, we guide you through it all.",
+            `Studying abroad is a life-changing experience, but it requires careful planning and preparation. Each stage of the journey, from selecting the right university to arranging travel and accommodation, plays a crucial role in ensuring a smooth transition. Many students struggle because they underestimate the importance of organised planning. 
+    
+    By following a step-by-step roadmap, you can reduce stress, avoid mistakes, and focus on what matters most – your education, personal growth, and cultural experiences. Our guide includes real-life tips, checklists, and examples to help you confidently move forward.`,
         image1: guideImg,
         image2: stepImg,
-        image1Alt: "Students preparing",
-        image2Alt: "Application steps",
-        galleryTitle: "Your roadmap to success",
-        gallerySubtitle: "Step-by-step guidance",
-        cardTitle: "Create an account to track your progress",
+        image1Alt: "Students preparing for abroad journey",
+        image2Alt: "Step-by-step study plan",
+        galleryTitle: "Your Roadmap to Success",
+        gallerySubtitle: "Detailed guidance for every stage",
+        cardTitle: "Create an account to track progress",
         cardDescription:
-            "Stay organised with deadlines, resources, and personalised recommendations tailored to your goals.",
+            "Monitor deadlines, checklists, scholarship updates, and application milestones all in one place. Personalised recommendations ensure you never miss an opportunity.",
         buttonText: "Create Account",
-        buttonAction: () => console.log("Account creation"),
+        buttonAction: () => console.log("Account creation clicked"),
     };
 
     /** ---------- Book Now ---------- **/
     const bookNowProps = {
-        title: "Talk to a mentor",
+        title: "Talk to a Mentor for Free",
         description:
-            "Discuss your study options, scholarship chances, and visa guidance with our experienced mentors.",
+            "Book a free session with our experienced counsellors. Get personalised advice on university selection, application strategy, scholarships, visa guidance, and settling in your host country. Make informed decisions before you leave.",
         buttonText: "Book Free Session",
         buttonAction: () => console.log("Session booked"),
         image: counsellorImg,
-        imageAlt: "Counsellor helping student",
+        imageAlt: "Counsellor assisting student",
     };
 
     /** ---------- Details ---------- **/
     const detailsProps = {
         introText1:
-            "Planning ahead ensures you never miss deadlines or paperwork. Get a clear view of your application timeline.",
+            "Before you submit applications, it’s important to understand what each university expects. Missing documents or incomplete forms can delay admission or cause rejection.",
         introText2:
-            "We'll help you gather transcripts, test scores, and recommendation letters, so you're ready before deadlines.",
-        mainHeading: "How to Prepare",
+            "Preparation is the key. Collect academic records, test scores, recommendation letters, and personal statements ahead of time. Understand deadlines, scholarship criteria, and visa requirements.",
+        mainHeading: "How to Prepare for Each Step",
         mainDescription:
-            "Follow these preparation tips to make your application stand out:",
-        sectionHeading: "Organise Documents",
+            "This section provides actionable advice to make your study abroad journey smoother, organised, and effective.",
+        sectionHeading: "Organise Documents and Deadlines",
         sectionText1:
-            "Start early: collect academic records, passport copies, and financial proofs.",
+            "Start early: gather transcripts, degree certificates, passport, visa, and recommendation letters. Scan all documents and save digital copies securely. Maintain a checklist for each application.",
         sectionText2:
-            "Practise language tests, write a strong Statement of Purpose, and gather reference letters.",
-        buttonText: "Get Preparation Guide",
-        buttonAction: () => console.log("Guide clicked"),
+            "Prepare strong statements of purpose and tailor your application essays to each university. Review eligibility requirements and ensure all forms are complete before submission.",
+        buttonText: "Download Full Preparation Guide",
+        buttonAction: () => console.log("Preparation guide downloaded"),
     };
 
     /** ---------- More Details ---------- **/
     const moreDetailsProps = {
-        mainHeading: "Master Each Step",
+        mainHeading: "Master Every Step of Your Journey",
         globalPerspectiveText:
-            "Learning how to manage paperwork and deadlines gives you confidence for bigger challenges abroad.",
-        careerHeading: "Stay Career-Focused",
+            "Studying abroad is not just about academics – it’s about building global competencies, developing resilience, and gaining experiences that enhance both your personal and professional growth.",
+        careerHeading: "Career & Academic Focus",
         careerParagraphs: [
-            "Pick courses aligning with your dream career.",
-            "Get internship info early so you can combine work & study.",
+            "Select courses that align with your long-term career goals. Research professors, labs, and research opportunities that match your interests.",
+            "Internships and part-time work experience abroad can significantly improve employability after graduation. Learn about opportunities early and plan accordingly.",
+            "Build a strong resume highlighting skills, certifications, and relevant experiences.",
         ],
-        migrationHeading: "Visa & Immigration",
+        migrationHeading: "Visa, Immigration, and Legal Compliance",
         migrationParagraphs: [
-            "Understand visa policies before applying.",
-            "Prepare financial documents & proof of admission on time.",
+            "Understand visa categories, requirements, and timelines. Submit applications on time and track their progress.",
+            "Ensure you have all necessary documentation ready, including financial proofs, admission letters, and health insurance.",
+            "Keep multiple copies of important documents both physically and digitally.",
         ],
-        personalHeading: "Boost Personal Growth",
+        personalHeading: "Personal Development and Growth",
         personalParagraphs: [
-            "Managing multiple tasks helps you grow organised and resilient.",
+            "Living abroad builds independence, self-reliance, and problem-solving skills.",
+            "Learn to manage time, finances, and responsibilities while balancing academics.",
+            "Engage in campus activities, societies, and networking events to broaden your horizons.",
         ],
-        otherHeading: "Other Tips",
-        otherIntroText: "Additional ways to get ahead:",
+        otherHeading: "Additional Tips for Success",
+        otherIntroText:
+            "Being well-prepared beyond academics is equally important. These tips will help you settle faster and enjoy your experience:",
         subSections: [
             {
-                heading: "Attend Webinars",
+                heading: "Attend Webinars and Workshops",
                 paragraphs: [
-                    "Join info sessions to clarify questions about applications.",
+                    "Join information sessions organised by universities, alumni, and educational platforms. Clarify doubts and learn insider tips.",
                 ],
             },
             {
-                heading: "Network with Alumni",
+                heading: "Network with Alumni and Current Students",
                 paragraphs: [
-                    "Talk with past students about their experience – they often share insider tips.",
+                    "Connect with students who have studied abroad. Their experience will help you avoid common pitfalls and discover opportunities you might not know about.",
+                ],
+            },
+            {
+                heading: "Cultural Preparation",
+                paragraphs: [
+                    "Read about the host country’s culture, etiquette, and lifestyle. Understanding cultural nuances reduces adjustment stress and fosters positive social interactions.",
+                ],
+            },
+            {
+                heading: "Health & Safety",
+                paragraphs: [
+                    "Schedule medical checkups and vaccinations as per destination requirements.",
+                    "Prepare a first-aid kit, insurance, and emergency contacts for peace of mind.",
                 ],
             },
         ],
-        finalHeading: "Ready to begin?",
+        finalHeading: "You’re Ready to Begin",
         finalText:
-            "Whether you’re still deciding or have chosen a university, planning now makes everything easier.",
-        buttonText: "Start Now",
-        buttonAction: () => console.log("Start now clicked"),
+            "With preparation, organisation, and guidance, you can confidently take the next step. From applications to flights and settling abroad, every action you take now ensures a smoother and more rewarding journey.",
+        buttonText: "Start Your Journey",
+        buttonAction: () => console.log("Next step started"),
     };
 
     /** ---------- QA ---------- **/
@@ -117,21 +137,33 @@ const NextStep = () => {
         qaData: [
             {
                 id: 1,
-                question: "When should I start applications?",
+                question: "When should I start my applications?",
                 answer:
-                    "Ideally 8–12 months before your intake, so you have time for exams, visas, and paperwork.",
+                    "Ideally, 8–12 months before your intended intake. This gives ample time for exams, application review, scholarships, and visa processing.",
             },
             {
                 id: 2,
-                question: "Do I need an agent?",
+                question: "Do I need a counsellor or agent?",
                 answer:
-                    "Not necessarily – but a counsellor can make the process faster and error-free.",
+                    "Not always, but a mentor can save time, prevent mistakes, and guide you through complex requirements.",
             },
             {
                 id: 3,
-                question: "How do I track deadlines?",
+                question: "How do I keep track of deadlines?",
                 answer:
-                    "Use a planner or our student dashboard to mark important dates like application close and visa submission.",
+                    "Use a planner or our dashboard to mark application dates, scholarship deadlines, and visa submission timelines.",
+            },
+            {
+                id: 4,
+                question: "What if I miss a deadline?",
+                answer:
+                    "Missing deadlines can lead to deferrals or missed opportunities. Stay organised, start early, and set reminders.",
+            },
+            {
+                id: 5,
+                question: "How do I prepare for cultural differences?",
+                answer:
+                    "Read guides, watch videos, and talk to alumni about local customs, communication styles, and social etiquette.",
             },
         ],
     };
