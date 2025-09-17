@@ -87,35 +87,26 @@ const Header = () => {
       label: 'Courses',
       to: '/',
       dropdown: [
-        { label: 'Course advice', to: '/' },
-        { label: 'FastLane courses', to: '/' },
+        { label: 'What is IELTS?', to: '/' },
+        { label: 'Why IDP IELTS?', to: '/' },
+        { label: 'IELTS Preparation', to: '/' },
         { label: 'Find a course', action: handleFindCourses },
         { label: 'Find a scholarship', action: handleFindScholarships },
         { label: 'Find a university', action: handleFindUniversities },
         { label: 'Find a events', action: handleFindEvents },
       ]
     },
-    {
-      label: 'Scholarships',
-      to: '/',
-      dropdown: [
-        { label: 'Scholarship search', action: handleFindScholarships },
-        { label: 'Merit-based scholarships', to: '/' },
-        { label: 'Need-based scholarships', to: '/' },
-        { label: 'Country-specific scholarships', to: '/' },
-        { label: 'University scholarships', to: '/' }
-      ]
-    },
-    {
-      label: 'IELTS',
-      to: '/',
-      dropdown: [
-        { label: 'What is IELTS?', to: '/' },
-        { label: 'Why IDP IELTS?', to: '/' },
-        { label: 'IELTS Preparation', to: '/' },
-        { label: 'Book an IELTS test', to: '/' }
-      ]
-    },
+    // {
+    //   label: 'Scholarships',
+    //   to: '/',
+    //   dropdown: [
+    //     { label: 'Scholarship search', action: handleFindScholarships },
+    //     { label: 'Merit-based scholarships', to: '/' },
+    //     { label: 'Need-based scholarships', to: '/' },
+    //     { label: 'Country-specific scholarships', to: '/' },
+    //     { label: 'University scholarships', to: '/' }
+    //   ]
+    // },
   ];
 
 
