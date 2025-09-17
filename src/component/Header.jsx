@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import icon from "../assets/wws1.png"
 import useAuth from '../Hooks/useAuth/useAuth'
 
@@ -7,10 +7,48 @@ const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const navigate = useNavigate();
 
   let { user, signOuts } = useAuth()
 
   console.log(user)
+
+  // Navigation functions for different categories
+  const handleFindCourses = () => {
+    navigate('/search-results', {
+      state: {
+        searchType: 'courses',
+        tab: 'Courses'
+      }
+    });
+  };
+
+  const handleFindScholarships = () => {
+    navigate('/search-results', {
+      state: {
+        searchType: 'scholarships',
+        tab: 'Scholarships'
+      }
+    });
+  };
+
+  const handleFindUniversities = () => {
+    navigate('/search-results', {
+      state: {
+        searchType: 'universities',
+        tab: 'Universities'
+      }
+    });
+  };
+
+  const handleFindEvents = () => {
+    navigate('/search-results', {
+      state: {
+        searchType: 'events',
+        tab: 'Events'
+      }
+    });
+  };
 
   const navItems = [
     {
@@ -51,18 +89,17 @@ const Header = () => {
       dropdown: [
         { label: 'Course advice', to: '/' },
         { label: 'FastLane courses', to: '/' },
-        { label: 'Study abroad courses', to: '/' },
-        { label: 'Find a scholarship', to: '/' },
-        { label: 'Find a university', to: '/' },
-        { label: 'University Rankings - THE', to: '/', hasArrow: true },
-        { label: 'Complete University Guide (CUG)', to: '/' }
+        { label: 'Find a course', action: handleFindCourses },
+        { label: 'Find a scholarship', action: handleFindScholarships },
+        { label: 'Find a university', action: handleFindUniversities },
+        { label: 'Find a events', action: handleFindEvents },
       ]
     },
     {
       label: 'Scholarships',
       to: '/',
       dropdown: [
-        { label: 'Scholarship search', to: '/' },
+        { label: 'Scholarship search', action: handleFindScholarships },
         { label: 'Merit-based scholarships', to: '/' },
         { label: 'Need-based scholarships', to: '/' },
         { label: 'Country-specific scholarships', to: '/' },
@@ -143,18 +180,33 @@ const Header = () => {
                     }`}>
                     <div className="py-2">
                       {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                        <Link
-                          key={dropdownIndex}
-                          to={dropdownItem.to}
-                          className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors"
-                        >
-                          <span>{dropdownItem.label}</span>
-                          {dropdownItem.hasArrow && (
-                            <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          )}
-                        </Link>
+                        dropdownItem.action ? (
+                          <button
+                            key={dropdownIndex}
+                            onClick={dropdownItem.action}
+                            className="flex items-center justify-between w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors text-left"
+                          >
+                            <span>{dropdownItem.label}</span>
+                            {dropdownItem.hasArrow && (
+                              <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            )}
+                          </button>
+                        ) : (
+                          <Link
+                            key={dropdownIndex}
+                            to={dropdownItem.to}
+                            className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors"
+                          >
+                            <span>{dropdownItem.label}</span>
+                            {dropdownItem.hasArrow && (
+                              <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            )}
+                          </Link>
+                        )
                       ))}
                     </div>
                   </div>
@@ -283,14 +335,27 @@ const Header = () => {
                 {item.dropdown && (
                   <div className="ml-4 space-y-1">
                     {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                      <Link
-                        key={dropdownIndex}
-                        to={dropdownItem.to}
-                        onClick={() => setIsMobileOpen(false)}
-                        className="block rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
-                      >
-                        {dropdownItem.label}
-                      </Link>
+                      dropdownItem.action ? (
+                        <button
+                          key={dropdownIndex}
+                          onClick={() => {
+                            setIsMobileOpen(false);
+                            dropdownItem.action();
+                          }}
+                          className="block w-full text-left rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                        >
+                          {dropdownItem.label}
+                        </button>
+                      ) : (
+                        <Link
+                          key={dropdownIndex}
+                          to={dropdownItem.to}
+                          onClick={() => setIsMobileOpen(false)}
+                          className="block rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                        >
+                          {dropdownItem.label}
+                        </Link>
+                      )
                     ))}
                   </div>
                 )}
