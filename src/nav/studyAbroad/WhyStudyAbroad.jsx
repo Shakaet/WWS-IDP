@@ -9,6 +9,7 @@ import abroad1 from "../../assets/abroad.jpg"
 import studentsImage from "../../assets/students.webp"
 import graduationImage from "../../assets/graduation.jpg"
 import counsellorImage from "../../assets/graduation.jpg"
+import ContactHome from '../../component/ContactHome'
 
 const WhyStudyAbroad = () => {
   // Header props configuration
@@ -186,15 +187,27 @@ const WhyStudyAbroad = () => {
   };
 
   return (
+ 
+//     <>
+//       <WhyStudyAbroadHeader></WhyStudyAbroadHeader>
+//       <WhyStudyAbroadParagraph></WhyStudyAbroadParagraph>
+//       <WhyStudyAbroadBookNow></WhyStudyAbroadBookNow>
+//       <WhyStudyAbroadDetails></WhyStudyAbroadDetails>
+//       <WhyStudyAbroadMoredetails></WhyStudyAbroadMoredetails>
+//       <StudyAbroadQA></StudyAbroadQA>
+//     </>
+
     <div>
         <WhyStudyAbroadHeader {...headerProps} />
         <WhyStudyAbroadParagraph {...paragraphProps} />
         <WhyStudyAbroadBookNow {...bookNowProps} />
         <WhyStudyAbroadDetails {...detailsProps} />
         <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+        <ContactHome></ContactHome>
         <StudyAbroadQA {...qaProps} />
         
     </div>
+
   )
 }
 

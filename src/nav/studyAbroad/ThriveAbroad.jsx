@@ -5,10 +5,10 @@ import WhyStudyAbroadBookNow from '../../component/WhyStudyAbroadBookNow'
 import WhyStudyAbroadDetails from '../../component/WhyStudyAbroadDetails'
 import WhyStudyAbroadMoredetails from '../../component/WhyStudyAbroadMoredetails'
 import StudyAbroadQA from '../../component/StudyAbroadQA'
-import abroad1 from "../../assets/abroad.jpg"
-import studentsImage from "../../assets/students.webp"
+import studentsImage from "../../assets/thriv.jpg"
 import graduationImage from "../../assets/graduation.jpg"
 import counsellorImage from "../../assets/graduation.jpg"
+import ContactHome from '../../component/ContactHome'
 
 const ThriveAbroad = () => {
 
@@ -29,8 +29,8 @@ const headerProps = {
 // Paragraph
 const paragraphProps = {
   mainText: "Your journey doesn’t end once you receive your admission letter and student visa. In fact, it’s just the beginning! Thriving abroad requires more than good grades — it’s about embracing a new culture, building global networks, developing life skills, and staying resilient in the face of challenges. From managing finances and accommodation to maintaining mental health and creating a balanced lifestyle, our Thrive Abroad guide is designed to help you flourish in every aspect of your overseas journey.",
-  image1: graduationImage,
-  image2: studentsImage,
+  image1: studentsImage,
+  image2: graduationImage,
   image1Alt: "International students enjoying campus life",
   image2Alt: "Students networking abroad",
   galleryTitle: "Student Life Abroad",
@@ -183,6 +183,7 @@ const qaProps = {
         <WhyStudyAbroadBookNow {...bookNowProps} />
         <WhyStudyAbroadDetails {...detailsProps} />
         <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+        <ContactHome></ContactHome>
         <StudyAbroadQA {...qaProps} />
         
     </div>
