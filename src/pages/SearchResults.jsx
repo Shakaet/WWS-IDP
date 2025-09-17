@@ -6,8 +6,12 @@ import Result2 from '../component/Result2'
 const SearchResults = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  const { results, tab } = location.state || { results: [], tab: 'Courses' }
+  const { results, tab, searchType } = location.state || { results: [], tab: 'Courses', searchType: null }
   
+  // State for real data
+  const [realResults, setRealResults] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
   
   // Redirect if accessed directly without state
   useEffect(() => {
@@ -15,13 +19,59 @@ const SearchResults = () => {
       navigate('/')
     }
   }, [location.state, navigate])
+
+  // Fetch real data based on searchType
+  useEffect(() => {
+    if (searchType) {
+      fetchRealData(searchType)
+    }
+  }, [searchType])
+
+  const fetchRealData = async (type) => {
+    setLoading(true)
+    setError(null)
+    try {
+      let apiEndpoint = ''
+      switch (type) {
+        case 'courses':
+          apiEndpoint = 'http://localhost:3000/api/course' // Replace with your actual API endpoint
+          break
+        case 'scholarships':
+          apiEndpoint = 'http://localhost:3000/api/scholarships' // Replace with your actual API endpoint
+          break
+        case 'universities':
+          apiEndpoint = 'http://localhost:3000/api/universities' // Replace with your actual API endpoint
+          break
+        case 'events':
+          apiEndpoint = 'http://localhost:3000/api/events' // Replace with your actual API endpoint
+          break
+        default:
+          apiEndpoint = 'http://localhost:3000/api/course'
+      }
+
+      const response = await fetch(apiEndpoint)
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const data = await response.json()
+      setRealResults(data)
+      
+    } catch (error) {
+      console.error('Error fetching data:', error)
+      setError(error.message)
+      setRealResults([])
+    } finally {
+      setLoading(false)
+    }
+  }
   
   // Sort state
   const [sortBy, setSortBy] = useState('popularity')
   
   // Sort results based on selected criteria
   const sortedResults = useMemo(() => {
-    const actualResults = results || []
+    // Use realResults if available (from API), otherwise fall back to passed results
+    const actualResults = realResults.length > 0 ? realResults : (results || [])
     if (!actualResults || actualResults.length === 0) {
       return actualResults
     }
@@ -57,7 +107,7 @@ const SearchResults = () => {
     })
     
     return sorted
-  }, [results, sortBy])
+  }, [realResults, results, sortBy])
   
   const handleBackToSearch = () => {
     navigate('/')
@@ -132,146 +182,73 @@ const SearchResults = () => {
   )
   
   const renderUniversityCard = (university) => (
-    // <div key={university._id || university.universityName} className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 hover:shadow-md transition-all duration-200 h-full flex flex-col">
-    //   {/* University Header */}
-    //   <div className="flex justify-between items-start mb-3">
-    //     <div className="flex-1 min-w-0">
-    //       <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 truncate">{university.universityName}</h3>
-    //       <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600">
-    //         <span className="truncate">📍 {university.campusLocation}</span>
-    //         <span className="hidden sm:inline">•</span>
-    //         <span>🏆 Rank #{university.ranking}</span>
-    //       </div>
-    //     </div>
-    //     <span className="bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full text-xs font-medium flex-shrink-0 ml-2">
-    //       Available
-    //     </span>
-    //   </div>
-      
-    //   {/* University Info */}
-    //   <div className="mb-4 flex-grow">
-    //     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3 text-xs sm:text-sm">
-    //       <div>
-    //         <span className="font-medium text-gray-700">Established:</span>
-    //         <span className="text-gray-600 ml-1">{university.established}</span>
-    //       </div>
-    //       <div>
-    //         <span className="font-medium text-gray-700">Destination:</span>
-    //         <span className="text-gray-600 ml-1">{university.destination}</span>
-    //       </div>
-    //     </div>
-        
-    //     {/* Courses Offered */}
-    //     <div className="mb-3">
-    //       <span className="font-medium text-gray-700 text-xs sm:text-sm">Popular Courses:</span>
-    //       <div className="flex flex-wrap gap-1 mt-1">
-    //         {university.coursesOffered?.slice(0, 3).map((course, index) => (
-    //           <span key={index} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
-    //             {course}
-    //           </span>
-    //         ))}
-    //         {university.coursesOffered?.length > 3 && (
-    //           <span className="text-gray-500 text-xs">+{university.coursesOffered.length - 3} more</span>
-    //         )}
-    //       </div>
-    //     </div>
-        
-    //     {/* Tuition Fee */}
-    //     <div className="mb-3">
-    //       <span className="font-medium text-gray-700 text-xs sm:text-sm">Tuition Fee:</span>
-    //       <span className="text-green-600 font-semibold ml-1 text-xs sm:text-sm">{university.tuitionFee}</span>
-    //     </div>
-        
-    //     {/* Description */}
-    //     <p className="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
-    //       {university.description}
-    //     </p>
-    //   </div>
-      
-    //   {/* Action Buttons */}
-    //   <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-auto">
-    //     <button 
-    //       onClick={() => window.open(university.applicationLink, '_blank')}
-    //       className="flex-1 bg-blue-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors text-xs sm:text-sm font-medium"
-    //     >
-    //       View Details
-    //     </button>
-    //     <button 
-    //       onClick={() => window.open(university.applicationLink, '_blank')}
-    //       className="flex-1 bg-green-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-green-700 transition-colors text-xs sm:text-sm font-medium"
-    //     >
-    //       Apply Now
-    //     </button>
-    //   </div>
-    // </div>
     <div key={university._id || university.universityName} className="bg-white rounded-lg border border-gray-200 p-3 sm:p-4 md:p-6 hover:shadow-md transition-all duration-200 h-full flex flex-col">
-  {/* University Header */}
-  <div className="flex justify-between items-start mb-2 sm:mb-3">
-    <div className="flex-1 min-w-0">
-      <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-1 truncate">{university.universityName}</h3>
+      {/* University Header */}
+      <div className="flex justify-between items-start mb-2 sm:mb-3">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-1 truncate">{university.universityName}</h3>
+        </div>
+        <span className="bg-green-100 text-green-800 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium flex-shrink-0 ml-2">
+          Available
+        </span>
+      </div>
       
-    </div>
-    <span className="bg-green-100 text-green-800 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium flex-shrink-0 ml-2">
-      Available
-    </span>
-  </div>
-  
-  {/* University Info */}
-  <div className="mb-3 sm:mb-4 flex-grow">
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2 sm:mb-3 text-xs">
-      <div>
-        <span className="font-medium text-gray-700">Established:</span>
-        <span className="text-gray-600 ml-1">{university.established}</span>
+      {/* University Info */}
+      <div className="mb-3 sm:mb-4 flex-grow">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2 sm:mb-3 text-xs">
+          <div>
+            <span className="font-medium text-gray-700">Established:</span>
+            <span className="text-gray-600 ml-1">{university.established}</span>
+          </div>
+          <div>
+            <span className="font-medium text-gray-700">Destination:</span>
+            <span className="text-gray-600 ml-1">{university.destination}</span>
+          </div>
+        </div>
+        
+        {/* Courses Offered */}
+        <div className="mb-2 sm:mb-3">
+          <span className="font-medium text-gray-700 text-xs">Popular Courses:</span>
+          <div className="flex flex-wrap gap-1 mt-1">
+            {university.coursesOffered?.slice(0, 3).map((course, index) => (
+              <span key={index} className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs">
+                {course}
+              </span>
+            ))}
+            {university.coursesOffered?.length > 3 && (
+              <span className="text-gray-500 text-xs">+{university.coursesOffered.length - 3} more</span>
+            )}
+          </div>
+        </div>
+        
+        {/* Tuition Fee */}
+        <div className="mb-2 sm:mb-3">
+          <span className="font-medium text-gray-700 text-xs">Tuition Fee:</span>
+          <span className="text-green-600 font-semibold ml-1 text-xs">{university.tuitionFee}</span>
+        </div>
+        
+        {/* Description */}
+        <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">
+          {university.description}
+        </p>
       </div>
-      <div>
-        <span className="font-medium text-gray-700">Destination:</span>
-        <span className="text-gray-600 ml-1">{university.destination}</span>
+      
+      {/* Action Buttons */}
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-auto">
+        <button 
+          onClick={() => window.open(university.applicationLink, '_blank')}
+          className="flex-1 bg-blue-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors text-xs font-medium"
+        >
+          View Details
+        </button>
+        <button 
+          onClick={() => window.open(university.applicationLink, '_blank')}
+          className="flex-1 bg-green-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-green-700 transition-colors text-xs font-medium"
+        >
+          Apply Now
+        </button>
       </div>
     </div>
-    
-    {/* Courses Offered */}
-    <div className="mb-2 sm:mb-3">
-      <span className="font-medium text-gray-700 text-xs">Popular Courses:</span>
-      <div className="flex flex-wrap gap-1 mt-1">
-        {university.coursesOffered?.slice(0, 3).map((course, index) => (
-          <span key={index} className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs">
-            {course}
-          </span>
-        ))}
-        {university.coursesOffered?.length > 3 && (
-          <span className="text-gray-500 text-xs">+{university.coursesOffered.length - 3} more</span>
-        )}
-      </div>
-    </div>
-    
-    {/* Tuition Fee */}
-    <div className="mb-2 sm:mb-3">
-      <span className="font-medium text-gray-700 text-xs">Tuition Fee:</span>
-      <span className="text-green-600 font-semibold ml-1 text-xs">{university.tuitionFee}</span>
-    </div>
-    
-    {/* Description */}
-    <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">
-      {university.description}
-    </p>
-  </div>
-  
-  {/* Action Buttons */}
-  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-auto">
-    <button 
-      onClick={() => window.open(university.applicationLink, '_blank')}
-      className="flex-1 bg-blue-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors text-xs font-medium"
-    >
-      View Details
-    </button>
-    <button 
-      onClick={() => window.open(university.applicationLink, '_blank')}
-      className="flex-1 bg-green-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-green-700 transition-colors text-xs font-medium"
-    >
-      Apply Now
-    </button>
-  </div>
-</div>
   )
   
   const renderEventCard = (event) => (
@@ -307,6 +284,41 @@ const SearchResults = () => {
   )
   
   const renderResults = () => {
+    // Show loading state
+    if (loading) {
+      return (
+        <div className="text-center py-8 sm:py-12">
+          <div className="text-gray-400 text-4xl sm:text-6xl mb-4">⏳</div>
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Loading {tab.toLowerCase()}...</h3>
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 px-4">Please wait while we fetch the latest data</p>
+        </div>
+      )
+    }
+
+    // Show error state
+    if (error) {
+      return (
+        <div className="text-center py-8 sm:py-12">
+          <div className="text-gray-400 text-4xl sm:text-6xl mb-4">⚠️</div>
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Error Loading Data</h3>
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 px-4">{error}</p>
+          <button 
+            onClick={() => fetchRealData(searchType)}
+            className="bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base mr-3"
+          >
+            Try Again
+          </button>
+          <button 
+            onClick={handleBackToSearch}
+            className="bg-gray-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-gray-700 transition-colors text-sm sm:text-base"
+          >
+            Back to Search
+          </button>
+        </div>
+      )
+    }
+
+    // Show no results state
     if (!sortedResults || sortedResults.length === 0) {
       return (
         <div className="text-center py-8 sm:py-12">

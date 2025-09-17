@@ -19,6 +19,9 @@ import StudyInIreland from "../nav/studyAbroad/StudyInIreland";
 import StudyInNewZeland from "../nav/studyAbroad/StudyInNewZeland";
 import StudyInUK from "../nav/studyAbroad/StudyInUK";
 import StudyInUSA from "../nav/studyAbroad/StudyInUSA";
+import WhatsIltes from "../nav/studyAbroad/WhatsIltes";
+import WhyIelts from "../nav/studyAbroad/WhyIelts";
+import IeltsPrep from "../nav/studyAbroad/IeltsPrep";
 
 
 export const router = createBrowserRouter([
@@ -95,6 +98,18 @@ export const router = createBrowserRouter([
         path: "study-in-Usa",
         element: <StudyInUSA></StudyInUSA>
       },
+      {
+        path:"what-is-ielts",
+        element:<WhatsIltes></WhatsIltes>
+      },
+      {
+        path:"why-ielts",
+        element:<WhyIelts></WhyIelts>
+      },
+      {
+        path:"ielts-preparation",
+        element:<IeltsPrep></IeltsPrep>
+      }
 
     ]
   },
