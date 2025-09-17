@@ -17,7 +17,7 @@ const StudyInCanada = () => {
     /** ---------- Header ---------- **/
     const headerProps = {
         breadcrumbItems: ["WWS Bangladesh", "Destinations", "Canada"],
-        title: "Study in Canada – A Gateway to Quality Education & Global Careers",
+        title: "Study in Canada – A Gateway to Quality Education",
         description:
             "Canada is one of the safest, most welcoming countries for international students. With top-ranked universities, innovative research opportunities, and a multicultural environment, Canada offers an ideal balance of academics, work, and life.",
         buttonText: "Begin Your Canadian Journey",

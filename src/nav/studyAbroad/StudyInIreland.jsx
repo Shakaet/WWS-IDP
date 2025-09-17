@@ -17,9 +17,9 @@ const StudyInIreland = () => {
     /** ---------- Header ---------- **/
     const headerProps = {
         breadcrumbItems: ["WWS Bangladesh", "Destinations", "Ireland"],
-        title: "Study in Ireland – Unlock Endless Learning & Career Horizons",
+        title: "Study in Ireland – Unlock Endless Learning",
         description:
-            "Ireland, the land of scholars and saints, has evolved into one of Europe’s most vibrant destinations for higher education. With globally respected universities, a thriving tech and research ecosystem, and a warm, welcoming culture, Ireland offers international students a unique blend of academic excellence, rich history, and life-changing opportunities.",
+            "Ireland, the land of scholars and saints, has evolved into one of Europe’s most vibrant destinations for higher education. With globally respected universities, a thriving tech and research ecosystem, and a warm.",
         buttonText: "Start Your Irish Adventure",
         buttonAction: () => console.log("Start Ireland Journey"),
         image: abroadImg,

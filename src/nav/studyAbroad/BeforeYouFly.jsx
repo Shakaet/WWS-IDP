@@ -10,6 +10,7 @@ import flyImg from "../../assets/fly.jpg";
 import luggageImg from "../../assets/fly.jpg";
 import docImg from "../../assets/graduation.jpg";
 import mentorImg from "../../assets/graduation.jpg";
+import ContactHome from "../../component/ContactHome";
 
 const BeforeYouFly = () => {
     /** ---------- Header ---------- **/
@@ -167,6 +168,7 @@ const BeforeYouFly = () => {
             <WhyStudyAbroadBookNow {...bookNowProps} />
             <WhyStudyAbroadDetails {...detailsProps} />
             <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+            <ContactHome></ContactHome>
             <StudyAbroadQA {...qaProps} />
         </div>
     );

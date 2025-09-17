@@ -9,6 +9,7 @@ import abroad1 from "../../assets/abroad.jpg"
 import studentsImage from "../../assets/studyDestination.jpg"
 import graduationImage from "../../assets/graduation.jpg"
 import counsellorImage from "../../assets/graduation.jpg"
+import ContactHome from '../../component/ContactHome'
 
 const StudyDestination = () => {
 // Header props configuration
@@ -210,6 +211,7 @@ const qaProps = {
         <WhyStudyAbroadBookNow {...bookNowProps} />
         <WhyStudyAbroadDetails {...detailsProps} />
         <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+        <ContactHome></ContactHome>
         <StudyAbroadQA {...qaProps} />
         
     </div>

@@ -8,6 +8,7 @@ import StudyAbroadQA from '../../component/StudyAbroadQA'
 import studentsImage from "../../assets/thriv.jpg"
 import graduationImage from "../../assets/graduation.jpg"
 import counsellorImage from "../../assets/graduation.jpg"
+import ContactHome from '../../component/ContactHome'
 
 const ThriveAbroad = () => {
 
@@ -182,6 +183,7 @@ const qaProps = {
         <WhyStudyAbroadBookNow {...bookNowProps} />
         <WhyStudyAbroadDetails {...detailsProps} />
         <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+        <ContactHome></ContactHome>
         <StudyAbroadQA {...qaProps} />
         
     </div>

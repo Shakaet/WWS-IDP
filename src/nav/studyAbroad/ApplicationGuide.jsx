@@ -9,6 +9,7 @@ import abroad1 from "../../assets/abroad.jpg"
 import studentsImage from "../../assets/applicationGuide.jpg"
 import graduationImage from "../../assets/graduation.jpg"
 import counsellorImage from "../../assets/graduation.jpg"
+import ContactHome from '../../component/ContactHome'
 
 const ApplicationGuide = () => {
 
@@ -172,6 +173,7 @@ const qaProps = {
         <WhyStudyAbroadBookNow {...bookNowProps} />
         <WhyStudyAbroadDetails {...detailsProps} />
         <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+        <ContactHome></ContactHome>
         <StudyAbroadQA {...qaProps} />
         
     </div>

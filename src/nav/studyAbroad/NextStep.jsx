@@ -10,6 +10,7 @@ import abroadImg from "../../assets/nextstep.jpg";
 import stepImg from "../../assets/graduation.jpg";
 import guideImg from "../../assets/nextstep.jpg";
 import counsellorImg from "../../assets/graduation.jpg";
+import ContactHome from "../../component/ContactHome";
 
 const NextStep = () => {
     /** ---------- Header ---------- **/
@@ -175,6 +176,7 @@ const NextStep = () => {
             <WhyStudyAbroadBookNow {...bookNowProps} />
             <WhyStudyAbroadDetails {...detailsProps} />
             <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+            <ContactHome></ContactHome>
             <StudyAbroadQA {...qaProps} />
         </div>
     );
