@@ -6,10 +6,12 @@ import WhyStudyAbroadDetails from "../../component/WhyStudyAbroadDetails";
 import WhyStudyAbroadMoredetails from "../../component/WhyStudyAbroadMoredetails";
 import StudyAbroadQA from "../../component/StudyAbroadQA";
 
-import abroadImg from "../../assets/abroad.jpg";
+import abroadImg from "../../assets/ireland.jpg";
 import stepImg from "../../assets/graduation.jpg";
 import guideImg from "../../assets/students.webp";
 import counsellorImg from "../../assets/graduation.jpg";
+import DestinationTable from "../../component/DestinationTable";
+import ContactHome from "../../component/ContactHome";
 
 const StudyInIreland = () => {
     /** ---------- Header ---------- **/
@@ -143,13 +145,33 @@ const StudyInIreland = () => {
         ],
     };
 
+    // Sample data for Ireland universities
+    const irelandUniversities = [
+        { id: 1, institution: "Trinity College Dublin", ranking: "81" },
+        { id: 2, institution: "University College Dublin", ranking: "171" },
+        { id: 3, institution: "National University of Ireland Galway", ranking: "270" },
+        { id: 4, institution: "University College Cork", ranking: "292" },
+        { id: 5, institution: "Dublin City University", ranking: "471" },
+        { id: 6, institution: "University of Limerick", ranking: "501" },
+        { id: 7, institution: "Maynooth University", ranking: "801" },
+        { id: 8, institution: "Technological University Dublin", ranking: "801" },
+        { id: 9, institution: "Dundalk Institute of Technology", ranking: "1001" },
+        { id: 10, institution: "Waterford Institute of Technology", ranking: "1001" }
+    ];
+
     return (
         <div>
             <WhyStudyAbroadHeader {...headerProps} />
             <WhyStudyAbroadParagraph {...paragraphProps} />
             <WhyStudyAbroadBookNow {...bookNowProps} />
             <WhyStudyAbroadDetails {...detailsProps} />
+            <DestinationTable
+                title="Top universities in Ireland for studying in Ireland"
+                subtitle="Here are the top universities for higher education in Ireland:"
+                tableData={irelandUniversities}
+            />
             <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+            <ContactHome></ContactHome>
             <StudyAbroadQA {...qaProps} />
         </div>
     );

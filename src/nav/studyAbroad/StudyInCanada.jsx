@@ -6,10 +6,12 @@ import WhyStudyAbroadDetails from "../../component/WhyStudyAbroadDetails";
 import WhyStudyAbroadMoredetails from "../../component/WhyStudyAbroadMoredetails";
 import StudyAbroadQA from "../../component/StudyAbroadQA";
 
-import abroadImg from "../../assets/abroad.jpg";
+import abroadImg from "../../assets/canada.jpg";
 import stepImg from "../../assets/graduation.jpg";
 import guideImg from "../../assets/students.webp";
 import counsellorImg from "../../assets/graduation.jpg";
+import DestinationTable from "../../component/DestinationTable";
+import ContactHome from "../../component/ContactHome";
 
 const StudyInCanada = () => {
     /** ---------- Header ---------- **/
@@ -143,13 +145,34 @@ const StudyInCanada = () => {
         ],
     };
 
+
+     // Sample data for Canada universities
+  const canadaUniversities = [
+    { id: 1, institution: "University of Toronto", ranking: "21" },
+    { id: 2, institution: "McGill University", ranking: "30" },
+    { id: 3, institution: "University of British Columbia", ranking: "34" },
+    { id: 4, institution: "University of Montreal", ranking: "141" },
+    { id: 5, institution: "University of Alberta", ranking: "111" },
+    { id: 6, institution: "McMaster University", ranking: "189" },
+    { id: 7, institution: "University of Waterloo", ranking: "112" },
+    { id: 8, institution: "Western University", ranking: "114" },
+    { id: 9, institution: "University of Ottawa", ranking: "203" },
+    { id: 10, institution: "University of Calgary", ranking: "182" }
+  ]
+
     return (
         <div>
             <WhyStudyAbroadHeader {...headerProps} />
             <WhyStudyAbroadParagraph {...paragraphProps} />
             <WhyStudyAbroadBookNow {...bookNowProps} />
             <WhyStudyAbroadDetails {...detailsProps} />
+            <DestinationTable
+             title="Top universities in Canada for studying in Canada"
+             subtitle="Here are the top universities for higher education in Canada:"
+            countryName="Canada"
+            tableData={canadaUniversities}></DestinationTable>
             <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+            <ContactHome></ContactHome>
             <StudyAbroadQA {...qaProps} />
         </div>
     );

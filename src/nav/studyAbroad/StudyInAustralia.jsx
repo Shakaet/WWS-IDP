@@ -6,10 +6,12 @@ import WhyStudyAbroadDetails from "../../component/WhyStudyAbroadDetails";
 import WhyStudyAbroadMoredetails from "../../component/WhyStudyAbroadMoredetails";
 import StudyAbroadQA from "../../component/StudyAbroadQA";
 
-import abroadImg from "../../assets/abroad.jpg";
+import abroadImg from "../../assets/australia.jpg";
 import stepImg from "../../assets/graduation.jpg";
 import guideImg from "../../assets/students.webp";
 import counsellorImg from "../../assets/graduation.jpg";
+import DestinationTable from "../../component/DestinationTable";
+import ContactHome from "../../component/ContactHome";
 
 const StudyInAustralia = () => {
     /** ---------- Header ---------- **/
@@ -143,13 +145,35 @@ const StudyInAustralia = () => {
         ],
     };
 
+     // Sample data for Australia universities
+  const australiaUniversities = [
+    { id: 1, institution: "University of Melbourne", ranking: "14" },
+    { id: 2, institution: "University of Sydney", ranking: "19" },
+    { id: 3, institution: "Australian National University", ranking: "34" },
+    { id: 4, institution: "University of New South Wales", ranking: "19" },
+    { id: 5, institution: "University of Queensland", ranking: "50" },
+    { id: 6, institution: "Monash University", ranking: "42" },
+    { id: 7, institution: "University of Western Australia", ranking: "72" },
+    { id: 8, institution: "University of Adelaide", ranking: "89" },
+    { id: 9, institution: "University of Technology Sydney", ranking: "90" },
+    { id: 10, institution: "Macquarie University", ranking: "130" }
+  ]
+
+
     return (
         <div>
             <WhyStudyAbroadHeader {...headerProps} />
             <WhyStudyAbroadParagraph {...paragraphProps} />
             <WhyStudyAbroadBookNow {...bookNowProps} />
             <WhyStudyAbroadDetails {...detailsProps} />
+            <DestinationTable 
+                title="Top universities in Australia for studying in Australia"
+                subtitle="Here are the top universities for higher education in Australia:"
+                countryName="Australia"
+                tableData={australiaUniversities}
+            />
             <WhyStudyAbroadMoredetails {...moreDetailsProps} />
+            <ContactHome></ContactHome>
             <StudyAbroadQA {...qaProps} />
         </div>
     );
