@@ -40,9 +40,9 @@ const Header = () => {
         { label: 'Study in Australia', to: '/study-in-australia' },
         { label: 'Study in Canada', to: '/study-in-canada' },
         { label: 'Study in Ireland', to: '/study-in-ireland' },
-        { label: 'Study in New Zealand', to: '/' },
-        { label: 'Study in UK', to: '/' },
-        { label: 'Study in USA', to: '/' }
+        { label: 'Study in New Zealand', to: '/study-in-NewZeland' },
+        { label: 'Study in UK', to: '/study-in-Uk' },
+        { label: 'Study in USA', to: '/study-in-Usa' }
       ]
     },
     {

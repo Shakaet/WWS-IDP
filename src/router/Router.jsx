@@ -16,6 +16,9 @@ import BeforeYouFly from "../nav/studyAbroad/BeforeYouFly";
 import StudyInAustralia from "../nav/studyAbroad/StudyInAustralia";
 import StudyInCanada from "../nav/studyAbroad/StudyInCanada";
 import StudyInIreland from "../nav/studyAbroad/StudyInIreland";
+import StudyInNewZeland from "../nav/studyAbroad/StudyInNewZeland";
+import StudyInUK from "../nav/studyAbroad/StudyInUK";
+import StudyInUSA from "../nav/studyAbroad/StudyInUSA";
 
 
 export const router = createBrowserRouter([
@@ -79,6 +82,18 @@ export const router = createBrowserRouter([
       {
         path: "study-in-ireland",
         element: <StudyInIreland />
+      },
+      {
+        path: "study-in-NewZeland",
+        element: <StudyInNewZeland></StudyInNewZeland>
+      },
+      {
+        path: "study-in-Uk",
+        element: <StudyInUK />
+      },
+      {
+        path: "study-in-Usa",
+        element: <StudyInUSA></StudyInUSA>
       },
 
     ]
