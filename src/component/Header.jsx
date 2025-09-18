@@ -88,7 +88,7 @@ const Header = () => {
       to: '/',
       dropdown: [
         { label: 'What is IELTS?', to: '/what-is-ielts' },
-        { label: 'Why IDP IELTS?', to: '/why-ielts' },
+        { label: 'Why WWS IELTS?', to: '/why-ielts' },
         { label: 'IELTS Preparation', to: '/ielts-preparation' },
         { label: 'Find a course', action: handleFindCourses },
         { label: 'Find a scholarship', action: handleFindScholarships },
