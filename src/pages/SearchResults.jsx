@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Result1 from '../component/Result1'
 import Result2 from '../component/Result2'
+import ContactHome from '../component/ContactHome'
 
 const SearchResults = () => {
   const location = useLocation()
@@ -434,6 +435,7 @@ const SearchResults = () => {
         <Result1></Result1>
         {renderResults()}
         <Result2></Result2>
+        <ContactHome></ContactHome>
       </div>
     </div>
   )

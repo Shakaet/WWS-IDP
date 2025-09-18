@@ -147,7 +147,7 @@ const Header = () => {
         },
         { 
           label: 'Twitter', 
-          to: 'https://twitter.com',
+          to: 'https://x.com/WwiseScholars',
           icon: (
             <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border border-gray-200">
               <svg className="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
