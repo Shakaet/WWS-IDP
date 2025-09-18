@@ -22,6 +22,7 @@ import StudyInUSA from "../nav/studyAbroad/StudyInUSA";
 import WhatsIltes from "../nav/studyAbroad/WhatsIltes";
 import WhyIelts from "../nav/studyAbroad/WhyIelts";
 import IeltsPrep from "../nav/studyAbroad/IeltsPrep";
+import Collaborates from "../component/Collaborates";
 
 
 export const router = createBrowserRouter([
@@ -109,6 +110,10 @@ export const router = createBrowserRouter([
       {
         path:"ielts-preparation",
         element:<IeltsPrep></IeltsPrep>
+      },
+      {
+        path:"contact",
+        element:<Collaborates></Collaborates>
       }
 
     ]

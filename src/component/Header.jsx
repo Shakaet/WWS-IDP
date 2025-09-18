@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, Links, useNavigate } from 'react-router-dom'
 import icon from "../assets/wws1.png"
 import useAuth from '../Hooks/useAuth/useAuth'
 
@@ -12,6 +12,20 @@ const Header = () => {
   let { user, signOuts } = useAuth()
 
   console.log(user)
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileOpen])
 
   // Navigation functions for different categories
   const handleFindCourses = () => {
@@ -54,14 +68,6 @@ const Header = () => {
     {
       label: 'Study Abroad',
       to: '/',
-      // dropdown: [
-      //   { label: 'Why study abroad?', to: '/' },
-      //   { label: 'Where and what to study?', to: '/' },
-      //   { label: 'How do I apply?', to: '/' },
-      //   { label: 'After receiving an offer', to: '/' },
-      //   { label: 'Prepare to depart', to: '/' },
-      //   { label: 'Arrive and thrive', to: '/' }
-      // ]
       dropdown: [
         { label: 'Why Go Global?', to: '/WhyStudyAbroad' },
         { label: 'Study Destinations', to: '/studyDestination' },
@@ -87,13 +93,19 @@ const Header = () => {
       label: 'Courses',
       to: '/',
       dropdown: [
+        { label: 'Find a course', action: handleFindCourses },
+        { label: 'Find a university', action: handleFindUniversities },
+        { label: 'Find a events', action: handleFindEvents },
         { label: 'What is IELTS?', to: '/what-is-ielts' },
         { label: 'Why WWS IELTS?', to: '/why-ielts' },
         { label: 'IELTS Preparation', to: '/ielts-preparation' },
-        { label: 'Find a course', action: handleFindCourses },
-        { label: 'Find a scholarship', action: handleFindScholarships },
-        { label: 'Find a university', action: handleFindUniversities },
-        { label: 'Find a events', action: handleFindEvents },
+      ]
+    },
+     {
+      label: 'Scholarships',
+      to: '/',
+      dropdown: [
+         { label: 'Find a scholarship', action: handleFindScholarships },
       ]
     },
     {
@@ -102,7 +114,7 @@ const Header = () => {
       dropdown: [
         { 
           label: 'Facebook', 
-          to: 'https://facebook.com',
+          to: 'https://www.facebook.com/worldwisesocial',
           icon: (
             <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border border-gray-200">
               <svg className="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
@@ -113,7 +125,7 @@ const Header = () => {
         },
         { 
           label: 'Instagram', 
-          to: 'https://instagram.com',
+          to: 'https://www.instagram.com/worldwisescholars',
           icon: (
             <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border border-gray-200">
               <svg className="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
@@ -124,7 +136,7 @@ const Header = () => {
         },
         { 
           label: 'LinkedIn', 
-          to: 'https://linkedin.com',
+          to: 'https://www.linkedin.com/company/world-wise-scholars',
           icon: (
             <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border border-gray-200">
               <svg className="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
@@ -144,32 +156,9 @@ const Header = () => {
             </div>
           )
         },
-        { 
-          label: 'YouTube', 
-          to: 'https://youtube.com',
-          icon: (
-            <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border border-gray-200">
-              <svg className="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-            </div>
-          )
-        }
       ]
     },
-    // {
-    //   label: 'Scholarships',
-    //   to: '/',
-    //   dropdown: [
-    //     { label: 'Scholarship search', action: handleFindScholarships },
-    //     { label: 'Merit-based scholarships', to: '/' },
-    //     { label: 'Need-based scholarships', to: '/' },
-    //     { label: 'Country-specific scholarships', to: '/' },
-    //     { label: 'University scholarships', to: '/' }
-    //   ]
-    // },
   ];
-
 
   const handleLogout = () => {
     signOuts()
@@ -252,6 +241,8 @@ const Header = () => {
                           <Link
                             key={dropdownIndex}
                             to={dropdownItem.to}
+                            target={item.label === 'Social' ? "_blank" : undefined}
+                            rel={item.label === 'Social' ? "noopener noreferrer" : undefined}
                             className="flex items-center justify-between px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors"
                           >
                             <div className="flex items-center gap-3">
@@ -274,6 +265,11 @@ const Header = () => {
           </nav>
           {/* Right: Actions */}
           <div className="hidden lg:flex items-center gap-3">
+            {/* Let's Collaborate Button */}
+            <Link to={"/contact"} className="inline-flex items-center rounded-full border-2 border-blue-500 px-5 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 transition-colors">
+              Let's Collaborate!
+            </Link>
+            
             {user ? (
               <>
                 {/* User Profile Section */}
@@ -375,12 +371,20 @@ const Header = () => {
       {/* Mobile menu panel */}
       <div
         id="mobile-menu"
-        className={`${isMobileOpen ? 'block' : 'hidden'} lg:hidden border-t border-gray-100 bg-white`}
+        className={`${isMobileOpen ? 'fixed inset-0 z-40' : 'hidden'} lg:hidden`}
       >
-        <div className="px-4 py-4 space-y-3">
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-black bg-opacity-50"
+          onClick={() => setIsMobileOpen(false)}
+        ></div>
+        
+        {/* Menu Content */}
+        <div className="relative bg-white border-t border-gray-100 shadow-lg">
+          <div className="px-4 py-4 space-y-3 max-h-screen overflow-y-auto">
           {/* Navigation Links */}
           <div className="space-y-1">
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <div key={item.label}>
                 <Link
                   to={item.to}
@@ -409,6 +413,8 @@ const Header = () => {
                         <Link
                           key={dropdownIndex}
                           to={dropdownItem.to}
+                          target={item.label === 'Social' ? "_blank" : undefined}
+                          rel={item.label === 'Social' ? "noopener noreferrer" : undefined}
                           onClick={() => setIsMobileOpen(false)}
                           className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
                         >
@@ -422,6 +428,14 @@ const Header = () => {
               </div>
             ))}
           </div>
+          
+          {/* Mobile Let's Collaborate Button */}
+          <div className="mt-4">
+            <Link to={"/contact"} className="w-full inline-flex items-center justify-center rounded-full border-2 border-blue-500 px-5 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 transition-colors">
+              Let's Collaborate!
+            </Link>
+          </div>
+          
           {/* Mobile User Profile Section */}
           {user && (
             <div className="mt-3 px-3 py-3 bg-slate-50 rounded-lg">
@@ -474,6 +488,7 @@ const Header = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z" />
               </svg>
             </button>
+          </div>
           </div>
         </div>
       </div>
