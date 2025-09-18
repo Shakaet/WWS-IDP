@@ -99,16 +99,16 @@ export const router = createBrowserRouter([
         element: <StudyInUSA></StudyInUSA>
       },
       {
-        path:"what-is-ielts",
-        element:<WhatsIltes></WhatsIltes>
+        path: "what-is-ielts",
+        element: <WhatsIltes></WhatsIltes>
       },
       {
-        path:"why-ielts",
-        element:<WhyIelts></WhyIelts>
+        path: "why-ielts",
+        element: <WhyIelts></WhyIelts>
       },
       {
-        path:"ielts-preparation",
-        element:<IeltsPrep></IeltsPrep>
+        path: "ielts-preparation",
+        element: <IeltsPrep></IeltsPrep>
       }
 
     ]
