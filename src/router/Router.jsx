@@ -27,6 +27,7 @@ import FastEfficientDetails from "../pages/FastEfficientDetails";
 import ClientFocusedDetails from "../pages/ClientFocusedDetails";
 import IELTSTestPrepDetails from "../pages/IELTSTestPrepDetails";
 import GlobalReachDetails from "../pages/GlobalReachDetails";
+import CreativeSolutionsDetails from "../pages/CreativeSolutionsDetails";
 
 import Collaborates from "../component/Collaborates";
 
@@ -125,7 +126,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "creative-solutions",
-        element: <FastEfficientDetails />
+        element: <CreativeSolutionsDetails />
       },
       {
         path: "client-focused",
@@ -139,13 +140,13 @@ export const router = createBrowserRouter([
         path: "global-reach",
         element: <GlobalReachDetails />
       },
-
-        path:"ielts-preparation",
-        element:<IeltsPrep></IeltsPrep>
+      {
+        path: "ielts-preparation",
+        element: <IeltsPrep></IeltsPrep>
       },
       {
-        path:"contact",
-        element:<Collaborates></Collaborates>
+        path: "contact",
+        element: <Collaborates></Collaborates>
       }
 
 

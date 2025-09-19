@@ -1,6 +1,7 @@
 import React from "react";
-import IELTSBanner from "../components/IELTSBanner";
-import bannerImg from "../assets/usa.jpg"; // Replace with your actual image path
+// import IELTSBanner from "../components/IELTSBanner";
+import bannerImg from "../assets/bn.jpg"; // Replace with your actual image path
+import IELTSBanner from "../component/IELTSBanner";
 
 const CreativeSolutionsDetails = () => {
     const bannerProps = {
