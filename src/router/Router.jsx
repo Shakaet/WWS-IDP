@@ -22,11 +22,15 @@ import StudyInUSA from "../nav/studyAbroad/StudyInUSA";
 import WhatsIltes from "../nav/studyAbroad/WhatsIltes";
 import WhyIelts from "../nav/studyAbroad/WhyIelts";
 import IeltsPrep from "../nav/studyAbroad/IeltsPrep";
+
 import FastEfficientDetails from "../pages/FastEfficientDetails";
 import ClientFocusedDetails from "../pages/ClientFocusedDetails";
 import IELTSTestPrepDetails from "../pages/IELTSTestPrepDetails";
 import GlobalReachDetails from "../pages/GlobalReachDetails";
 import CreativeSolutionsDetails from "../pages/CreativeSolutionsDetails";
+
+import Collaborates from "../component/Collaborates";
+
 
 
 export const router = createBrowserRouter([
@@ -112,6 +116,7 @@ export const router = createBrowserRouter([
         element: <WhyIelts></WhyIelts>
       },
       {
+
         path: "ielts-preparation",
         element: <IeltsPrep></IeltsPrep>
       },
@@ -135,6 +140,15 @@ export const router = createBrowserRouter([
         path: "global-reach",
         element: <GlobalReachDetails />
       },
+      {
+        path: "ielts-preparation",
+        element: <IeltsPrep></IeltsPrep>
+      },
+      {
+        path: "contact",
+        element: <Collaborates></Collaborates>
+      }
+
 
     ]
   },
