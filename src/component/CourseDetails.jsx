@@ -57,7 +57,7 @@ const CourseDetails = ({
           <img 
             src={banner}
             alt={`${subject} in ${destination}`} 
-            className="w-full h-full object-cover"
+            className="hidden md:flex w-full h-full object-cover"
           />
           {/* Light overlay for better text readability */}
           <div className="absolute inset-0  bg-opacity-20"></div>
