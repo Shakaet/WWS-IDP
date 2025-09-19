@@ -26,6 +26,7 @@ import FastEfficientDetails from "../pages/FastEfficientDetails";
 import ClientFocusedDetails from "../pages/ClientFocusedDetails";
 import IELTSTestPrepDetails from "../pages/IELTSTestPrepDetails";
 import GlobalReachDetails from "../pages/GlobalReachDetails";
+import CreativeSolutionsDetails from "../pages/CreativeSolutionsDetails";
 
 
 export const router = createBrowserRouter([
@@ -120,7 +121,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "creative-solutions",
-        element: <FastEfficientDetails />
+        element: <CreativeSolutionsDetails />
       },
       {
         path: "client-focused",
