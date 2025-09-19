@@ -22,7 +22,14 @@ import StudyInUSA from "../nav/studyAbroad/StudyInUSA";
 import WhatsIltes from "../nav/studyAbroad/WhatsIltes";
 import WhyIelts from "../nav/studyAbroad/WhyIelts";
 import IeltsPrep from "../nav/studyAbroad/IeltsPrep";
+
+import FastEfficientDetails from "../pages/FastEfficientDetails";
+import ClientFocusedDetails from "../pages/ClientFocusedDetails";
+import IELTSTestPrepDetails from "../pages/IELTSTestPrepDetails";
+import GlobalReachDetails from "../pages/GlobalReachDetails";
+
 import Collaborates from "../component/Collaborates";
+
 
 
 export const router = createBrowserRouter([
@@ -100,14 +107,39 @@ export const router = createBrowserRouter([
         element: <StudyInUSA></StudyInUSA>
       },
       {
-        path:"what-is-ielts",
-        element:<WhatsIltes></WhatsIltes>
+        path: "what-is-ielts",
+        element: <WhatsIltes></WhatsIltes>
       },
       {
-        path:"why-ielts",
-        element:<WhyIelts></WhyIelts>
+        path: "why-ielts",
+        element: <WhyIelts></WhyIelts>
       },
       {
+
+        path: "ielts-preparation",
+        element: <IeltsPrep></IeltsPrep>
+      },
+      {
+        path: "fast-efficient-details",
+        element: <FastEfficientDetails />
+      },
+      {
+        path: "creative-solutions",
+        element: <FastEfficientDetails />
+      },
+      {
+        path: "client-focused",
+        element: <ClientFocusedDetails />
+      },
+      {
+        path: "ielts-and-test",
+        element: <IELTSTestPrepDetails />
+      },
+      {
+        path: "global-reach",
+        element: <GlobalReachDetails />
+      },
+
         path:"ielts-preparation",
         element:<IeltsPrep></IeltsPrep>
       },
@@ -115,6 +147,7 @@ export const router = createBrowserRouter([
         path:"contact",
         element:<Collaborates></Collaborates>
       }
+
 
     ]
   },
