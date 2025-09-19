@@ -69,7 +69,7 @@ const ReleventSection1 = () => {
             <p className="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               From IELTS preparation to university admission, we guide you through every step of your study abroad journey.
             </p>
-          </Motion.div>
+          </Motion.div> 
 
           {/* Topics Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
