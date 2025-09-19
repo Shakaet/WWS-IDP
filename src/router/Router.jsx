@@ -30,6 +30,7 @@ import GlobalReachDetails from "../pages/GlobalReachDetails";
 import CreativeSolutionsDetails from "../pages/CreativeSolutionsDetails";
 
 import Collaborates from "../component/Collaborates";
+import CourseDetailsPages from "../pages/CourseDetailsPages";
 
 
 
@@ -147,6 +148,10 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Collaborates></Collaborates>
+      },
+      {
+        path:"/search-results/courses-details/:id",
+        element:<CourseDetailsPages></CourseDetailsPages>
       }
 
 
