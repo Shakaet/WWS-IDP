@@ -31,6 +31,9 @@ import CreativeSolutionsDetails from "../pages/CreativeSolutionsDetails";
 
 import Collaborates from "../component/Collaborates";
 import CourseDetailsPages from "../pages/CourseDetailsPages";
+import UniversityDetailsPages from "../pages/UniversityDetailsPages";
+import EventsDetailsPages from "../pages/EventsDetailsPages";
+import ScholarshipDetailsPages from "../pages/ScholarshipDetailsPages";
 
 
 
@@ -152,7 +155,20 @@ export const router = createBrowserRouter([
       {
         path:"/search-results/courses-details/:id",
         element:<CourseDetailsPages></CourseDetailsPages>
-      }
+      },
+      {
+        path:"/search-results/university-details/:id",
+        element:<UniversityDetailsPages></UniversityDetailsPages>
+      },
+      {
+        path:"/search-results/event-details/:id",
+        element:<EventsDetailsPages></EventsDetailsPages>
+      },
+      {
+        path:"/search-results/scholarship-details/:id",
+        element:<ScholarshipDetailsPages></ScholarshipDetailsPages>
+      },
+
 
 
     ]
