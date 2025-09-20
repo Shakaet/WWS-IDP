@@ -30,6 +30,9 @@ import GlobalReachDetails from "../pages/GlobalReachDetails";
 import CreativeSolutionsDetails from "../pages/CreativeSolutionsDetails";
 
 import Collaborates from "../component/Collaborates";
+import GlobalEventsDetails from "../pages/GlobalEventsDetails";
+import FastLaneDetails from "../pages/FastLaneDetails";
+import VisaApplicationDetails from "../pages/VisaApplicationDetails";
 
 
 
@@ -147,7 +150,19 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Collaborates></Collaborates>
-      }
+      },
+      {
+        path: "global-events",
+        element: <GlobalEventsDetails />
+      },
+      {
+        path: "live-life-in-the-fast-line",
+        element: <FastLaneDetails />
+      },
+      {
+        path: "visa-application-assistance",
+        element: <VisaApplicationDetails />
+      },
 
 
     ]
