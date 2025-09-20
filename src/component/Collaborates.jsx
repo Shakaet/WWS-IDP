@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import bg from "../assets/abroad1.jpg"
+import bg from "../assets/corporate1.jpg"
 
 const Collaborates = () => {
   const [formData, setFormData] = useState({

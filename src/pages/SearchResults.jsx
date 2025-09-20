@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Links, useLocation, useNavigate } from 'react-router-dom'
 import Result1 from '../component/Result1'
 import Result2 from '../component/Result2'
 import ContactHome from '../component/ContactHome'
@@ -172,9 +172,9 @@ const SearchResults = () => {
       
       {/* Action Buttons */}
       <div className="flex gap-3 mt-auto">
-        <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        <Link to={`/search-results/scholarship-details/${scholarship?._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
           View Details
-        </button>
+        </Link>
         <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
           Apply Now
         </button>
@@ -236,12 +236,12 @@ const SearchResults = () => {
       
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-auto">
-        <button 
-          onClick={() => window.open(university.applicationLink, '_blank')}
+        <Link to={`/search-results/university-details/${university?._id}`}
+          // onClick={() => window.open(university.applicationLink, '_blank')}
           className="flex-1 bg-blue-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors text-xs font-medium"
         >
           View Details
-        </button>
+        </Link>
         <button 
           onClick={() => window.open(university.applicationLink, '_blank')}
           className="flex-1 bg-green-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-green-700 transition-colors text-xs font-medium"
@@ -274,9 +274,9 @@ const SearchResults = () => {
       
       {/* Action Buttons */}
       <div className="flex gap-3 mt-auto">
-        <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        <Link to={`/search-results/event-details/${event?._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
           View Details
-        </button>
+        </Link>
         <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
           Register Now
         </button>
