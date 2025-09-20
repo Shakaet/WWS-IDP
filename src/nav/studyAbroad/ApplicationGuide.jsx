@@ -38,7 +38,7 @@ const paragraphProps = {
   gallerySubtitle: "Step-by-step journey from planning to admission",
   cardTitle: "One-stop application solution",
   cardDescription: "Get personalized guidance, document checklists, and expert counselling to make your overseas education dream a reality.",
-  buttonText: "Get Guidance",
+  buttonText: "Book Free Counselling",
   buttonAction: () => {
     console.log("Guidance clicked");
   }
