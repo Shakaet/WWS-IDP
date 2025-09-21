@@ -5,6 +5,19 @@ import Result2 from '../component/Result2'
 import ContactHome from '../component/ContactHome'
 
 const SearchResults = () => {
+   const [isModalOpen, setIsModalOpen] = useState(false)
+    const handleButtonClick = () => {
+    setIsModalOpen(true)
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden'
+    buttonAction() // Call the original button action if provided
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    // Restore body scroll when modal is closed
+    document.body.style.overflow = 'unset'
+  }
   const location = useLocation()
   const navigate = useNavigate()
   const { results, tab, searchType } = location.state || { results: [], tab: 'Courses', searchType: null }
@@ -143,7 +156,7 @@ const SearchResults = () => {
         <Link to={`courses-details/${course._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
           View Details
         </Link>
-        <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        <button onClick={handleButtonClick} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
           Apply Now
         </button>
       </div>
@@ -175,7 +188,7 @@ const SearchResults = () => {
         <Link to={`/search-results/scholarship-details/${scholarship?._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
           View Details
         </Link>
-        <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        <button onClick={handleButtonClick} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
           Apply Now
         </button>
       </div>
@@ -243,7 +256,7 @@ const SearchResults = () => {
           View Details
         </Link>
         <button 
-          onClick={() => window.open(university.applicationLink, '_blank')}
+          onClick={handleButtonClick}
           className="flex-1 bg-green-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-green-700 transition-colors text-xs font-medium"
         >
           Apply Now
@@ -277,8 +290,8 @@ const SearchResults = () => {
         <Link to={`/search-results/event-details/${event?._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
           View Details
         </Link>
-        <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
-          Register Now
+        <button onClick={handleButtonClick} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+          Apply Now
         </button>
       </div>
     </div>
@@ -437,6 +450,27 @@ const SearchResults = () => {
         <Result2></Result2>
         <ContactHome></ContactHome>
       </div>
+
+        {/* Fullscreen Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[9999] bg-white">
+          {/* Close Button - Fixed Position */}
+          <button
+            onClick={closeModal}
+            className="fixed top-4 right-4 z-[10000] bg-gray-100 hover:bg-gray-200 rounded-full p-3 transition-colors shadow-lg"
+            aria-label="Close modal"
+          >
+            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          {/* Modal Content - Fullscreen without scrollbars */}
+          <div className="w-full h-full overflow-x-hidden">
+            <ContactHome />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
