@@ -3,6 +3,7 @@ import { Link, Links, useLocation, useNavigate } from 'react-router-dom'
 import Result1 from '../component/Result1'
 import Result2 from '../component/Result2'
 import ContactHome from '../component/ContactHome'
+import GetOffer from '../component/GetOffer'
 
 const SearchResults = () => {
    const [isModalOpen, setIsModalOpen] = useState(false)
@@ -421,18 +422,7 @@ const SearchResults = () => {
           </div>
           
           {/* Instant Offer Toggle */}
-          <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200">
-            <div className="flex items-start gap-2 sm:gap-3">
-              <label className="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
-                <input type="checkbox" className="sr-only peer" />
-                <div className="w-9 h-5 sm:w-11 sm:h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 sm:after:h-5 sm:after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-              <div className="flex-1">
-                <span className="text-xs sm:text-sm font-medium text-gray-900">Get Instant Offer FastLane</span>
-                <p className="text-xs text-gray-600 mt-1">Get instant offer for FastLane labelled courses within minutes! <a href="#" className="text-blue-600 hover:underline">How Does It Work?</a></p>
-              </div>
-            </div>
-          </div>
+          <GetOffer></GetOffer>
           
           {/* Active Filters */}
           <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200">
