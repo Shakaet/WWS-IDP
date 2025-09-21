@@ -34,6 +34,7 @@ import CourseDetailsPages from "../pages/CourseDetailsPages";
 import UniversityDetailsPages from "../pages/UniversityDetailsPages";
 import EventsDetailsPages from "../pages/EventsDetailsPages";
 import ScholarshipDetailsPages from "../pages/ScholarshipDetailsPages";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
 
 
 
@@ -168,6 +169,10 @@ export const router = createBrowserRouter([
         path:"/search-results/scholarship-details/:id",
         element:<ScholarshipDetailsPages></ScholarshipDetailsPages>
       },
+      {
+        path:"/private-policy",
+        element:<PrivacyPolicy></PrivacyPolicy>
+      }
 
 
 
