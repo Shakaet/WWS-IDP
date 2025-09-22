@@ -33,6 +33,12 @@ import Collaborates from "../component/Collaborates";
 import GlobalEventsDetails from "../pages/GlobalEventsDetails";
 import FastLaneDetails from "../pages/FastLaneDetails";
 import VisaApplicationDetails from "../pages/VisaApplicationDetails";
+import TenReasonsUKDetails from "../pages/TenReasonsUKDetails";
+import MastersUKWithPlacementDetails from "../pages/MastersUKWithPlacementDetails";
+import TopFiveEnglishTestsDetails from "../pages/TopFiveEnglishTestsDetails";
+import TenReasonsUSAStudyDetails from "../pages/TenReasonsUSAStudyDetails";
+import BestBusinessSchoolsUSA from "../pages/BestBusinessSchoolsUSA";
+import AffordableUniversitiesUSA from "../pages/AffordableUniversitiesUSA";
 
 
 
@@ -162,6 +168,30 @@ export const router = createBrowserRouter([
       {
         path: "visa-application-assistance",
         element: <VisaApplicationDetails />
+      },
+      {
+        path: "ten-reasons-why-you-should-study-in-the-uk",
+        element: <TenReasonsUKDetails />
+      },
+      {
+        path: "masters-in-the-uk-with-placement",
+        element: <MastersUKWithPlacementDetails />
+      },
+      {
+        path: "top-five-english-language-tests-accepted-by-universities-worldwide",
+        element: <TopFiveEnglishTestsDetails />
+      },
+      {
+        path: "ten-reasons-to-study-in-the-usa",
+        element: <TenReasonsUSAStudyDetails />
+      },
+      {
+        path: "best-business-schools-in-the-usa",
+        element: <BestBusinessSchoolsUSA />
+      },
+      {
+        path: "guide-to-affordable-universities",
+        element: <AffordableUniversitiesUSA />
       },
 
 
