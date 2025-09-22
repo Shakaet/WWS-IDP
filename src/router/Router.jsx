@@ -30,11 +30,23 @@ import GlobalReachDetails from "../pages/GlobalReachDetails";
 import CreativeSolutionsDetails from "../pages/CreativeSolutionsDetails";
 
 import Collaborates from "../component/Collaborates";
+
+import GlobalEventsDetails from "../pages/GlobalEventsDetails";
+import FastLaneDetails from "../pages/FastLaneDetails";
+import VisaApplicationDetails from "../pages/VisaApplicationDetails";
+import TenReasonsUKDetails from "../pages/TenReasonsUKDetails";
+import MastersUKWithPlacementDetails from "../pages/MastersUKWithPlacementDetails";
+import TopFiveEnglishTestsDetails from "../pages/TopFiveEnglishTestsDetails";
+import TenReasonsUSAStudyDetails from "../pages/TenReasonsUSAStudyDetails";
+import BestBusinessSchoolsUSA from "../pages/BestBusinessSchoolsUSA";
+import AffordableUniversitiesUSA from "../pages/AffordableUniversitiesUSA";
+
 import CourseDetailsPages from "../pages/CourseDetailsPages";
 import UniversityDetailsPages from "../pages/UniversityDetailsPages";
 import EventsDetailsPages from "../pages/EventsDetailsPages";
 import ScholarshipDetailsPages from "../pages/ScholarshipDetailsPages";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+
 
 
 
@@ -154,6 +166,43 @@ export const router = createBrowserRouter([
         element: <Collaborates></Collaborates>
       },
       {
+
+        path: "global-events",
+        element: <GlobalEventsDetails />
+      },
+      {
+        path: "live-life-in-the-fast-line",
+        element: <FastLaneDetails />
+      },
+      {
+        path: "visa-application-assistance",
+        element: <VisaApplicationDetails />
+      },
+      {
+        path: "ten-reasons-why-you-should-study-in-the-uk",
+        element: <TenReasonsUKDetails />
+      },
+      {
+        path: "masters-in-the-uk-with-placement",
+        element: <MastersUKWithPlacementDetails />
+      },
+      {
+        path: "top-five-english-language-tests-accepted-by-universities-worldwide",
+        element: <TopFiveEnglishTestsDetails />
+      },
+      {
+        path: "ten-reasons-to-study-in-the-usa",
+        element: <TenReasonsUSAStudyDetails />
+      },
+      {
+        path: "best-business-schools-in-the-usa",
+        element: <BestBusinessSchoolsUSA />
+      },
+      {
+        path: "guide-to-affordable-universities",
+        element: <AffordableUniversitiesUSA />
+      },
+=======
         path:"/search-results/courses-details/:id",
         element:<CourseDetailsPages></CourseDetailsPages>
       },
@@ -173,6 +222,7 @@ export const router = createBrowserRouter([
         path:"/private-policy",
         element:<PrivacyPolicy></PrivacyPolicy>
       }
+
 
 
 
