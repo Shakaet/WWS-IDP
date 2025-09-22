@@ -36,7 +36,7 @@ const WhyStudyAbroad = () => {
     gallerySubtitle: "Study abroad student journey",
     cardTitle: "One account for all your study abroad needs",
     cardDescription: "Create your profile and unlock a wide array of features including personalised recommendations, fast-tracked applications and much more.",
-    buttonText: "Sign up",
+    buttonText: "Free Counselling",
     buttonAction: () => {
       // Add your sign up action here
       console.log("Sign up clicked");

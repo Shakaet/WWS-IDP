@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ContactHome from './ContactHome'
 
 /**
  * Reusable Header Component for Study Abroad Pages
@@ -33,6 +34,21 @@ const WhyStudyAbroadHeader = ({
   buttonAction = () => {},
   image ,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true)
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden'
+    buttonAction() // Call the original button action if provided
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    // Restore body scroll when modal is closed
+    document.body.style.overflow = 'unset'
+  }
+
   return (
     <div className="relative bg-gray-100 min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] overflow-hidden">
       {/* Main Container */}
@@ -66,7 +82,7 @@ const WhyStudyAbroadHeader = ({
             {/* CTA Button */}
             <div className="pt-4">
               <button 
-                onClick={buttonAction}
+                onClick={handleButtonClick}
                 className="bg-[#11AD00] hover:bg-[#4CADFF] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base lg:text-lg font-semibold transition-colors duration-200 shadow-lg hover:shadow-xl"
               >
                 {buttonText}
@@ -119,6 +135,27 @@ const WhyStudyAbroadHeader = ({
         <div className="absolute bottom-20 left-20 w-2 h-2 bg-purple-300 rounded-full opacity-60"></div>
         <div className="absolute bottom-40 right-10 w-3 h-3 bg-pink-300 rounded-full opacity-60"></div>
       </div>
+
+      {/* Fullscreen Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[9999] bg-white">
+          {/* Close Button - Fixed Position */}
+          <button
+            onClick={closeModal}
+            className="fixed top-4 right-4 z-[10000] bg-gray-100 hover:bg-gray-200 rounded-full p-3 transition-colors shadow-lg"
+            aria-label="Close modal"
+          >
+            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          {/* Modal Content - Fullscreen without scrollbars */}
+          <div className="w-full h-full overflow-x-hidden">
+            <ContactHome />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

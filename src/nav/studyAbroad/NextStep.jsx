@@ -39,7 +39,7 @@ const NextStep = () => {
         cardTitle: "Create an account to track progress",
         cardDescription:
             "Monitor deadlines, checklists, scholarship updates, and application milestones all in one place. Personalised recommendations ensure you never miss an opportunity.",
-        buttonText: "Create Account",
+        buttonText: "Get Free Counselling",
         buttonAction: () => console.log("Account creation clicked"),
     };
 
