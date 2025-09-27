@@ -38,7 +38,7 @@ const paragraphProps = {
   cardTitle: "Start your journey with the right destination",
   cardDescription:
     "Create your student profile and get matched with the best destination for your academic and career goals.",
-  buttonText: "Get Started",
+  buttonText: "Free Counselling",
   buttonAction: () => {
     console.log("Get Started clicked");
   },

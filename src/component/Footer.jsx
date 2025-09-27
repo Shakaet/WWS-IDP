@@ -15,7 +15,7 @@ const Footer = () => {
       { name: "Leadership", url: "#" },
       { name: "Careers", url: "#" },
       { name: "Staff Directory", url: "#" },
-      { name: "News", url: "#" },
+      { name: "Privacy Policy", url: "/private-policy" },
       { name: "Events", url: "#" },
       { name: "Contact Us", url: "#" }
     ],

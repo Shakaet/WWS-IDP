@@ -37,7 +37,7 @@ const paragraphProps = {
   gallerySubtitle: "Adaptation, growth, and success in a foreign land",
   cardTitle: "Your guide to thriving overseas",
   cardDescription: "Get tips on academics, lifestyle, finance, networking, and personal development to help you maximize your international experience.",
-  buttonText: "Learn More",
+  buttonText: "Join Free Counselling",
   buttonAction: () => {
     console.log("Learn More clicked");
   }
@@ -47,7 +47,7 @@ const paragraphProps = {
 const bookNowProps = {
   title: "Need Help Adjusting Abroad?",
   description: "Talk to our experts and alumni who have successfully navigated life overseas. Get practical tips on cultural adjustment, career opportunities, part-time jobs, and much more.",
-  buttonText: "Book a Free Counselling",
+  buttonText: "Book a Free Session",
   buttonAction: () => {
     console.log("Book Thrive Session clicked");
   },

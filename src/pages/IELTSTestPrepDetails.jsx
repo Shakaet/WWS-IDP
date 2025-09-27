@@ -1,6 +1,6 @@
 import React from "react";
 // import IELTSBanner from "../../component/IELTSBanner";
-import bannerImg from "../assets/bnu.jpg"; // <-- replace with your banner image
+import bannerImg from "../assets/itelsPrer.jpg"; // <-- replace with your banner image
 import IELTSBanner from "../component/IELTSBanner";
 
 const IELTSTestPrepSupport = () => {

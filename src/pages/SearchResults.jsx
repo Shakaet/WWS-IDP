@@ -1,10 +1,24 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, Links, useLocation, useNavigate } from 'react-router-dom'
 import Result1 from '../component/Result1'
 import Result2 from '../component/Result2'
 import ContactHome from '../component/ContactHome'
+import GetOffer from '../component/GetOffer'
 
 const SearchResults = () => {
+   const [isModalOpen, setIsModalOpen] = useState(false)
+    const handleButtonClick = () => {
+    setIsModalOpen(true)
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden'
+    buttonAction() // Call the original button action if provided
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    // Restore body scroll when modal is closed
+    document.body.style.overflow = 'unset'
+  }
   const location = useLocation()
   const navigate = useNavigate()
   const { results, tab, searchType } = location.state || { results: [], tab: 'Courses', searchType: null }
@@ -140,10 +154,10 @@ const SearchResults = () => {
       
       {/* Action Buttons */}
       <div className="flex gap-3 mt-auto">
-        <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        <Link to={`courses-details/${course._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
           View Details
-        </button>
-        <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        </Link>
+        <button onClick={handleButtonClick} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
           Apply Now
         </button>
       </div>
@@ -172,10 +186,10 @@ const SearchResults = () => {
       
       {/* Action Buttons */}
       <div className="flex gap-3 mt-auto">
-        <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        <Link to={`/search-results/scholarship-details/${scholarship?._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
           View Details
-        </button>
-        <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        </Link>
+        <button onClick={handleButtonClick} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
           Apply Now
         </button>
       </div>
@@ -236,14 +250,14 @@ const SearchResults = () => {
       
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-auto">
-        <button 
-          onClick={() => window.open(university.applicationLink, '_blank')}
+        <Link to={`/search-results/university-details/${university?._id}`}
+          // onClick={() => window.open(university.applicationLink, '_blank')}
           className="flex-1 bg-blue-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors text-xs font-medium"
         >
           View Details
-        </button>
+        </Link>
         <button 
-          onClick={() => window.open(university.applicationLink, '_blank')}
+          onClick={handleButtonClick}
           className="flex-1 bg-green-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-green-700 transition-colors text-xs font-medium"
         >
           Apply Now
@@ -274,11 +288,11 @@ const SearchResults = () => {
       
       {/* Action Buttons */}
       <div className="flex gap-3 mt-auto">
-        <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        <Link to={`/search-results/event-details/${event?._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
           View Details
-        </button>
-        <button className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
-          Register Now
+        </Link>
+        <button onClick={handleButtonClick} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+          Apply Now
         </button>
       </div>
     </div>
@@ -408,18 +422,7 @@ const SearchResults = () => {
           </div>
           
           {/* Instant Offer Toggle */}
-          <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200">
-            <div className="flex items-start gap-2 sm:gap-3">
-              <label className="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
-                <input type="checkbox" className="sr-only peer" />
-                <div className="w-9 h-5 sm:w-11 sm:h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 sm:after:h-5 sm:after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-              <div className="flex-1">
-                <span className="text-xs sm:text-sm font-medium text-gray-900">Get Instant Offer FastLane</span>
-                <p className="text-xs text-gray-600 mt-1">Get instant offer for FastLane labelled courses within minutes! <a href="#" className="text-blue-600 hover:underline">How Does It Work?</a></p>
-              </div>
-            </div>
-          </div>
+          <GetOffer></GetOffer>
           
           {/* Active Filters */}
           <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200">
@@ -437,6 +440,27 @@ const SearchResults = () => {
         <Result2></Result2>
         <ContactHome></ContactHome>
       </div>
+
+        {/* Fullscreen Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[9999] bg-white">
+          {/* Close Button - Fixed Position */}
+          <button
+            onClick={closeModal}
+            className="fixed top-4 right-4 z-[10000] bg-gray-100 hover:bg-gray-200 rounded-full p-3 transition-colors shadow-lg"
+            aria-label="Close modal"
+          >
+            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          {/* Modal Content - Fullscreen without scrollbars */}
+          <div className="w-full h-full overflow-x-hidden">
+            <ContactHome />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

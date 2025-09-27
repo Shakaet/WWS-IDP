@@ -30,6 +30,7 @@ import GlobalReachDetails from "../pages/GlobalReachDetails";
 import CreativeSolutionsDetails from "../pages/CreativeSolutionsDetails";
 
 import Collaborates from "../component/Collaborates";
+
 import GlobalEventsDetails from "../pages/GlobalEventsDetails";
 import FastLaneDetails from "../pages/FastLaneDetails";
 import VisaApplicationDetails from "../pages/VisaApplicationDetails";
@@ -39,6 +40,13 @@ import TopFiveEnglishTestsDetails from "../pages/TopFiveEnglishTestsDetails";
 import TenReasonsUSAStudyDetails from "../pages/TenReasonsUSAStudyDetails";
 import BestBusinessSchoolsUSA from "../pages/BestBusinessSchoolsUSA";
 import AffordableUniversitiesUSA from "../pages/AffordableUniversitiesUSA";
+
+import CourseDetailsPages from "../pages/CourseDetailsPages";
+import UniversityDetailsPages from "../pages/UniversityDetailsPages";
+import EventsDetailsPages from "../pages/EventsDetailsPages";
+import ScholarshipDetailsPages from "../pages/ScholarshipDetailsPages";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+
 
 
 
@@ -158,6 +166,7 @@ export const router = createBrowserRouter([
         element: <Collaborates></Collaborates>
       },
       {
+
         path: "global-events",
         element: <GlobalEventsDetails />
       },
@@ -193,6 +202,28 @@ export const router = createBrowserRouter([
         path: "guide-to-affordable-universities",
         element: <AffordableUniversitiesUSA />
       },
+      {
+        path: "/search-results/courses-details/:id",
+        element: <CourseDetailsPages></CourseDetailsPages>
+      },
+      {
+        path: "/search-results/university-details/:id",
+        element: <UniversityDetailsPages></UniversityDetailsPages>
+      },
+      {
+        path: "/search-results/event-details/:id",
+        element: <EventsDetailsPages></EventsDetailsPages>
+      },
+      {
+        path: "/search-results/scholarship-details/:id",
+        element: <ScholarshipDetailsPages></ScholarshipDetailsPages>
+      },
+      {
+        path: "/private-policy",
+        element: <PrivacyPolicy></PrivacyPolicy>
+      }
+
+
 
     ]
   },
