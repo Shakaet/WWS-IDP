@@ -11,21 +11,21 @@ const Footer = () => {
       address: "323 Agricultural Administration Building University Park, PA 16802"
     },
     aboutExtension: [
-      { name: "About", url: "#" },
-      { name: "Leadership", url: "#" },
-      { name: "Careers", url: "#" },
-      { name: "Staff Directory", url: "#" },
+      { name: "About", url: "/about-us" },
+      { name: "Leadership", url: "/leader-ship" },
+      { name: "Careers", url: "/career" },
+      { name: "Staff Directory", url: "staff-directory" },
       { name: "Privacy Policy", url: "/private-policy" },
-      { name: "Events", url: "#" },
+      { name: "Events", url: "our-events" },
       { name: "Contact Us", url: "#" }
     ],
     customerService: [
-      { name: "Help Center", url: "#" },
-      { name: "Login Problems", url: "#" },
-      { name: "Registration Issues", url: "#" },
-      { name: "Website Feedback", url: "#" },
-      { name: "Report a Problem", url: "#" },
-      { name: "Accessibility", url: "#" }
+      { name: "Help Center", url: "/help-centers" },
+      { name: "Login Problems", url: "/login-problems" },
+      { name: "Registration Issues", url: "/register-issue" },
+      { name: "Website Feedback", url: "/website-feedback" },
+      { name: "Report a Problem", url: "/report-a-problem" },
+      { name: "Accessibility", url: "/accessability" }
     ],
     otherPrograms: [
       { name: "Pennsylvania 4-H", url: "#" },
@@ -40,7 +40,7 @@ const Footer = () => {
 
   return (
     // bg-gray-900
-    <motion.footer 
+    <motion.footer
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -48,15 +48,15 @@ const Footer = () => {
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          
+
           {/* Left Column - Organization Info */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
             className="md:col-span-4 space-y-4"
           >
-             <span><img src={img} className='w-40 h-40' alt="" /></span>
+            <span><img src={img} className='w-40 h-40' alt="" /></span>
             <h3 className="text-xl font-bold text-gray-900">
               {footerData.organization.name}</h3>
             <p className="text-gray-600">{footerData.organization.college}</p>
@@ -65,7 +65,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Middle Column - About & Customer Service */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
@@ -81,8 +81,8 @@ const Footer = () => {
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <a 
-                      href={item.url} 
+                    <a
+                      href={item.url}
                       className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                     >
                       {item.name}
@@ -102,8 +102,8 @@ const Footer = () => {
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <a 
-                      href={item.url} 
+                    <a
+                      href={item.url}
                       className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                     >
                       {item.name}
@@ -115,7 +115,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Right Column - Other Programs */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
@@ -129,9 +129,9 @@ const Footer = () => {
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <a 
-                    href={item.url} 
-                      className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                  <a
+                    href={item.url}
+                    className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
                   >
                     {item.name}
                   </a>
@@ -141,7 +141,7 @@ const Footer = () => {
           </motion.div>
         </div>
 
-     
+
       </div>
     </motion.footer>
   );

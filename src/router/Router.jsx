@@ -46,6 +46,17 @@ import UniversityDetailsPages from "../pages/UniversityDetailsPages";
 import EventsDetailsPages from "../pages/EventsDetailsPages";
 import ScholarshipDetailsPages from "../pages/ScholarshipDetailsPages";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import About from "../pages/About";
+import Leadership from "../pages/Leadership";
+import Careers from "../pages/Careers";
+import StaffDirectory from "../pages/StaffDirectory";
+import Events from "../pages/Events";
+import HelpCenter from "../pages/HelpCenter";
+import LoginProblems from "../pages/LoginProblems";
+import RegistrationIssues from "../pages/RegistrationIssues";
+import WebsiteFeedback from "../pages/WebsiteFeedback";
+import ReportAProblem from "../pages/ReportAProblem";
+import Accessibility from "../pages/Accessibility";
 
 
 
@@ -221,7 +232,51 @@ export const router = createBrowserRouter([
       {
         path: "/private-policy",
         element: <PrivacyPolicy></PrivacyPolicy>
-      }
+      },
+      {
+        path: "/about-us",
+        element: <About />
+      },
+      {
+        path: "/leader-ship",
+        element: <Leadership />
+      },
+      {
+        path: "/career",
+        element: <Careers />
+      },
+      {
+        path: "/staff-directory",
+        element: <StaffDirectory />
+      },
+      {
+        path: "/our-events",
+        element: <Events />
+      },
+      {
+        path: "/help-centers",
+        element: <HelpCenter />
+      },
+      {
+        path: "/login-problems",
+        element: <LoginProblems />
+      },
+      {
+        path: "/register-issue",
+        element: <RegistrationIssues />
+      },
+      {
+        path: "/website-feedback",
+        element: <WebsiteFeedback />
+      },
+      {
+        path: "/report-a-problem",
+        element: <ReportAProblem />
+      },
+      {
+        path: "/accessability",
+        element: <Accessibility />
+      },
 
 
 
