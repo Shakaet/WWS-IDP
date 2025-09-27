@@ -53,7 +53,8 @@ const ContactForm = () => {
       nearestOffice: '',
       agreeTerms: true,
       contactConsent: true,
-      marketingOptIn: false
+      marketingOptIn: false,
+      status: 'pending'
     }
   })
 
@@ -61,8 +62,14 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      console.log(values); // Check form values
-      await axios.post('http://localhost:3000/help-from-wws', values);
+      // Add status to the values before sending
+      const dataToSubmit = {
+        ...values,
+        status: 'pending'
+      };
+      
+      console.log(dataToSubmit);
+      await axios.post('http://localhost:3000/help-from-wws', dataToSubmit);
 
       // Show success SweetAlert
       Swal.fire({

@@ -2,26 +2,27 @@ import React from 'react'
 import f1 from "../assets/f1.webp"
 import f2 from "../assets/f2.jpeg"
 import f3 from "../assets/f3.webp"
+import { Link } from 'react-router-dom'
 
 const items = [
   {
     title: 'Global events',
     desc:
       'At our Global events, you can meet university representatives and discuss your study prospects, and more in person.',
-    cta: { label: 'Register today', href: '#' },
+    cta: { label: 'Register today', to: '/global-events' },
     img: f1
   },
   {
     title: 'Live life in the FastLane',
     desc: 'You can get an express response from your dream university in seconds!',
-    cta: { label: 'Learn more', href: '#' },
+    cta: { label: 'Learn more', to: '/live-life-in-the-fast-line' },
     img: f2
   },
   {
     title: 'Visa application assistance',
     desc:
       'Applying for visas can be challenging, but our team ensures you access to accurate information for a smoother process.',
-    cta: { label: 'Learn more', href: '#' },
+    cta: { label: 'Learn more', to: '/visa-application-assistance' },
     img: f3
   }
 ]
@@ -57,15 +58,15 @@ const ShouldKnow = () => {
 
               {/* CTA */}
               <div className="w-full md:w-auto">
-                <a
-                  href={item.cta.href}
+                <Link
+                  to={item.cta.to}
                   className="inline-flex w-full md:w-auto items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-3 text-gray-800 hover:bg-gray-50 transition-colors"
                 >
                   {item.cta.label}
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-4 w-4">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

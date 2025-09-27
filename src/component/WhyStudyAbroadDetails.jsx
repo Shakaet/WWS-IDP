@@ -81,14 +81,14 @@ const WhyStudyAbroadDetails = ({
         </div>
 
         {/* Call to Action Button */}
-         <div className="pt-6 sm:pt-8">
+         {/* <div className="pt-6 sm:pt-8">
           <button 
             onClick={buttonAction}
             className="bg-[#11AD00] hover:bg-[#4CADFF] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base lg:text-lg font-semibold transition-colors duration-200 shadow-lg hover:shadow-xl"
           >
             {buttonText}
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   )
