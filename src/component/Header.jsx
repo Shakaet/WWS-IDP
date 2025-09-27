@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Link, Links, useNavigate } from 'react-router-dom'
 import icon from "../assets/wws1.png"
 import useAuth from '../Hooks/useAuth/useAuth'
+import useAdmin from '../Hooks/role/useAdmin'
+import useAmbassador from '../Hooks/role/useAmbassador'
+import useUser from '../Hooks/role/useUser'
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
@@ -167,6 +170,12 @@ const Header = () => {
       })
       .catch(() => { })
   }
+
+ let [isAdmin] =useAdmin()
+ let [isambassador]=useAmbassador()
+ let [isUser]=useUser()
+
+ console.log(isAdmin,isambassador,isUser)
 
   return (
     // bg-white/95
