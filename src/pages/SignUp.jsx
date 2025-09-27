@@ -120,6 +120,8 @@ export const SignUp = () => {
         allowContact: formData.allowContact,
         allowMarketing: formData.allowMarketing,
         photoURL: photoURL || '',
+        role:"user",
+
       };
       await axiosSecure.post("post-users", dataToSubmit);
 

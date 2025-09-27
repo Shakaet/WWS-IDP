@@ -202,7 +202,7 @@ export const router = createBrowserRouter([
         path: "guide-to-affordable-universities",
         element: <AffordableUniversitiesUSA />
       },
-=======
+      {
         path:"/search-results/courses-details/:id",
         element:<CourseDetailsPages></CourseDetailsPages>
       },
