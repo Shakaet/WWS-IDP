@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import img from "../assets/wws1.png"
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   // Footer data
@@ -28,13 +29,13 @@ const Footer = () => {
       { name: "Accessibility", url: "/accessability" }
     ],
     otherPrograms: [
-      { name: "Pennsylvania 4-H", url: "#" },
-      { name: "Better Kid Care", url: "#" },
-      { name: "Master Gardeners", url: "#" },
-      { name: "Food Safety", url: "#" },
-      { name: "Water Resources", url: "#" },
-      { name: "Nutrition Links", url: "#" },
-      { name: "Agriculture", url: "#" }
+      { name: "Pennsylvania 4-H", url: "/pennslvania-4-h" },
+      { name: "Better Kid Care", url: "/better-kid-care" },
+      { name: "Master Gardeners", url: "/master-gardeners" },
+      { name: "Food Safety", url: "/food-safety" },
+      { name: "Water Resources", url: "/water-resources" },
+      { name: "Nutrition Links", url: "/nutrition-links" },
+      { name: "Agriculture", url: "/agricultures" }
     ]
   };
 
@@ -81,12 +82,12 @@ const Footer = () => {
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <a
-                      href={item.url}
+                    <Link
+                      to={item.url}
                       className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -102,12 +103,12 @@ const Footer = () => {
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <a
-                      href={item.url}
+                    <Link
+                      to={item.url}
                       className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -129,12 +130,12 @@ const Footer = () => {
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <a
-                    href={item.url}
+                  <Link
+                    to={item.url}
                     className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>

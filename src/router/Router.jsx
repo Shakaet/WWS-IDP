@@ -57,6 +57,13 @@ import RegistrationIssues from "../pages/RegistrationIssues";
 import WebsiteFeedback from "../pages/WebsiteFeedback";
 import ReportAProblem from "../pages/ReportAProblem";
 import Accessibility from "../pages/Accessibility";
+import Pennsylvania4H from "../pages/Pennsylvania4H";
+import BetterKidCare from "../pages/BetterKidCare";
+import MasterGardeners from "../pages/MasterGardeners";
+import FoodSafety from "../pages/FoodSafety";
+import WaterResources from "../pages/WaterResources";
+import NutritionLinks from "../pages/NutritionLinks";
+import Agriculture from "../pages/Agriculture";
 
 
 
@@ -277,9 +284,34 @@ export const router = createBrowserRouter([
         path: "/accessability",
         element: <Accessibility />
       },
-
-
-
+      {
+        path: "/pennslvania-4-h",
+        element: <Pennsylvania4H />
+      },
+      {
+        path: "/better-kid-care",
+        element: <BetterKidCare />
+      },
+      {
+        path: "/master-gardeners",
+        element: <MasterGardeners />
+      },
+      {
+        path: "/food-safety",
+        element: <FoodSafety />
+      },
+      {
+        path: "/water-resources",
+        element: <WaterResources />
+      },
+      {
+        path: "/nutrition-links",
+        element: <NutritionLinks />
+      },
+      {
+        path: "/agricultures",
+        element: <Agriculture />
+      },
     ]
   },
 ]); 
