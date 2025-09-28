@@ -4,6 +4,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import useAuth from '../Hooks/useAuth/useAuth'
+import PrivateRoute from '../router/PrivateRoutes'
 
 const enquirySchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -29,6 +31,8 @@ const enquirySchema = z.object({
 })
 
 const ContactForm = () => {
+
+  let {user}=useAuth()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [submitSuccess, setSubmitSuccess] = useState('')
@@ -54,7 +58,8 @@ const ContactForm = () => {
       agreeTerms: true,
       contactConsent: true,
       marketingOptIn: false,
-      status: 'pending'
+      status: 'pending',
+    
     }
   })
 
@@ -257,9 +262,15 @@ const ContactForm = () => {
 
           {/* Submit */}
           <div className="sm:col-span-2">
-            <button type="submit" disabled={isSubmitting} className="inline-flex items-center rounded-full bg-[#11AD00] px-6 py-3 text-white hover:bg-[#4CADFF] disabled:opacity-60 disabled:cursor-not-allowed">
+            <PrivateRoute>
+
+              <button type="submit" disabled={isSubmitting} className="inline-flex items-center rounded-full bg-[#11AD00] px-6 py-3 text-white hover:bg-[#4CADFF] disabled:opacity-60 disabled:cursor-not-allowed">
               {isSubmitting ? 'Submitting...' : 'Enquire now'}
             </button>
+
+            </PrivateRoute>
+              
+            
           </div>
         </div>
       </form>
