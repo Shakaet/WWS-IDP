@@ -50,6 +50,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import MyApplication from "../component/MyApplication";
 import DashboardHome from "../component/DashboardHome";
 import PrivateRoute from "./PrivateRoutes";
+import ManageApplication from "../component/ManageApplication";
 
 
 
@@ -247,6 +248,10 @@ export const router = createBrowserRouter([
       {
         path:"/dashboard/my-application",
         element:<MyApplication></MyApplication>
+      },
+      {
+        path:"/dashboard/manage-application",
+        element:<ManageApplication></ManageApplication>
       }
     ]
   }

@@ -42,7 +42,7 @@ const DashboardLayout = () => {
       return [
         ...commonItems,
         { name: 'My Applications', path: '/dashboard/my-application', icon: '📋' },
-        { name: 'Collaborate', path: '/dashboard/collaborate', icon: '🤝' },
+        { name: 'Collaborate', path: '/contact', icon: '🤝' },
         { name: 'Home', path: '/', icon: '🏡' },
         { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }  
       ]
@@ -52,7 +52,7 @@ const DashboardLayout = () => {
       return [
         ...commonItems,
         { name: 'All Applications', path: '/dashboard/all-applications', icon: '📊' },
-        { name: 'Collaborate', path: '/dashboard/collaborate', icon: '🤝' },
+        { name: 'Collaborate', path: '/contact', icon: '🤝' },
         { name: 'Home', path: '/', icon: '🏡' },
         { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
       ]
@@ -65,7 +65,7 @@ const DashboardLayout = () => {
         { name: 'Add New University', path: '/dashboard/add-university', icon: '🏛️' },
         { name: 'Add New Courses', path: '/dashboard/add-courses', icon: '📚' },
         { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
-        { name: 'Manage Applications', path: '/dashboard/manage-applications', icon: '📋' },
+        { name: 'Manage Applications', path: '/dashboard/manage-application', icon: '📋' },
         { name: 'Manage Scholarships', path: '/dashboard/manage-scholarships', icon: '🎓' },
         { name: 'Manage Universities', path: '/dashboard/manage-universities', icon: '🏛️' },
         { name: 'Manage Courses', path: '/dashboard/manage-courses', icon: '📚' },
