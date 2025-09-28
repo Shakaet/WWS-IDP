@@ -64,6 +64,10 @@ import FoodSafety from "../pages/FoodSafety";
 import WaterResources from "../pages/WaterResources";
 import NutritionLinks from "../pages/NutritionLinks";
 import Agriculture from "../pages/Agriculture";
+import Programs from "../pages/Programs";
+import Results from "../pages/Results";
+import Coaching from "../pages/Coaching";
+import Events2023 from "../pages/Events2023";
 
 
 
@@ -311,6 +315,22 @@ export const router = createBrowserRouter([
       {
         path: "/agricultures",
         element: <Agriculture />
+      },
+      {
+        path: "/programs-overview-2023",
+        element: <Programs />
+      },
+      {
+        path: "/results-achievements-2023",
+        element: <Results />
+      },
+      {
+        path: "/coaching-services-2023",
+        element: <Coaching />
+      },
+      {
+        path: "/upcoming-events-2023",
+        element: <Events2023 />
       },
     ]
   },
