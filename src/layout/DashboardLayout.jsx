@@ -61,8 +61,8 @@ const DashboardLayout = () => {
     if (isAdmin && !adminLoading) {
       return [
         ...commonItems,
-        { name: 'Add New Scholarship', path: '/dashboard/add-scholarship', icon: '🎓' },
-        { name: 'Add New University', path: '/dashboard/add-university', icon: '🏛️' },
+        { name: 'Add New Scholarship', path: '/dashboard/add-new-scholarship', icon: '🎓' },
+        { name: 'Add New University', path: '/dashboard/add-new-university', icon: '🏛️' },
         { name: 'Add New Courses', path: '/dashboard/add-courses', icon: '📚' },
         { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
         { name: 'Manage Applications', path: '/dashboard/manage-application', icon: '📋' },

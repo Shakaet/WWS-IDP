@@ -51,6 +51,8 @@ import MyApplication from "../component/MyApplication";
 import DashboardHome from "../component/DashboardHome";
 import PrivateRoute from "./PrivateRoutes";
 import ManageApplication from "../component/ManageApplication";
+import AddNewScholarship from "../pages/AddNewScholarship";
+import AddNewUni from "../pages/AddNewUni";
 
 
 
@@ -252,6 +254,14 @@ export const router = createBrowserRouter([
       {
         path:"/dashboard/manage-application",
         element:<ManageApplication></ManageApplication>
+      },
+      {
+        path:"/dashboard/add-new-scholarship",
+        element:<AddNewScholarship></AddNewScholarship>
+      },
+      {
+        path:"/dashboard/add-new-university",
+        element:<AddNewUni></AddNewUni>
       }
     ]
   }
