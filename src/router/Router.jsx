@@ -46,6 +46,13 @@ import UniversityDetailsPages from "../pages/UniversityDetailsPages";
 import EventsDetailsPages from "../pages/EventsDetailsPages";
 import ScholarshipDetailsPages from "../pages/ScholarshipDetailsPages";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import DashboardLayout from "../layout/DashboardLayout";
+import MyApplication from "../component/MyApplication";
+import DashboardHome from "../component/DashboardHome";
+import PrivateRoute from "./PrivateRoutes";
+import ManageApplication from "../component/ManageApplication";
+import AddNewScholarship from "../pages/AddNewScholarship";
+import AddNewUni from "../pages/AddNewUni";
 
 
 
@@ -228,4 +235,34 @@ export const router = createBrowserRouter([
 
     ]
   },
+  {
+    path: "/dashboard",
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children: [
+
+
+      { 
+        path:"/dashboard/dashboard-home",
+        element:<DashboardHome></DashboardHome>
+
+      },
+      
+      {
+        path:"/dashboard/my-application",
+        element:<MyApplication></MyApplication>
+      },
+      {
+        path:"/dashboard/manage-application",
+        element:<ManageApplication></ManageApplication>
+      },
+      {
+        path:"/dashboard/add-new-scholarship",
+        element:<AddNewScholarship></AddNewScholarship>
+      },
+      {
+        path:"/dashboard/add-new-university",
+        element:<AddNewUni></AddNewUni>
+      }
+    ]
+  }
 ]);
