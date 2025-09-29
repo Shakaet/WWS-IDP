@@ -144,13 +144,18 @@ const MyApplication = () => {
                                             {getStatusBadge(application.status)}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button 
-                                                onClick={() => handleDelete(application._id)}
-                                                className="text-red-600 hover:text-red-900 mr-3"
-                                            >
-                                                Delete
-                                            </button>
-                                            
+                                            {(() => {
+                                                const isDeletable = application.status === 'pending'
+                                                return (
+                                                    <button
+                                                        onClick={() => isDeletable && handleDelete(application._id)}
+                                                        disabled={!isDeletable}
+                                                        className={`${isDeletable ? 'text-red-600 hover:text-red-900' : 'text-gray-400 cursor-not-allowed'} mr-3`}
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                )
+                                            })()}
                                         </td>
                                     </tr>
                                 ))}
@@ -191,13 +196,18 @@ const MyApplication = () => {
                                     </div>
                                     
                                     <div className="flex space-x-3 mt-4">
-                                        <button 
-                                            onClick={() => handleDelete(application._id)}
-                                            className="flex-1 bg-red-50 text-red-600 py-2 px-3 rounded-lg text-sm font-medium hover:bg-red-100"
-                                        >
-                                            Delete
-                                        </button>
-                                        
+                                        {(() => {
+                                            const isDeletable = application.status === 'pending'
+                                            return (
+                                                <button
+                                                    onClick={() => isDeletable && handleDelete(application._id)}
+                                                    disabled={!isDeletable}
+                                                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium ${isDeletable ? 'bg-red-50 text-red-600 hover:bg-red-100' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+                                                >
+                                                    Delete
+                                                </button>
+                                            )
+                                        })()}
                                     </div>
                                 </div>
                             ))}
