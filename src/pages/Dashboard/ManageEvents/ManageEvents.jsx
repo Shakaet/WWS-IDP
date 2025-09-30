@@ -9,6 +9,7 @@ const ManageEvents = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [editData, setEditData] = useState(null)
     const [viewMode, setViewMode] = useState('card') // "card" | "table"
+    const [search, setSearch] = useState('') // <-- search state
 
     const fetchEvents = async () => {
         const res = await axios.get('http://localhost:3000/api/events')
@@ -17,6 +18,16 @@ const ManageEvents = () => {
 
     const { data, isLoading } = useQuery({ queryKey: ['allevents'], queryFn: fetchEvents })
     const allEvents = useMemo(() => data ?? [], [data])
+
+    const filteredEvents = useMemo(() => {
+        const searchLower = search.toLowerCase()
+        return allEvents.filter(ev =>
+            ev.city?.toLowerCase().includes(searchLower) ||
+            ev.month?.toLowerCase().includes(searchLower) ||
+            ev.destination?.toLowerCase().includes(searchLower) ||
+            ev.programType?.toLowerCase().includes(searchLower)
+        )
+    }, [allEvents, search])
 
     const handleOpenUpdate = (event) => {
         setEditData({ ...event })
@@ -87,8 +98,15 @@ const ManageEvents = () => {
 
     return (
         <div className="p-4">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-3">
                 <h2 className="text-xl font-semibold">Manage Events</h2>
+                <input
+                    type="text"
+                    placeholder="Search by city, month, destination, program..."
+                    className="px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
                 <div className="space-x-2">
                     <button
                         className={`px-3 py-1.5 text-sm rounded ${viewMode === 'card' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}
@@ -108,7 +126,7 @@ const ManageEvents = () => {
             {/* ==== CARD VIEW ==== */}
             {viewMode === 'card' && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {allEvents.map((ev) => (
+                    {filteredEvents.map((ev) => (
                         <div key={ev._id} className="border rounded-lg shadow-sm p-4 bg-white flex flex-col">
                             <div className="mb-2">
                                 <p className="text-sm text-gray-600"><span className="font-medium">City:</span> {ev.city}</p>
@@ -141,7 +159,7 @@ const ManageEvents = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {allEvents.map((ev) => (
+                            {filteredEvents.map((ev) => (
                                 <tr key={ev._id} className="border-t">
                                     <td className="p-2">{ev.city}</td>
                                     <td className="p-2">{ev.month}</td>
