@@ -46,6 +46,7 @@ import UniversityDetailsPages from "../pages/UniversityDetailsPages";
 import EventsDetailsPages from "../pages/EventsDetailsPages";
 import ScholarshipDetailsPages from "../pages/ScholarshipDetailsPages";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+
 import About from "../pages/About";
 import Leadership from "../pages/Leadership";
 import Careers from "../pages/Careers";
@@ -68,6 +69,18 @@ import Programs from "../pages/Programs";
 import Results from "../pages/Results";
 import Coaching from "../pages/Coaching";
 import Events2023 from "../pages/Events2023";
+
+import DashboardLayout from "../layout/DashboardLayout";
+import MyApplication from "../component/MyApplication";
+import DashboardHome from "../component/DashboardHome";
+import PrivateRoute from "./PrivateRoutes";
+import ManageApplication from "../component/ManageApplication";
+import AddNewScholarship from "../pages/AddNewScholarship";
+import AddNewUni from "../pages/AddNewUni";
+import ManageUni from "../pages/ManageUni";
+import ManageScholarship from "../pages/ManageScholarship";
+import UserRoutes from "./UserRoutes";
+import AdminRoutes from "./AdminRoutes";
 
 
 
@@ -225,8 +238,13 @@ export const router = createBrowserRouter([
         element: <AffordableUniversitiesUSA />
       },
       {
+
         path: "/search-results/courses-details/:id",
         element: <CourseDetailsPages></CourseDetailsPages>
+
+        path:"/search-results/courses-details/:id",
+        element:<CourseDetailsPages></CourseDetailsPages>
+
       },
       {
         path: "/search-results/university-details/:id",
@@ -334,4 +352,46 @@ export const router = createBrowserRouter([
       },
     ]
   },
+
 ]); 
+
+  {
+    path: "/dashboard",
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children: [
+
+
+      { 
+        path:"/dashboard/dashboard-home",
+        element:<DashboardHome></DashboardHome>
+
+      },
+      
+      {
+        path:"/dashboard/my-application",
+        element:<UserRoutes><MyApplication></MyApplication></UserRoutes>
+      },
+      {
+        path:"/dashboard/manage-application",
+        element:<AdminRoutes><ManageApplication></ManageApplication></AdminRoutes>
+      },
+      {
+        path:"/dashboard/add-new-scholarship",
+        element:<AdminRoutes><AddNewScholarship></AddNewScholarship></AdminRoutes>
+      },
+      {
+        path:"/dashboard/add-new-university",
+        element:<AdminRoutes><AddNewUni></AddNewUni></AdminRoutes>
+      },
+      {
+        path:"/dashboard/manage-universities",
+        element:<AdminRoutes><ManageUni></ManageUni></AdminRoutes>
+      },
+      {
+        path:"/dashboard/manage-scholarships",
+        element:<AdminRoutes><ManageScholarship></ManageScholarship></AdminRoutes>
+      }
+    ]
+  }
+]);
+

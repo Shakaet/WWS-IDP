@@ -16,11 +16,12 @@ import ReleventSection5 from '../component/ReleventSection5'
 import Service from '../component/Service'
 import Getready from '../component/Getready'
 import Calculate from '../component/Calculate'
+import FloatingWhatsApp from '../component/FloatingWhatsApp'
 
 const Home = () => {
   
   return (
-    
+    <>
     <Motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -154,6 +155,8 @@ const Home = () => {
         </Motion.div> */}
       </Motion.div>
     </Motion.div>
+    <FloatingWhatsApp phone="+8801336485736" message="Hello! I would like to know more." />
+    </>
   )
 }
 
