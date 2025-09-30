@@ -12,7 +12,7 @@ const DashboardLayout = () => {
   const [isAdmin, adminLoading] = useAdmin()
   const [isambassador, ambassadorLoading] = useAmbassador()
   const [isUser, userLoading] = useUser()
-  const { signOuts,user } = useAuth()
+  const { signOuts, user } = useAuth()
   console.log(user)
 
   const toggleSidebar = () => {
@@ -35,7 +35,7 @@ const DashboardLayout = () => {
   const getMenuItems = () => {
     const commonItems = [
       { name: 'Dashboard Home', path: '/dashboard/dashboard-home', icon: '🏠' },
-      
+
     ]
 
     if (isUser && !userLoading) {
@@ -44,7 +44,7 @@ const DashboardLayout = () => {
         { name: 'My Applications', path: '/dashboard/my-application', icon: '📋' },
         { name: 'Collaborate', path: '/contact', icon: '🤝' },
         { name: 'Home', path: '/', icon: '🏡' },
-        { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }  
+        { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
       ]
     }
 
@@ -63,7 +63,7 @@ const DashboardLayout = () => {
         ...commonItems,
         { name: 'Add New Scholarship', path: '/dashboard/add-new-scholarship', icon: '🎓' },
         { name: 'Add New University', path: '/dashboard/add-new-university', icon: '🏛️' },
-        { name: 'Add New Courses', path: '/dashboard/add-courses', icon: '📚' },
+        { name: 'Add New Courses', path: '/dashboard/add-course', icon: '📚' },
         { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
         { name: 'Manage Applications', path: '/dashboard/manage-application', icon: '📋' },
         { name: 'Manage Scholarships', path: '/dashboard/manage-scholarships', icon: '🎓' },
@@ -71,7 +71,7 @@ const DashboardLayout = () => {
         { name: 'Manage Courses', path: '/dashboard/manage-courses', icon: '📚' },
         { name: 'Manage Events', path: '/dashboard/manage-events', icon: '📅' },
         { name: 'Home', path: '/', icon: '🏡' },
-         { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
+        { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
       ]
     }
 
@@ -84,8 +84,8 @@ const DashboardLayout = () => {
     if (isAdmin && !adminLoading) return 'Admin'
     if (isambassador && !ambassadorLoading) return 'Ambassador'
     if (isUser && !userLoading) return 'User'
-    if(adminLoading || ambassadorLoading || userLoading) return "Loading"
-    if(!user) return "Loading"
+    if (adminLoading || ambassadorLoading || userLoading) return "Loading"
+    if (!user) return "Loading"
     return 'Loading...'
   }
 
@@ -142,21 +142,21 @@ const DashboardLayout = () => {
 
           {/* User Profile Section */}
           <div className="relative p-6 bg-gradient-to-br from-gray-50 to-white border-b border-gray-100">
-              <div className="flex items-center space-x-4">
-                <div className={`relative w-14 h-14 bg-gradient-to-br ${getRoleColor()} rounded-2xl flex items-center justify-center shadow-lg overflow-hidden`}>
-                  {user?.photoURL ? (
-                    <img 
-                      src={user.photoURL} 
-                      alt="Profile" 
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
-                  ) : (
-                    <span className="text-white text-xl font-bold">
-                      {getUserRole().charAt(0).toUpperCase()}
-                    </span>
-                  )}
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 border-2 border-white rounded-full"></div>
-                </div>
+            <div className="flex items-center space-x-4">
+              <div className={`relative w-14 h-14 bg-gradient-to-br ${getRoleColor()} rounded-2xl flex items-center justify-center shadow-lg overflow-hidden`}>
+                {user?.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt="Profile"
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                ) : (
+                  <span className="text-white text-xl font-bold">
+                    {getUserRole().charAt(0).toUpperCase()}
+                  </span>
+                )}
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 border-2 border-white rounded-full"></div>
+              </div>
               <div className="flex-1">
                 <h3 className="text-sm font-semibold text-gray-900">Welcome Back!</h3>
                 <p className="text-xs text-gray-600 mb-2">{user?.displayName}</p>
@@ -167,7 +167,7 @@ const DashboardLayout = () => {
             </div>
           </div>
 
-        
+
 
           {/* Enhanced Navigation */}
           <nav className="flex-1 px-4 py-6 overflow-y-auto">
@@ -192,17 +192,15 @@ const DashboardLayout = () => {
                     key={index}
                     to={item.path}
                     onClick={closeSidebar}
-                    className={`group relative flex items-center px-4 py-3.5 text-sm font-medium rounded-xl transition-all duration-200 ${
-                      location.pathname === item.path
-                        ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/25'
-                        : 'text-gray-700 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 hover:text-blue-700'
-                    }`}
+                    className={`group relative flex items-center px-4 py-3.5 text-sm font-medium rounded-xl transition-all duration-200 ${location.pathname === item.path
+                      ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/25'
+                      : 'text-gray-700 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 hover:text-blue-700'
+                      }`}
                   >
-                    <div className={`flex items-center justify-center w-8 h-8 rounded-lg mr-3 ${
-                      location.pathname === item.path
-                        ? 'bg-white/20 text-white'
-                        : 'bg-gray-100 text-gray-500 group-hover:bg-blue-100 group-hover:text-blue-600'
-                    } transition-all duration-200`}>
+                    <div className={`flex items-center justify-center w-8 h-8 rounded-lg mr-3 ${location.pathname === item.path
+                      ? 'bg-white/20 text-white'
+                      : 'bg-gray-100 text-gray-500 group-hover:bg-blue-100 group-hover:text-blue-600'
+                      } transition-all duration-200`}>
                       <span className="text-sm">{item.icon}</span>
                     </div>
                     <span className="truncate">{item.name}</span>
@@ -237,8 +235,8 @@ const DashboardLayout = () => {
       <div className="flex-1 md:ml-0">
         {/* Mobile Menu Button */}
         <div className="md:hidden sticky top-0 z-20 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 py-3">
-          <button 
-            onClick={toggleSidebar} 
+          <button
+            onClick={toggleSidebar}
             className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
