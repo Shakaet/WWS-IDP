@@ -53,6 +53,10 @@ import PrivateRoute from "./PrivateRoutes";
 import ManageApplication from "../component/ManageApplication";
 import AddNewScholarship from "../pages/AddNewScholarship";
 import AddNewUni from "../pages/AddNewUni";
+import ManageUni from "../pages/ManageUni";
+import ManageScholarship from "../pages/ManageScholarship";
+import UserRoutes from "./UserRoutes";
+import AdminRoutes from "./AdminRoutes";
 
 
 
@@ -249,19 +253,27 @@ export const router = createBrowserRouter([
       
       {
         path:"/dashboard/my-application",
-        element:<MyApplication></MyApplication>
+        element:<UserRoutes><MyApplication></MyApplication></UserRoutes>
       },
       {
         path:"/dashboard/manage-application",
-        element:<ManageApplication></ManageApplication>
+        element:<AdminRoutes><ManageApplication></ManageApplication></AdminRoutes>
       },
       {
         path:"/dashboard/add-new-scholarship",
-        element:<AddNewScholarship></AddNewScholarship>
+        element:<AdminRoutes><AddNewScholarship></AddNewScholarship></AdminRoutes>
       },
       {
         path:"/dashboard/add-new-university",
-        element:<AddNewUni></AddNewUni>
+        element:<AdminRoutes><AddNewUni></AddNewUni></AdminRoutes>
+      },
+      {
+        path:"/dashboard/manage-universities",
+        element:<AdminRoutes><ManageUni></ManageUni></AdminRoutes>
+      },
+      {
+        path:"/dashboard/manage-scholarships",
+        element:<AdminRoutes><ManageScholarship></ManageScholarship></AdminRoutes>
       }
     ]
   }
