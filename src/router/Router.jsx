@@ -46,6 +46,30 @@ import UniversityDetailsPages from "../pages/UniversityDetailsPages";
 import EventsDetailsPages from "../pages/EventsDetailsPages";
 import ScholarshipDetailsPages from "../pages/ScholarshipDetailsPages";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+
+import About from "../pages/About";
+import Leadership from "../pages/Leadership";
+import Careers from "../pages/Careers";
+import StaffDirectory from "../pages/StaffDirectory";
+import Events from "../pages/Events";
+import HelpCenter from "../pages/HelpCenter";
+import LoginProblems from "../pages/LoginProblems";
+import RegistrationIssues from "../pages/RegistrationIssues";
+import WebsiteFeedback from "../pages/WebsiteFeedback";
+import ReportAProblem from "../pages/ReportAProblem";
+import Accessibility from "../pages/Accessibility";
+import Pennsylvania4H from "../pages/Pennsylvania4H";
+import BetterKidCare from "../pages/BetterKidCare";
+import MasterGardeners from "../pages/MasterGardeners";
+import FoodSafety from "../pages/FoodSafety";
+import WaterResources from "../pages/WaterResources";
+import NutritionLinks from "../pages/NutritionLinks";
+import Agriculture from "../pages/Agriculture";
+import Programs from "../pages/Programs";
+import Results from "../pages/Results";
+import Coaching from "../pages/Coaching";
+import Events2023 from "../pages/Events2023";
+
 import DashboardLayout from "../layout/DashboardLayout";
 import MyApplication from "../component/MyApplication";
 import DashboardHome from "../component/DashboardHome";
@@ -214,31 +238,123 @@ export const router = createBrowserRouter([
         element: <AffordableUniversitiesUSA />
       },
       {
+
+        path: "/search-results/courses-details/:id",
+        element: <CourseDetailsPages></CourseDetailsPages>
+
         path:"/search-results/courses-details/:id",
         element:<CourseDetailsPages></CourseDetailsPages>
+
       },
       {
-        path:"/search-results/university-details/:id",
-        element:<UniversityDetailsPages></UniversityDetailsPages>
+        path: "/search-results/university-details/:id",
+        element: <UniversityDetailsPages></UniversityDetailsPages>
       },
       {
-        path:"/search-results/event-details/:id",
-        element:<EventsDetailsPages></EventsDetailsPages>
+        path: "/search-results/event-details/:id",
+        element: <EventsDetailsPages></EventsDetailsPages>
       },
       {
-        path:"/search-results/scholarship-details/:id",
-        element:<ScholarshipDetailsPages></ScholarshipDetailsPages>
+        path: "/search-results/scholarship-details/:id",
+        element: <ScholarshipDetailsPages></ScholarshipDetailsPages>
       },
       {
-        path:"/private-policy",
-        element:<PrivacyPolicy></PrivacyPolicy>
-      }
-
-
-
-
+        path: "/private-policy",
+        element: <PrivacyPolicy></PrivacyPolicy>
+      },
+      {
+        path: "/about-us",
+        element: <About />
+      },
+      {
+        path: "/leader-ship",
+        element: <Leadership />
+      },
+      {
+        path: "/career",
+        element: <Careers />
+      },
+      {
+        path: "/staff-directory",
+        element: <StaffDirectory />
+      },
+      {
+        path: "/our-events",
+        element: <Events />
+      },
+      {
+        path: "/help-centers",
+        element: <HelpCenter />
+      },
+      {
+        path: "/login-problems",
+        element: <LoginProblems />
+      },
+      {
+        path: "/register-issue",
+        element: <RegistrationIssues />
+      },
+      {
+        path: "/website-feedback",
+        element: <WebsiteFeedback />
+      },
+      {
+        path: "/report-a-problem",
+        element: <ReportAProblem />
+      },
+      {
+        path: "/accessability",
+        element: <Accessibility />
+      },
+      {
+        path: "/pennslvania-4-h",
+        element: <Pennsylvania4H />
+      },
+      {
+        path: "/better-kid-care",
+        element: <BetterKidCare />
+      },
+      {
+        path: "/master-gardeners",
+        element: <MasterGardeners />
+      },
+      {
+        path: "/food-safety",
+        element: <FoodSafety />
+      },
+      {
+        path: "/water-resources",
+        element: <WaterResources />
+      },
+      {
+        path: "/nutrition-links",
+        element: <NutritionLinks />
+      },
+      {
+        path: "/agricultures",
+        element: <Agriculture />
+      },
+      {
+        path: "/programs-overview-2023",
+        element: <Programs />
+      },
+      {
+        path: "/results-achievements-2023",
+        element: <Results />
+      },
+      {
+        path: "/coaching-services-2023",
+        element: <Coaching />
+      },
+      {
+        path: "/upcoming-events-2023",
+        element: <Events2023 />
+      },
     ]
   },
+
+]); 
+
   {
     path: "/dashboard",
     element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
@@ -278,3 +394,4 @@ export const router = createBrowserRouter([
     ]
   }
 ]);
+
