@@ -239,6 +239,9 @@ const ContactForm = () => {
               <option>UK</option>
               <option>Australia</option>
               <option>Canada</option>
+              <option>Malaysia</option>
+              <option>New Zealand</option>
+              <option>Others</option>
             </select>
             {errors.destination && (
               <p className="mt-1 text-sm text-red-600">{errors.destination.message}</p>
