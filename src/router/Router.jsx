@@ -81,6 +81,11 @@ import ManageUni from "../pages/ManageUni";
 import ManageScholarship from "../pages/ManageScholarship";
 import UserRoutes from "./UserRoutes";
 import AdminRoutes from "./AdminRoutes";
+import AddCourse from "../pages/Dashboard/AddCourse/AddCourse";
+import AddEvents from "../pages/Dashboard/AddEvents/AddEvents";
+import ManageEvents from "../pages/Dashboard/ManageEvents/ManageEvents";
+import ManageCourses from "../pages/ManageCourses/ManageCourses";
+// import ManageCourses from "../pages/ManageCourses/ManageCourses";
 
 
 
@@ -241,9 +246,10 @@ export const router = createBrowserRouter([
 
         path: "/search-results/courses-details/:id",
         element: <CourseDetailsPages></CourseDetailsPages>
-
-        path:"/search-results/courses-details/:id",
-        element:<CourseDetailsPages></CourseDetailsPages>
+      },
+      {
+        path: "/search-results/courses-details/:id",
+        element: <CourseDetailsPages></CourseDetailsPages>
 
       },
       {
@@ -352,46 +358,69 @@ export const router = createBrowserRouter([
       },
     ]
   },
-
-]); 
-
   {
     path: "/dashboard",
     element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
 
+      {
+        path: "/dashboard/dashboard-home",
+        element: <DashboardHome></DashboardHome>
 
-      { 
-        path:"/dashboard/dashboard-home",
-        element:<DashboardHome></DashboardHome>
+      },
 
-      },
-      
       {
-        path:"/dashboard/my-application",
-        element:<UserRoutes><MyApplication></MyApplication></UserRoutes>
+        path: "/dashboard/my-application",
+        element: <UserRoutes><MyApplication></MyApplication></UserRoutes>
       },
       {
-        path:"/dashboard/manage-application",
-        element:<AdminRoutes><ManageApplication></ManageApplication></AdminRoutes>
+        path: "/dashboard/manage-application",
+        element: <AdminRoutes><ManageApplication></ManageApplication></AdminRoutes>
       },
       {
-        path:"/dashboard/add-new-scholarship",
-        element:<AdminRoutes><AddNewScholarship></AddNewScholarship></AdminRoutes>
+        path: "/dashboard/add-new-scholarship",
+        element: <AdminRoutes><AddNewScholarship></AddNewScholarship></AdminRoutes>
       },
       {
-        path:"/dashboard/add-new-university",
-        element:<AdminRoutes><AddNewUni></AddNewUni></AdminRoutes>
+        path: "/dashboard/add-new-university",
+        element: <AdminRoutes><AddNewUni></AddNewUni></AdminRoutes>
       },
       {
-        path:"/dashboard/manage-universities",
-        element:<AdminRoutes><ManageUni></ManageUni></AdminRoutes>
+        path: "/dashboard/manage-universities",
+        element: <AdminRoutes><ManageUni></ManageUni></AdminRoutes>
       },
       {
-        path:"/dashboard/manage-scholarships",
-        element:<AdminRoutes><ManageScholarship></ManageScholarship></AdminRoutes>
-      }
+        path: "/dashboard/manage-scholarships",
+        element: <AdminRoutes><ManageScholarship></ManageScholarship></AdminRoutes>
+      },
+      {
+        path: "/dashboard/add-course",
+        element: <AdminRoutes>
+          <AddCourse />
+        </AdminRoutes>
+      },
+      {
+        path: "/dashboard/add-events",
+        element: <AdminRoutes>
+          <AddEvents />
+        </AdminRoutes>
+      },
+      {
+        path: "/dashboard/manage-events",
+        element: <AdminRoutes>
+          <ManageEvents />
+        </AdminRoutes>
+      },
+      {
+        path: "/dashboard/manage-courses",
+        element: <AdminRoutes>
+          <ManageCourses />
+        </AdminRoutes>
+      },
     ]
   }
+
 ]);
+
+
 
