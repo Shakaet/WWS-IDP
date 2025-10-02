@@ -1,108 +1,130 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { motion as Motion } from 'framer-motion'
-import blur from "../assets/blur.jpg"
+
 const ReleventSection2 = () => {
-  const [scrollY, setScrollY] = useState(0)
+  // Sample counselor data - you can replace with real data
+  const counselors = [
+    {
+      id: 1,
+      name: "Dr. Sarah Johnson",
+      email: "abdshakaet@gmail.com",
+      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&crop=face&auto=format",
+      specialty: "Study Abroad Specialist"
+    },
+    {
+      id: 2,
+      name: "Michael Chen",
+      email: "michael.chen@worldwisescholars.com",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face&auto=format",
+      specialty: "University Admissions Expert"
+    },
+    {
+      id: 3,
+      name: "Dr. Emily Rodriguez",
+      email: "emily.rodriguez@worldwisescholars.com",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face&auto=format",
+      specialty: "Career Guidance Counselor"
+    }
+  ]
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
+  const handleEmailClick = (email) => {
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`, '_blank');
+  };
+  
 
   return (
-    <section className="hidden relative min-h-screen md:flex items-center overflow-hidden">
-      {/* Fixed Background Image with Parallax */}
-      <img 
-        src={blur}
-        alt="Background"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{
-          transform: `translateY(${scrollY * 0.3}px)`,
-          filter: 'blur(4px)'
-        }}
-      />
-      
-      {/* Dark Overlay for better text readability */}
-      <div className="absolute inset-0 bg-yellow-50" />
-      
-      {/* Left Red Sidebar */}
-      <Motion.div
-        className=" absolute left-0 top-0 h-full w-20 bg-red-600 md:flex flex-col items-center justify-center z-20"
-        initial={{ x: -80 }}
-        animate={{ x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="transform -rotate-90 text-white font-bold text-sm tracking-wider whitespace-nowrap">
-          <div className="mb-2">BOOK A FLIGHT</div>
-          <div className="text-xs">+880 1234 567890</div>
-        </div>
+    <section className="py-16 md:py-24 bg-gradient-to-br from-yellow-50 via-white to-red-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <Motion.div
-          className="absolute top-8 right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center"
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          <svg className="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-          </svg>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            Meet Our Expert
+            <span className="block text-[#11AD00]">Counselors</span>
+          </h2>
+          <div className="w-24 h-1 bg-yellow-400 mx-auto mb-6"></div>
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Our dedicated team of experienced counselors is here to guide you through every step of your educational journey. Get personalized advice and support from industry experts.
+          </p>
         </Motion.div>
-      </Motion.div>
 
-     
+        {/* Counselors Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          {counselors.map((counselor, index) => (
+            <Motion.div
+              key={counselor.id}
+              className="group cursor-pointer"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
+              onClick={() => handleEmailClick(counselor.email)}
+            >
+              {/* Card Container */}
+              <div className="bg-white rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100">
+                {/* Image Container */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={counselor.image}
+                    alt={counselor.name}
+                    className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <Motion.div
+                        className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-semibold text-center"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Send Email
+                      </Motion.div>
+                    </div>
+                  </div>
+                  {/* Decorative corner */}
+                  <div className="absolute top-0 right-0 w-0 h-0 border-l-[60px] border-l-transparent border-t-[60px] border-t-red-600 group-hover:border-t-yellow-400 transition-colors duration-300"></div>
+                </div>
 
-      {/* Altitude Indicator */}
-      <Motion.div
-        className="absolute right-8 top-20 flex items-center gap-2 text-white z-20"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      >
-        
-      </Motion.div>
-      
-      {/* Main Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-20 py-20">
-        <div className="max-w-2xl">
-          {/* Main Title */}
-          <Motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-black mb-8 leading-tight">
-              ASCEND INTO
-              <span className="block text-black">LUXURY</span>
-              <div className="w-24 h-1 bg-red-600 mt-4"></div>
-            </h1>
-          </Motion.div>
+                {/* Card Content */}
+                <div className="p-6">
+                  <Motion.h3 
+                    className="text-xl md:text-2xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors duration-300"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    {counselor.name}
+                  </Motion.h3>
+                  
+                  <p className="text-sm font-medium text-yellow-600 mb-3 uppercase tracking-wide">
+                    {counselor.specialty}
+                  </p>
+                  
+                  <Motion.div 
+                    className="flex items-center text-gray-600 group-hover:text-gray-900 transition-colors duration-300"
+                    whileHover={{ x: 5 }}
+                  >
+                    <svg className="w-5 h-5 mr-2 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    </svg>
+                    <span className="text-sm font-medium truncate">{counselor.email}</span>
+                  </Motion.div>
+                </div>
 
-          {/* Subtitle */}
-          <Motion.p
-            className="text-lg md:text-xl text-gray-700 mb-12 leading-relaxed max-w-xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            There's education, and then there's World Wise Scholars education. We go above and beyond in everything we do, which is why we only work with top-tier universities. Our programs are comprehensive, meticulously designed experiences in global learning.
-          </Motion.p>
-
-          {/* CTA Button */}
-          <Motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 font-semibold text-lg transition-all duration-300 transform hover:scale-105 border-2 border-black shadow-lg">
-              Study Management
-            </button>
-          </Motion.div>
+                {/* Animated bottom border */}
+                <div className="h-1 bg-gradient-to-r from-red-600 via-yellow-400 to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              </div>
+            </Motion.div>
+          ))}
         </div>
-      </div>
 
+        
+      </div>
     </section>
   )
 }

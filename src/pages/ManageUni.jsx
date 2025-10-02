@@ -8,6 +8,8 @@ const ManageUni = () => {
   const queryClient = useQueryClient()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editData, setEditData] = useState(null)
+  const [viewMode, setViewMode] = useState('card') // "card" | "table"
+  const [search, setSearch] = useState('')
 
   const fetchUniversities = async () => {
     const res = await axios.get('http://localhost:3000/api/search/universities')
@@ -17,6 +19,20 @@ const ManageUni = () => {
   const { data, isLoading } = useQuery({ queryKey: ['alluniversities'], queryFn: fetchUniversities })
 
   const allUniversities = useMemo(() => data?.data ?? [], [data])
+
+  // Filter universities by search
+  const filteredUniversities = useMemo(() => {
+    const s = search.toLowerCase()
+    return allUniversities.filter(uni =>
+      uni.universityName?.toLowerCase().includes(s) ||
+      uni.destination?.toLowerCase().includes(s) ||
+      uni.established?.toString().includes(s) ||
+      uni.ranking?.toString().includes(s) ||
+      uni.description?.toLowerCase().includes(s) ||
+      uni.tuitionFee?.toLowerCase().includes(s) ||
+      uni.campusLocation?.toLowerCase().includes(s)
+    )
+  }, [allUniversities, search])
 
   const handleOpenUpdate = (uni) => {
     setEditData({ ...uni })
@@ -86,9 +102,35 @@ const ManageUni = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Manage Universities</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {allUniversities.map((uni) => (
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-3">
+        <h2 className="text-xl font-semibold">Manage Universities</h2>
+        <input
+          type="text"
+          placeholder="Search universities..."
+          className="px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <div className="space-x-2">
+          <button
+            className={`px-3 py-1.5 text-sm rounded ${viewMode === 'card' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}
+            onClick={() => setViewMode('card')}
+          >
+            Card View
+          </button>
+          <button
+            className={`px-3 py-1.5 text-sm rounded ${viewMode === 'table' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}
+            onClick={() => setViewMode('table')}
+          >
+            Table View
+          </button>
+        </div>
+      </div>
+
+      {/* ==== CARD VIEW ==== */}
+      {viewMode === 'card' && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {filteredUniversities.map((uni) => (
           <div key={uni._id} className="border rounded-lg shadow-sm p-4 bg-white flex flex-col">
             <div className="mb-2">
               <p className="text-sm text-gray-600"><span className="font-medium">University:</span> {uni.universityName}</p>
@@ -101,8 +143,44 @@ const ManageUni = () => {
               <button onClick={() => handleDelete(uni._id)} className="px-3 py-1.5 text-sm rounded bg-red-500 text-white hover:bg-red-600">Delete</button>
             </div>
           </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
+
+      {/* ==== TABLE VIEW ==== */}
+      {viewMode === 'table' && (
+        <div className="overflow-x-auto bg-white rounded-lg shadow">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="p-2">University Name</th>
+                <th className="p-2">Destination</th>
+                <th className="p-2">Established</th>
+                <th className="p-2">Ranking</th>
+                <th className="p-2">Tuition Fee</th>
+                <th className="p-2">Campus Location</th>
+                <th className="p-2 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredUniversities.map((uni) => (
+                <tr key={uni._id} className="border-t">
+                  <td className="p-2">{uni.universityName || '-'}</td>
+                  <td className="p-2">{uni.destination || '-'}</td>
+                  <td className="p-2">{uni.established || '-'}</td>
+                  <td className="p-2">{uni.ranking || '-'}</td>
+                  <td className="p-2">{uni.tuitionFee || '-'}</td>
+                  <td className="p-2">{uni.campusLocation || '-'}</td>
+                  <td className="p-2 text-center space-x-2 lg:flex gap-2">
+                    <button onClick={() => handleOpenUpdate(uni)} className="px-2 py-1 text-xs rounded bg-amber-500 text-white hover:bg-amber-600">Update</button>
+                    <button onClick={() => handleDelete(uni._id)} className="px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-600">Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       {isModalOpen && editData && (
         <Modal onClose={handleCloseModal}>

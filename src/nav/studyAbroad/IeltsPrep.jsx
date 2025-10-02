@@ -1,6 +1,6 @@
 import React from 'react'
 import IELTSBanner from '../../component/IELTSBanner'
-import bannerImg from '../../assets/itelsPrer.jpg'
+import bannerImg from '../../assets/LS_2.jpg'
 
 const IeltsPrep = () => {
   // Props for the reusable IELTS Banner component
