@@ -85,6 +85,8 @@ import AddCourse from "../pages/Dashboard/AddCourse/AddCourse";
 import AddEvents from "../pages/Dashboard/AddEvents/AddEvents";
 import ManageEvents from "../pages/Dashboard/ManageEvents/ManageEvents";
 import ManageCourses from "../pages/ManageCourses/ManageCourses";
+import AmbassadorRoutes from "./AmbassadorRoutes";
+import AllApplication from "../pages/AllApplication";
 // import ManageCourses from "../pages/ManageCourses/ManageCourses";
 
 
@@ -417,6 +419,12 @@ export const router = createBrowserRouter([
           <ManageCourses />
         </AdminRoutes>
       },
+      {
+        path: "/dashboard/allApplication",
+        element: <AmbassadorRoutes>
+          <AllApplication/>
+        </AmbassadorRoutes>
+      }
     ]
   }
 

@@ -51,7 +51,7 @@ const DashboardLayout = () => {
     if (isambassador && !ambassadorLoading) {
       return [
         ...commonItems,
-        { name: 'All Applications', path: '/dashboard/all-applications', icon: '📊' },
+        { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
         { name: 'Collaborate', path: '/contact', icon: '🤝' },
         { name: 'Home', path: '/', icon: '🏡' },
         { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
