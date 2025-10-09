@@ -121,6 +121,7 @@ export const SignUp = () => {
         allowMarketing: formData.allowMarketing,
         photoURL: photoURL || '',
         role:"user",
+        power:"false"
 
       };
       await axiosSecure.post("post-users", dataToSubmit);
