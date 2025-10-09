@@ -10,13 +10,15 @@ import Study from "../component/Study"
 import ServicesSection from "../component/ServicesSection"
 import BlogSection from '../component/BlogSection'
 import ReleventSection2 from '../component/ReleventSection2'
-import ReleventSection3 from '../component/releventSection3'
+
 import ReleventSection4 from '../component/ReleventSection4'
-import ReleventSection5 from '../component/ReleventSection5'
+
 import Service from '../component/Service'
 import Getready from '../component/Getready'
 import Calculate from '../component/Calculate'
 import FloatingWhatsApp from '../component/FloatingWhatsApp'
+import ReleventSection3 from './ReleventSection3'
+
 
 const Home = () => {
   

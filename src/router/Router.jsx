@@ -87,6 +87,7 @@ import ManageEvents from "../pages/Dashboard/ManageEvents/ManageEvents";
 import ManageCourses from "../pages/ManageCourses/ManageCourses";
 import AmbassadorRoutes from "./AmbassadorRoutes";
 import AllApplication from "../pages/AllApplication";
+import ManageAmbassador from "../pages/ManageAmbassador";
 // import ManageCourses from "../pages/ManageCourses/ManageCourses";
 
 
@@ -378,6 +379,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/manage-application",
         element: <AdminRoutes><ManageApplication></ManageApplication></AdminRoutes>
+      },
+      {
+        path: "/dashboard/manage-ambassador",
+        element: <AdminRoutes><ManageAmbassador></ManageAmbassador></AdminRoutes>
       },
       {
         path: "/dashboard/add-new-scholarship",

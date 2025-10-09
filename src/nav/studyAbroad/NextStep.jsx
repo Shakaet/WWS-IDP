@@ -6,9 +6,9 @@ import WhyStudyAbroadDetails from "../../component/WhyStudyAbroadDetails";
 import WhyStudyAbroadMoredetails from "../../component/WhyStudyAbroadMoredetails";
 import StudyAbroadQA from "../../component/StudyAbroadQA";
 
-import abroadImg from "../../assets/nextstep.jpg";
+import abroadImg from "../../assets/nextStep.jpg";
 import stepImg from "../../assets/graduation.jpg";
-import guideImg from "../../assets/nextstep.jpg";
+import guideImg from "../../assets/nextStep.jpg";
 import counsellorImg from "../../assets/graduation.jpg";
 import ContactHome from "../../component/ContactHome";
 

@@ -36,15 +36,15 @@ const slides = [
   return (
     <div>
 
-         <section className="relative min-h-[420px] sm:min-h-[480px] lg:min-h-[560px] mb-5">
+         <section className="relative lg:min-h-[560px] mb-5">
         {/* Banner image: replace src with your images */}
-        <div className="absolute inset-0 -z-10">
+        <div className="lg:absolute lg:inset-0 lg:-z-10">
           <img
             src={banner}
             alt="Students studying"
-            className="hidden md:flex h-full w-full object-cover object-[center_30%] sm:object-center"
+            className="block w-full h-auto lg:h-full lg:object-cover lg:object-center lg:object-[center_30%]"
           />
-          <div className="absolute inset-0 bg-white/20"></div>
+          <div className="hidden lg:block lg:absolute lg:inset-0 lg:bg-white/20"></div>
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">

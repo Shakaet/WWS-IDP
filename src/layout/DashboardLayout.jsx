@@ -66,6 +66,7 @@ const DashboardLayout = () => {
         { name: 'Add New Courses', path: '/dashboard/add-course', icon: '📚' },
         { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
         { name: 'Manage Applications', path: '/dashboard/manage-application', icon: '📋' },
+        { name: 'Manage Ambassador', path: '/dashboard/manage-ambassador', icon: '📋' },
         { name: 'Manage Scholarships', path: '/dashboard/manage-scholarships', icon: '🎓' },
         { name: 'Manage Universities', path: '/dashboard/manage-universities', icon: '🏛️' },
         { name: 'Manage Courses', path: '/dashboard/manage-courses', icon: '📚' },
