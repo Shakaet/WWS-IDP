@@ -95,10 +95,10 @@ const SearchResults = () => {
 
     return [Math.min(...fees), Math.max(...fees)];
   }, [realResults]);
-  console.log(feeRange);
+  // console.log(feeRange);
 
-  console.log(studyLevels);
-  
+  // console.log(studyLevels); 
+
   // Filtered & sorted results
   const filteredResults = useMemo(() => {
     let actualResults = realResults.length > 0 ? realResults : (results || [])
