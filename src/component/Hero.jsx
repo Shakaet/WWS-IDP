@@ -1,50 +1,52 @@
 import React, { useState } from 'react'
 import banner from "../assets/BannerImg.jpg"
 import SearchCard from './SearchCard'
+
 const Hero = () => {
-
-
-
-    const [activeTab, setActiveTab] = useState('Courses')
+  const [activeTab, setActiveTab] = useState('Courses')
   const [activeSlide, setActiveSlide] = useState(0)
 
   const tabs = ['Courses', 'Scholarships', 'Universities', 'Events', 'Guide me', 'Get instant offer']
 
-const slides = [
-  {
-    titleLine1: 'Thousands of students trusted us in 2023',
-    titleLine2: 'to begin their Study Abroad Journey',
-    desc: 'With expert guidance and global support, studying abroad has never been easier.'
-  },
-  {
-    titleLine1: 'Plan your future with confidence',
-    titleLine2: 'Explore top courses and universities',
-    desc: 'Discover programs that match your interests, career goals, and budget across leading destinations.'
-  },
-  {
-    titleLine1: 'Ace your IELTS preparation',
-    titleLine2: 'Guidance and resources from experts',
-    desc: 'Access proven strategies, practice tests, and mentorship to achieve your dream score.'
-  },
-  {
-    titleLine1: 'Scholarships and financial support',
-    titleLine2: 'Make study abroad more affordable',
-    desc: 'Find scholarships, fee waivers, and funding opportunities to support your education journey.'
-  },
-];
+  const slides = [
+    {
+      titleLine1: 'Thousands of students trusted us in 2023',
+      titleLine2: 'to begin their Study Abroad Journey',
+      desc: 'With expert guidance and global support, studying abroad has never been easier.'
+    },
+    {
+      titleLine1: 'Plan your future with confidence',
+      titleLine2: 'Explore top courses and universities',
+      desc: 'Discover programs that match your interests, career goals, and budget across leading destinations.'
+    },
+    {
+      titleLine1: 'Ace your IELTS preparation',
+      titleLine2: 'Guidance and resources from experts',
+      desc: 'Access proven strategies, practice tests, and mentorship to achieve your dream score.'
+    },
+    {
+      titleLine1: 'Scholarships and financial support',
+      titleLine2: 'Make study abroad more affordable',
+      desc: 'Find scholarships, fee waivers, and funding opportunities to support your education journey.'
+    },
+  ]
 
   return (
     <div>
-
-         <section className="relative lg:min-h-[560px] mb-5">
-        {/* Banner image: replace src with your images */}
-        <div className="lg:absolute lg:inset-0 lg:-z-10">
+      <section className="relative min-h-[420px] sm:min-h-[480px] lg:min-h-[560px] mb-5">
+        {/* Banner image */}
+        <div className="absolute inset-0 -z-10">
           <img
             src={banner}
             alt="Students studying"
-            className="block w-full h-auto lg:h-full lg:object-cover lg:object-center lg:object-[center_30%]"
+            className="flex md:flex h-full w-full md:object-cover object-center bg-no-repeat "
           />
-          <div className="hidden lg:block lg:absolute lg:inset-0 lg:bg-white/20"></div>
+          {/* <img
+            src={banner}
+            alt="Students studying"
+            className="h-full md:hidden w-full  object-left"
+          /> */}
+          <div className="absolute inset-0 bg-white/20"></div>
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
@@ -60,7 +62,7 @@ const slides = [
                 {slides[activeSlide].desc}
               </p>
               <div className="mt-6">
-                <button className="inline-flex items-center rounded-full bg-[#11AD00] hover:bg-[#4CADFF] px-6 py-3 text-white  transition-colors">
+                <button className="inline-flex items-center rounded-full bg-[#11AD00] hover:bg-[#4CADFF] px-6 py-3 text-white transition-colors">
                   Register Now
                 </button>
               </div>
@@ -72,86 +74,24 @@ const slides = [
                     type="button"
                     aria-label={`Show slide ${idx + 1}`}
                     onClick={() => setActiveSlide(idx)}
-                    className={`h-3 w-3 rounded-full transition-colors ${
-                      activeSlide === idx ? 'bg-gray-900' : 'bg-green-500/70 hover:bg-green-600'
-                    }`}
+                    className={`h-3 w-3 rounded-full transition-colors ${activeSlide === idx
+                      ? 'bg-gray-900'
+                      : 'bg-green-500/70 hover:bg-green-600'
+                      }`}
                   />
                 ))}
               </div>
             </div>
 
             {/* Search Card */}
-            
-           
+
           </div>
-         
         </div>
-       
-        
-            </section>
-              <SearchCard></SearchCard>
-      
+      </section>
+
+      <SearchCard />
     </div>
   )
 }
 
 export default Hero
-
-//    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 lg:-mt-20 ">
-//               <div className="rounded-2xl bg-white opacity-100 shadow-md ring-1 ring-black/5 overflow-hidden">
-//                {/* Tabs */}
-//                 <div className="flex gap-4 sm:gap-6 px-4 sm:px-6 pt-4 overflow-x-auto overflow-y-hidden">
-//                  {tabs.map((tab) => (
-//                    <button
-//                      key={tab}
-//                      onClick={() => setActiveTab(tab)}
-//                      className={`pb-3 text-sm sm:text-base whitespace-nowrap border-b-2 -mb-px transition-colors ${
-//                        activeTab === tab
-//                          ? 'border-blue-600 text-blue-700'
-//                          : 'border-transparent text-slate-600 hover:text-slate-800'
-//                      }`}
-//                    >
-//                      {tab}
-//                    </button>
-//                  ))}
-//                </div>
-
-//                {/* Form */}
-//                <div className="px-4 sm:px-6 pb-5 pt-4">
-//                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3">
-//                    <div className="lg:col-span-4">
-//                      <label className="sr-only">Course subject</label>
-//                      <input
-//                        type="text"
-//                        placeholder="Enter course subject e.g. Law"
-//                        className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//                      />
-//                    </div>
-//                    <div className="lg:col-span-4">
-//                      <label className="sr-only">Study level</label>
-//                      <select className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
-//                        <option value="">Select study level</option>
-//                        <option>Undergraduate</option>
-//                        <option>Postgraduate</option>
-//                        <option>PhD</option>
-//                      </select>
-//                    </div>
-//                    <div className="lg:col-span-4">
-//                      <label className="sr-only">Study destination</label>
-//                      <select className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
-//                        <option value="">Select a study destination</option>
-//                        <option>USA</option>
-//                        <option>UK</option>
-//                        <option>Australia</option>
-//                        <option>Canada</option>
-//                      </select>
-//                    </div>
-//                    <div className="lg:col-span-12 flex justify-end pt-2 md:col-span-2">
-//                      <button className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors">
-//                        Search
-//                      </button>
-//                    </div>
-//                  </div>
-//                </div>
-//              </div>
-//            </div>
