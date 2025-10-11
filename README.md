@@ -15,24 +15,8 @@
 
 ---
 
-## 📋 Table of Contents
 
-- [About The Project](#about-the-project)
-- [Key Features](#key-features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-- [Usage](#usage)
-- [User Roles](#user-roles)
-- [Available Scripts](#available-scripts)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
----
 
 ## 🎯 About The Project
 
