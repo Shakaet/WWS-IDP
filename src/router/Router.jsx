@@ -88,6 +88,7 @@ import ManageCourses from "../pages/ManageCourses/ManageCourses";
 import AmbassadorRoutes from "./AmbassadorRoutes";
 import AllApplication from "../pages/AllApplication";
 import ManageAmbassador from "../pages/ManageAmbassador";
+import ActivityLog from "../pages/ActivityLog";
 // import ManageCourses from "../pages/ManageCourses/ManageCourses";
 
 
@@ -386,43 +387,53 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/add-new-scholarship",
-        element: <AdminRoutes><AddNewScholarship></AddNewScholarship></AdminRoutes>
+        element: <AdminRoutes requiredAccess="scholarships"><AddNewScholarship></AddNewScholarship></AdminRoutes>
       },
       {
         path: "/dashboard/add-new-university",
-        element: <AdminRoutes><AddNewUni></AddNewUni></AdminRoutes>
+        element: <AdminRoutes requiredAccess="universities"><AddNewUni></AddNewUni></AdminRoutes>
       },
       {
         path: "/dashboard/manage-universities",
-        element: <AdminRoutes><ManageUni></ManageUni></AdminRoutes>
+        element: <AdminRoutes requiredAccess="universities"><ManageUni></ManageUni></AdminRoutes>
       },
       {
         path: "/dashboard/manage-scholarships",
-        element: <AdminRoutes><ManageScholarship></ManageScholarship></AdminRoutes>
+        element: <AdminRoutes requiredAccess="scholarships"><ManageScholarship></ManageScholarship></AdminRoutes>
       },
       {
         path: "/dashboard/add-course",
-        element: <AdminRoutes>
+        element: <AdminRoutes requiredAccess="courses">
           <AddCourse />
         </AdminRoutes>
       },
       {
         path: "/dashboard/add-events",
-        element: <AdminRoutes>
+        element: <AdminRoutes requiredAccess="events">
           <AddEvents />
         </AdminRoutes>
       },
       {
         path: "/dashboard/manage-events",
-        element: <AdminRoutes>
+        element: <AdminRoutes requiredAccess="events">
           <ManageEvents />
         </AdminRoutes>
+          
+        
       },
       {
         path: "/dashboard/manage-courses",
-        element: <AdminRoutes>
+        element: <AdminRoutes requiredAccess="courses">
           <ManageCourses />
-        </AdminRoutes>
+          </AdminRoutes>
+        
+      },
+      {
+        path: "/dashboard/activity-log",
+        element: <AdminRoutes>
+          <ActivityLog></ActivityLog>
+          </AdminRoutes>
+        
       },
       {
         path: "/dashboard/allApplication",
