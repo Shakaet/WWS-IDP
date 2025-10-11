@@ -67,14 +67,14 @@ const ManageApplication = () => {
 
   // Filter applications based on search term and status
   const filteredApps = allApp.filter(app => {
-    const matchesSearch = 
-      app.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      app.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      app.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      app.destination.toLowerCase().includes(searchTerm.toLowerCase())
-    
-    const matchesStatus = statusFilter === 'all' || app.status === statusFilter
-    
+    const matchesSearch =
+      (app.firstName || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (app.lastName || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (app.email || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (app.destination || "").toLowerCase().includes(searchTerm.toLowerCase())
+
+    const matchesStatus = statusFilter === 'all' || (app.status || 'pending') === statusFilter
+
     return matchesSearch && matchesStatus
   })
 
@@ -85,9 +85,9 @@ const ManageApplication = () => {
       </div>
     )
   }
-    
+
   return (
-    <div className="space-y-6 p-4 md:p-6">
+    <div className="space-y-6 p-4 md:p-6 min-w-[200px]">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -179,87 +179,90 @@ const ManageApplication = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredApps.map((application) => (
-                    <tr 
-                      key={application._id} 
-                      className="hover:bg-gray-50 cursor-pointer"
-                      onClick={() => handleRowClick(application)}
-                    >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900">
-                        #{application._id?.slice(-6) || 'N/A'}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">
-                          {application.firstName} {application.lastName}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="text-sm text-gray-500 truncate max-w-xs">
-                          {application.email}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {application.destination}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {application.studyLevel}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {application.startWhen}
-                      </td>
-                      <td
-  className="px-6 py-4 flex flex-col"
-  onClick={(e) => e.stopPropagation()}
->
-  {/* Status text with color */}
-  <span
-    className={`
-      font-medium mb-2
-      ${application.status === "pending" ? "text-yellow-600" : ""}
-      ${application.status === "processing" ? "text-blue-600" : ""}
-      ${application.status === "approved" ? "text-green-600" : ""}
-      ${application.status === "rejected" ? "text-red-800" : ""}
-    `}
-  >
-    {application.status.charAt(0).toUpperCase() + application.status.slice(1)}
-  </span>
-
-  {/* Dropdown */}
-  <select
-    defaultValue={application.status}
-    onChange={(e) => handleStatusChange(application._id, e.target.value)}
-    className={`
-      w-full text-sm border rounded-lg px-3 py-2
-      ${application.status === "pending" ? "border-yellow-400 text-yellow-700" : ""}
-      ${application.status === "processing" ? "border-blue-400 text-blue-700" : ""}
-      ${application.status === "approved" ? "border-green-400 text-green-700" : ""}
-      ${application.status === "rejected" ? "border-red-1200 text-red-700" : ""}
-    `}
-  >
-    <option value="pending">Pending</option>
-    <option value="processing">Processing</option>
-    <option value="approved">Approved</option>
-   
-  </select>
-</td>
-
-                      <td className="px-6 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
-                        <button
-                          onClick={() => handleDelete(application._id)}
-                          className="bg-red-50 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg text-sm font-medium transition-colors"
+                  {filteredApps.map((application) => {
+                    const safeStatus = application.status || "pending"
+                    return (
+                      <tr
+                        key={application._id}
+                        className="hover:bg-gray-50 cursor-pointer"
+                        onClick={() => handleRowClick(application)}
+                      >
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900">
+                          #{application._id?.slice(-6) || 'N/A'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm font-medium text-gray-900">
+                            {application.firstName} {application.lastName}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="text-sm text-gray-500 truncate max-w-xs">
+                            {application.email}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {application.destination}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {application.studyLevel}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {application.startWhen}
+                        </td>
+                        <td
+                          className="px-6 py-4 flex flex-col"
+                          onClick={(e) => e.stopPropagation()}
                         >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                          {/* Status text with color */}
+                          <span
+                            className={`
+        font-medium mb-2
+        ${safeStatus === "pending" ? "text-yellow-600" : ""}
+        ${safeStatus === "processing" ? "text-blue-600" : ""}
+        ${safeStatus === "approved" ? "text-green-600" : ""}
+        ${safeStatus === "rejected" ? "text-red-800" : ""}
+      `}
+                          >
+                            {safeStatus.charAt(0).toUpperCase() + safeStatus.slice(1)}
+                          </span>
+
+                          {/* Dropdown */}
+                          <select
+                            defaultValue={safeStatus}
+                            onChange={(e) => handleStatusChange(application._id, e.target.value)}
+                            className={`
+        w-full text-sm border rounded-lg px-3 py-2
+        ${safeStatus === "pending" ? "border-yellow-400 text-yellow-700" : ""}
+        ${safeStatus === "processing" ? "border-blue-400 text-blue-700" : ""}
+        ${safeStatus === "approved" ? "border-green-400 text-green-700" : ""}
+        ${safeStatus === "rejected" ? "border-red-1200 text-red-700" : ""}
+      `}
+                          >
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                          </select>
+                        </td>
+
+                        <td className="px-6 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                          <button
+                            onClick={() => handleDelete(application._id)}
+                            className="bg-red-50 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg text-sm font-medium transition-colors"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>
 
             {/* Tablet Table */}
-            <div className="hidden md:block lg:hidden">
-              <div className="overflow-x-auto">
+            <div className="hidden md:block lg:hidden overflow-x-auto ">
+              <div className="min-w-[800px]">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
@@ -270,114 +273,121 @@ const ManageApplication = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {filteredApps.map((application) => (
-                      <tr 
-                        key={application._id} 
-                        className="hover:bg-gray-50 cursor-pointer"
-                        onClick={() => handleRowClick(application)}
-                      >
-                        <td className="px-4 py-4">
-                          <div>
-                            <div className="text-sm font-medium text-gray-900">
-                              {application.firstName} {application.lastName}
-                            </div>
-                            <div className="text-xs text-gray-500">
-                              #{application._id?.slice(-6) || 'N/A'}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-4 py-4">
-                          <div className="text-sm text-gray-900">{application.destination}</div>
-                          <div className="text-xs text-gray-500">{application.studyLevel}</div>
-                          <div className="text-xs text-gray-500">{application.startWhen}</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
-                        <select
-                          value={application.status || 'pending'}
-                          onChange={(e) => handleStatusChange(application._id, e.target.value)}
-                          className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-blue-500 focus:border-blue-500 appearance-none cursor-pointer"
-                          style={{ 
-                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                            backgroundPosition: 'right 8px center',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: '16px'
-                          }}
+                    {filteredApps.map((application) => {
+                      const safeStatus = application.status || "pending"
+                      return (
+                        <tr
+                          key={application._id}
+                          className="hover:bg-gray-50 cursor-pointer"
+                          onClick={() => handleRowClick(application)}
                         >
-                          <option value="pending">🟡 Pending</option>
-                          <option value="processing">🔵 Processing</option>
-                          <option value="approved">🟢 Approved</option>
-                          <option value="rejected">🔴 Rejected</option>
-                        </select>
-                      </td>
-                        <td className="px-4 py-4" onClick={(e) => e.stopPropagation()}>
-                          <button
-                            onClick={() => handleDelete(application._id)}
-                            className="bg-red-50 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg text-xs font-medium"
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                          <td className="px-4 py-4">
+                            <div>
+                              <div className="text-sm font-medium text-gray-900">
+                                {application.firstName} {application.lastName}
+                              </div>
+                              <div className="text-xs text-gray-500">
+                                #{application._id?.slice(-6) || 'N/A'}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-4 py-4">
+                            <div className="text-sm text-gray-900">{application.destination}</div>
+                            <div className="text-xs text-gray-500">{application.studyLevel}</div>
+                            <div className="text-xs text-gray-500">{application.startWhen}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                            <select
+                              value={safeStatus}
+                              onChange={(e) => handleStatusChange(application._id, e.target.value)}
+                              className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-blue-500 focus:border-blue-500 appearance-none cursor-pointer"
+                              style={{
+                                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                                backgroundPosition: 'right 8px center',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: '16px'
+                              }}
+                            >
+                              <option value="pending">🟡 Pending</option>
+                              <option value="processing">🔵 Processing</option>
+                              <option value="approved">🟢 Approved</option>
+                              <option value="rejected">🔴 Rejected</option>
+                            </select>
+                          </td>
+                          <td className="px-4 py-4" onClick={(e) => e.stopPropagation()}>
+                            <button
+                              onClick={() => handleDelete(application._id)}
+                              className="bg-red-50 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg text-xs font-medium"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      )
+                    })}
                   </tbody>
                 </table>
               </div>
             </div>
 
+
             {/* Mobile Cards */}
             <div className="md:hidden divide-y divide-gray-200">
-              {filteredApps.map((application) => (
-                <div 
-                  key={application._id} 
-                  className="p-4 cursor-pointer"
-                  onClick={() => handleRowClick(application)}
-                >
-                  <div className="mb-3">
-                    <h3 className="text-base font-medium text-gray-900">
-                      {application.firstName} {application.lastName}
-                    </h3>
-                    <p className="text-xs text-gray-500">#{application._id?.slice(-8) || 'N/A'}</p>
+              {filteredApps.map((application) => {
+                const safeStatus = application.status || "pending"
+                return (
+                  <div
+                    key={application._id}
+                    className="p-4 cursor-pointer"
+                    onClick={() => handleRowClick(application)}
+                  >
+                    <div className="mb-3">
+                      <h3 className="text-base font-medium text-gray-900">
+                        {application.firstName} {application.lastName}
+                      </h3>
+                      <p className="text-xs text-gray-500">#{application._id?.slice(-8) || 'N/A'}</p>
+                    </div>
+
+                    <div className="space-y-2 text-sm">
+                      <div className="flex">
+                        <span className="text-gray-500 w-24 flex-shrink-0">Email:</span>
+                        <span className="text-gray-900 truncate">{application.email}</span>
+                      </div>
+                      <div className="flex">
+                        <span className="text-gray-500 w-24 flex-shrink-0">Destination:</span>
+                        <span className="text-gray-900">{application.destination}</span>
+                      </div>
+                      <div className="flex">
+                        <span className="text-gray-500 w-24 flex-shrink-0">Study Level:</span>
+                        <span className="text-gray-900">{application.studyLevel}</span>
+                      </div>
+                      <div className="flex">
+                        <span className="text-gray-500 w-24 flex-shrink-0">Start Date:</span>
+                        <span className="text-gray-900">{application.startWhen}</span>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 flex gap-2" onClick={(e) => e.stopPropagation()}>
+                      <select
+                        defaultValue={safeStatus}
+                        onChange={(e) => handleStatusChange(application._id, e.target.value)}
+                        className="flex-1 text-sm border border-gray-300 rounded-lg px-3 py-2"
+                      >
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                      </select>
+                      <button
+                        onClick={() => handleDelete(application._id)}
+                        className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                  
-                  <div className="space-y-2 text-sm">
-                    <div className="flex">
-                      <span className="text-gray-500 w-24 flex-shrink-0">Email:</span>
-                      <span className="text-gray-900 truncate">{application.email}</span>
-                    </div>
-                    <div className="flex">
-                      <span className="text-gray-500 w-24 flex-shrink-0">Destination:</span>
-                      <span className="text-gray-900">{application.destination}</span>
-                    </div>
-                    <div className="flex">
-                      <span className="text-gray-500 w-24 flex-shrink-0">Study Level:</span>
-                      <span className="text-gray-900">{application.studyLevel}</span>
-                    </div>
-                    <div className="flex">
-                      <span className="text-gray-500 w-24 flex-shrink-0">Start Date:</span>
-                      <span className="text-gray-900">{application.startWhen}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 flex gap-2" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      defaultValue={application.status}
-                      onChange={(e) => handleStatusChange(application._id, e.target.value)}
-                      className="flex-1 text-sm border border-gray-300 rounded-lg px-3 py-2"
-                    >
-                      <option value="pending">Pending</option>
-                      <option value="processing">Processing</option>
-                      <option value="approved">Approved</option>
-                      <option value="rejected">Rejected</option>
-                    </select>
-                    <button
-                      onClick={() => handleDelete(application._id)}
-                      className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </>
         )}
@@ -391,19 +401,19 @@ const ManageApplication = () => {
         </div>
         <div className="bg-white rounded-xl p-4 shadow border border-gray-200">
           <div className="text-2xl font-bold text-yellow-600">
-            {allApp.filter(app => app.status === 'pending').length}
+            {allApp.filter(app => (app.status || "pending") === 'pending').length}
           </div>
           <div className="text-sm text-gray-500">Pending</div>
         </div>
         <div className="bg-white rounded-xl p-4 shadow border border-gray-200">
           <div className="text-2xl font-bold text-green-600">
-            {allApp.filter(app => app.status === 'approved').length}
+            {allApp.filter(app => (app.status || "pending") === 'approved').length}
           </div>
           <div className="text-sm text-gray-500">Approved</div>
         </div>
         <div className="bg-white rounded-xl p-4 shadow border border-gray-200">
           <div className="text-2xl font-bold text-blue-600">
-            {allApp.filter(app => app.status === 'processing').length}
+            {allApp.filter(app => (app.status || "pending") === 'processing').length}
           </div>
           <div className="text-sm text-gray-500">Processing</div>
         </div>
@@ -413,27 +423,3 @@ const ManageApplication = () => {
 }
 
 export default ManageApplication
-
-
-
-
-
-
-{/* <td className="px-6 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
-                        <select
-                          value={application.status || 'pending'}
-                          onChange={(e) => handleStatusChange(application._id, e.target.value)}
-                          className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-blue-500 focus:border-blue-500 appearance-none cursor-pointer"
-                          style={{ 
-                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                            backgroundPosition: 'right 8px center',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: '16px'
-                          }}
-                        >
-                          <option value="pending">🟡 Pending</option>
-                          <option value="processing">🔵 Processing</option>
-                          <option value="approved">🟢 Approved</option>
-                          <option value="rejected">🔴 Rejected</option>
-                        </select>
-                      </td> */}
