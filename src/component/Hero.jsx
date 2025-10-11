@@ -33,7 +33,6 @@ const Hero = () => {
 
   return (
     <div>
-
       <section className="relative min-h-[420px] sm:min-h-[480px] lg:min-h-[560px] mb-5">
         {/* Banner image */}
         <div className="absolute inset-0 -z-10">
@@ -48,18 +47,6 @@ const Hero = () => {
             className="h-full md:hidden w-full  object-left"
           /> */}
           <div className="absolute inset-0 bg-white/20"></div>
-
-
-         <section className="relative lg:min-h-[560px] mb-5">
-        {/* Banner image: replace src with your images */}
-        <div className="lg:absolute lg:inset-0 lg:-z-10">
-          <img
-            src={banner}
-            alt="Students studying"
-            className="block w-full h-auto lg:h-full lg:object-cover lg:object-center lg:object-[center_30%]"
-          />
-          <div className="hidden lg:block lg:absolute lg:inset-0 lg:bg-white/20"></div>
-
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
