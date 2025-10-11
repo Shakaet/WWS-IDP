@@ -344,19 +344,16 @@ const Header = () => {
               </svg>
             </Link>
           </div>
-          {/* Mobile: hamburger */}
-          <Link to={`/dashboard/dashboard-home`} className="lg:hidden flex items-center gap-2">
-            {/* Mobile wishlist button */}
-            <button
-              type="button"
-              aria-label="Wishlist"
-              className="p-2 rounded-full hover:bg-slate-100 text-orange-600 transition-colors"
-            >
+          {/* Mobile: heart and hamburger */}
+          <div className="lg:hidden flex items-center gap-2">
+            {/* Mobile heart button - goes to dashboard */}
+            <Link to={`/dashboard/dashboard-home`} className="p-2 rounded-full hover:bg-slate-100 text-orange-600 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z" />
               </svg>
-            </button>
+            </Link>
 
+            {/* Mobile hamburger button - shows navigation menu */}
             <button
               type="button"
               aria-controls="mobile-menu"
@@ -374,7 +371,7 @@ const Header = () => {
                 </svg>
               )}
             </button>
-          </Link>
+          </div>
         </div>
       </div>
       {/* Mobile menu panel */}
@@ -488,15 +485,6 @@ const Header = () => {
                 Sign in
               </Link>
             )}
-            <button
-              type="button"
-              aria-label="Wishlist"
-              className="p-2 rounded-full hover:bg-slate-100 text-orange-600 transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z" />
-              </svg>
-            </button>
           </div>
           </div>
         </div>

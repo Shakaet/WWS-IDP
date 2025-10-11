@@ -4,8 +4,16 @@ import useAdmin from '../Hooks/role/useAdmin'
 import useAmbassador from '../Hooks/role/useAmbassador'
 import useUser from '../Hooks/role/useUser'
 import useAuth from '../Hooks/useAuth/useAuth'
+import useAmbassadorAccess from '../Hooks/role/useAmbassadorAccess'
+
 
 const DashboardLayout = () => {
+   let [ambassadorData,ambassadorDataLoading, error] = useAmbassadorAccess();
+  // console.log(ambassadorData?.role)
+  let ambassadorRole= ambassadorData?.role
+  let ambassadorAccess=ambassadorData?.access
+ 
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
@@ -48,15 +56,115 @@ const DashboardLayout = () => {
       ]
     }
 
-    if (isambassador && !ambassadorLoading) {
-      return [
-        ...commonItems,
-        { name: 'All Applications', path: '/dashboard/all-applications', icon: '📊' },
-        { name: 'Collaborate', path: '/contact', icon: '🤝' },
-        { name: 'Home', path: '/', icon: '🏡' },
-        { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
-      ]
-    }
+    // if (isambassador && !ambassadorLoading) {
+    //   return [
+    //     ...commonItems,
+    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
+    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
+    //     { name: 'Home', path: '/', icon: '🏡' },
+    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
+    //   ]
+    // }
+
+
+    //  if ( ambassadorRole && !ambassadorDataLoading && ambassadorAccess?.scholarships) {
+    //   return [
+    //     ...commonItems,
+    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
+    //     { name: 'Add New Scholarship', path: '/dashboard/add-new-scholarship', icon: '🎓' },
+    //     { name: 'Manage Scholarships', path: '/dashboard/manage-scholarships', icon: '🎓' },
+    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
+    //     { name: 'Home', path: '/', icon: '🏡' },
+    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
+    //   ]
+    // }
+
+    //  if ( ambassadorRole && !ambassadorDataLoading && ambassadorAccess?.courses) {
+    //   return [
+    //     ...commonItems,
+    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
+    //     { name: 'Add New Courses', path: '/dashboard/add-course', icon: '📚' },
+    //      { name: 'Manage Courses', path: '/dashboard/manage-courses', icon: '📚' },
+    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
+    //     { name: 'Home', path: '/', icon: '🏡' },
+    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
+    //   ]
+    // }
+
+    //  if ( ambassadorRole && !ambassadorDataLoading && ambassadorAccess?.events) {
+    //   return [
+    //     ...commonItems,
+    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
+    //      { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
+    //      { name: 'Manage Events', path: '/dashboard/manage-events', icon: '📅' },
+    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
+    //     { name: 'Home', path: '/', icon: '🏡' },
+    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
+    //   ]
+    // }
+
+    //  if ( ambassadorRole && !ambassadorDataLoading && ambassadorAccess?.universities) {
+    //   return [
+    //     ...commonItems,
+    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
+    //     { name: 'Add New University', path: '/dashboard/add-new-university', icon: '🏛️' },
+    //     { name: 'Manage Universities', path: '/dashboard/manage-universities', icon: '🏛️' },
+    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
+    //     { name: 'Home', path: '/', icon: '🏡' },
+    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
+    //   ]
+    // }
+
+
+    if (ambassadorRole && !ambassadorDataLoading) {
+  // common menu items
+  const menuItems = [
+    ...commonItems,
+    { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
+  ];
+
+  // scholarship-related
+  if (ambassadorAccess?.scholarships) {
+    menuItems.push(
+      { name: 'Add New Scholarship', path: '/dashboard/add-new-scholarship', icon: '🎓' },
+      { name: 'Manage Scholarships', path: '/dashboard/manage-scholarships', icon: '🎓' }
+    );
+  }
+
+  // courses-related
+  if (ambassadorAccess?.courses) {
+    menuItems.push(
+      { name: 'Add New Courses', path: '/dashboard/add-course', icon: '📚' },
+      { name: 'Manage Courses', path: '/dashboard/manage-courses', icon: '📚' }
+    );
+  }
+
+  // events-related
+  if (ambassadorAccess?.events) {
+    menuItems.push(
+      { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
+      { name: 'Manage Events', path: '/dashboard/manage-events', icon: '📅' }
+    );
+  }
+
+  // universities-related
+  if (ambassadorAccess?.universities) {
+    menuItems.push(
+      { name: 'Add New University', path: '/dashboard/add-new-university', icon: '🏛️' },
+      { name: 'Manage Universities', path: '/dashboard/manage-universities', icon: '🏛️' }
+    );
+  }
+
+  // finally add common footer links
+  menuItems.push(
+    { name: 'Collaborate', path: '/contact', icon: '🤝' },
+    { name: 'Home', path: '/', icon: '🏡' },
+    { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
+  );
+
+  return menuItems;
+}
+
 
     if (isAdmin && !adminLoading) {
       return [
@@ -66,10 +174,12 @@ const DashboardLayout = () => {
         { name: 'Add New Courses', path: '/dashboard/add-course', icon: '📚' },
         { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
         { name: 'Manage Applications', path: '/dashboard/manage-application', icon: '📋' },
+        { name: 'Manage Ambassador', path: '/dashboard/manage-ambassador', icon: '📋' },
         { name: 'Manage Scholarships', path: '/dashboard/manage-scholarships', icon: '🎓' },
         { name: 'Manage Universities', path: '/dashboard/manage-universities', icon: '🏛️' },
         { name: 'Manage Courses', path: '/dashboard/manage-courses', icon: '📚' },
         { name: 'Manage Events', path: '/dashboard/manage-events', icon: '📅' },
+        { name: 'Activity Log', path: '/dashboard/activity-log', icon: '📅' },
         { name: 'Home', path: '/', icon: '🏡' },
         { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
       ]

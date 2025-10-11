@@ -204,7 +204,7 @@ const BlogSection = () => {
                 </Motion.div>
 
                 {/* Content */}
-                <div className="p-6 flex-grow flex flex-col"> // Added flex-grow and flex flex-col
+                <div className="p-6 flex-grow flex flex-col"> 
                   {/* Calendar Icon & Read Time */}
                   <Motion.div
                     className="flex items-center gap-2 mb-3"

@@ -36,7 +36,8 @@ const GoogleSign = () => {
         allowMarketing: false,
         photoURL: user.photoURL || '',
         provider: 'google',
-        role:"user" // Add provider info
+        role:"user", // Add provider info
+        power:"false"
       }
 
       // 3️⃣ Post user data to backend
