@@ -5,7 +5,7 @@ import WhyStudyAbroadBookNow from '../../component/WhyStudyAbroadBookNow'
 import WhyStudyAbroadDetails from '../../component/WhyStudyAbroadDetails'
 import WhyStudyAbroadMoredetails from '../../component/WhyStudyAbroadMoredetails'
 import StudyAbroadQA from '../../component/StudyAbroadQA'
-import studentsImage from "../../assets/thriv.jpg"
+import studentsImage from "../../assets/ThriveAbroad.jpg"
 import graduationImage from "../../assets/graduation.jpg"
 import counsellorImage from "../../assets/graduation.jpg"
 import ContactHome from '../../component/ContactHome'
