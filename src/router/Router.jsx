@@ -85,10 +85,20 @@ import AddCourse from "../pages/Dashboard/AddCourse/AddCourse";
 import AddEvents from "../pages/Dashboard/AddEvents/AddEvents";
 import ManageEvents from "../pages/Dashboard/ManageEvents/ManageEvents";
 import ManageCourses from "../pages/ManageCourses/ManageCourses";
+<<<<<<< HEAD
 import AmbassadorRoutes from "./AmbassadorRoutes";
 import AllApplication from "../pages/AllApplication";
 import ManageAmbassador from "../pages/ManageAmbassador";
 import ActivityLog from "../pages/ActivityLog";
+=======
+import SearchLayout from "../layout/SearchLayout";
+import CourseResults from "../pages/CourseResults";
+import DefaultSearchResults from "../pages/DefaultSearchResults/DefaultSearchResults";
+import UniversityResults from "../pages/UniversityResult/UniversityResult";
+import EventsResults from "../pages/EventsResults/EventsResults";
+import ScholarshipsResults from "../pages/ScholarshipsResults/ScholarshipsResults";
+// import UniversityResults from "../layout/SearchLayout";
+>>>>>>> 3456b40 (added and solve this)
 // import ManageCourses from "../pages/ManageCourses/ManageCourses";
 
 
@@ -111,11 +121,6 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp></SignUp>
-
-      },
-      {
-        path: "search-results",
-        element: <SearchResults></SearchResults>
 
       },
       {
@@ -248,7 +253,7 @@ export const router = createBrowserRouter([
       },
       {
 
-        path: "/search-results/courses-details/:id",
+        path: "/search-results/courses/courses-details/:id",
         element: <CourseDetailsPages></CourseDetailsPages>
       },
       {
@@ -261,11 +266,11 @@ export const router = createBrowserRouter([
         element: <UniversityDetailsPages></UniversityDetailsPages>
       },
       {
-        path: "/search-results/event-details/:id",
+        path: "/search-results/events/event-details/:id",
         element: <EventsDetailsPages></EventsDetailsPages>
       },
       {
-        path: "/search-results/scholarship-details/:id",
+        path: "/search-results/scholarships/scholarship-details/:id",
         element: <ScholarshipDetailsPages></ScholarshipDetailsPages>
       },
       {
@@ -442,7 +447,17 @@ export const router = createBrowserRouter([
         </AmbassadorRoutes>
       }
     ]
-  }
+  },
+  {
+    path: "search-results",
+    element: <SearchLayout />,
+    children: [
+      { path: "courses", element: <CourseResults /> },
+      { path: "universities", element: <UniversityResults /> },
+      { path: "events", element: <EventsResults /> },
+      { path: "scholarships", element: <ScholarshipsResults /> },
+    ]
+  },
 
 ]);
 
