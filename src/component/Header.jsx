@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Links, useNavigate } from 'react-router-dom'
 import icon from "../assets/wws1.png"
 import useAuth from '../Hooks/useAuth/useAuth'
-// import useAdmin from '../Hooks/role/useAdmin'
-// import useAmbassador from '../Hooks/role/useAmbassador'
-// import useUser from '../Hooks/role/useUser'
+import useAdmin from '../Hooks/role/useAdmin'
+import useAmbassador from '../Hooks/role/useAmbassador'
+import useUser from '../Hooks/role/useUser'
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
@@ -96,9 +96,9 @@ const Header = () => {
       label: 'Courses',
       to: '/search-results',
       dropdown: [
-        { label: 'Find a course', action: handleFindCourses },
-        { label: 'Find a university', action: handleFindUniversities },
-        { label: 'Find a events', action: handleFindEvents },
+        { label: 'Find a course', to: '/search-results/courses' },
+        { label: 'Find a university', to: '/search-results/universities' },
+        { label: 'Find a events', to: '/search-results/events' },
         { label: 'What is IELTS?', to: '/what-is-ielts' },
         { label: 'Why WWS IELTS?', to: '/why-ielts' },
         { label: 'IELTS Preparation', to: '/ielts-preparation' },
@@ -108,7 +108,7 @@ const Header = () => {
       label: 'Scholarships',
       to: '/',
       dropdown: [
-        { label: 'Find a scholarship', action: handleFindScholarships },
+        { label: 'Find a scholarship', to: "/search-results/scholarships" },
       ]
     },
     {
@@ -171,10 +171,9 @@ const Header = () => {
       .catch(() => { })
   }
 
-  // Role hooks - currently unused but may be needed for future role-based features
-  // let [isAdmin] = useAdmin()
-  // let [isambassador] = useAmbassador()
-  // let [isUser] = useUser()
+  let [isAdmin] = useAdmin()
+  let [isambassador] = useAmbassador()
+  let [isUser] = useUser()
 
   //  console.log(isAdmin,isambassador,isUser)
 
@@ -231,10 +230,10 @@ const Header = () => {
                     }`}>
                     <div className="py-2">
                       {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                        dropdownItem.action ? (
+                        dropdownItem.action || dropdownIndex.to ? (
                           <button
                             key={dropdownIndex}
-                            onClick={dropdownItem.action}
+                            onClick={dropdownItem.action || dropdownIndex.to}
                             className="flex items-center justify-between w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors text-left"
                           >
                             <div className="flex items-center gap-3">
