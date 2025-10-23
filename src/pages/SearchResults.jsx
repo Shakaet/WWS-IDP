@@ -151,11 +151,114 @@ const SearchResults = () => {
       <div className="mb-4 flex-grow">
         <p className="text-gray-900 font-semibold text-sm mb-1">Study Level: {course.studyLevel}</p>
         <p className="text-gray-900 font-semibold text-sm mb-3">Destination: {course.destination}</p>
-        <p className="text-gray-600 text-sm leading-relaxed line-clamp-4">{course.description}</p> {/* line clamp 4 lines */}
+        <p className="text-gray-600 text-sm leading-relaxed line-clamp-4">{course.description}</p>
       </div>
       <div className="flex gap-3 mt-auto">
         <Link to={`courses-details/${course._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">View Details</Link>
         <button onClick={() => setIsModalOpen(true)} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">Apply Now</button>
+      </div>
+    </div>
+  )
+
+  const renderScholarshipCard = (scholarship) => (
+    <div key={scholarship._id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-all duration-200 h-full flex flex-col">
+      <div className="flex justify-end mb-3">
+        <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">
+          {scholarship.amount || 'Available'}
+        </span>
+      </div>
+      <div className="mb-4 flex-grow">
+        <p className="text-gray-900 font-semibold text-sm mb-1">Study Level: {scholarship.studyLevel}</p>
+        <p className="text-gray-900 font-semibold text-sm mb-3">Destination: {scholarship.destination}</p>
+        <p className="text-gray-600 text-sm leading-relaxed">
+          {scholarship.description || `These ${scholarship.studyLevel} scholarships in ${scholarship.destination} are designed for students seeking comprehensive financial support for their education. Emphasis is placed on academic excellence, research potential, and global career readiness.`}
+        </p>
+      </div>
+      <div className="flex gap-3 mt-auto">
+        <Link to={`/search-results/scholarship-details/${scholarship?._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+          View Details
+        </Link>
+        <button onClick={() => setIsModalOpen(true)} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+          Apply Now
+        </button>
+      </div>
+    </div>
+  )
+
+  const renderUniversityCard = (university) => (
+    <div key={university._id || university.universityName} className="bg-white rounded-lg border border-gray-200 p-3 sm:p-4 md:p-6 hover:shadow-md transition-all duration-200 h-full flex flex-col">
+      <div className="flex justify-between items-start mb-2 sm:mb-3">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-1 truncate">{university.universityName}</h3>
+        </div>
+        <span className="bg-green-100 text-green-800 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium flex-shrink-0 ml-2">
+          Available
+        </span>
+      </div>
+      <div className="mb-3 sm:mb-4 flex-grow">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2 sm:mb-3 text-xs">
+          <div>
+            <span className="font-medium text-gray-700">Established:</span>
+            <span className="text-gray-600 ml-1">{university.established}</span>
+          </div>
+          <div>
+            <span className="font-medium text-gray-700">Destination:</span>
+            <span className="text-gray-600 ml-1">{university.destination}</span>
+          </div>
+        </div>
+        <div className="mb-2 sm:mb-3">
+          <span className="font-medium text-gray-700 text-xs">Popular Courses:</span>
+          <div className="flex flex-wrap gap-1 mt-1">
+            {university.coursesOffered?.slice(0, 3).map((course, index) => (
+              <span key={index} className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs">
+                {course}
+              </span>
+            ))}
+            {university.coursesOffered?.length > 3 && (
+              <span className="text-gray-500 text-xs">+{university.coursesOffered.length - 3} more</span>
+            )}
+          </div>
+        </div>
+        <div className="mb-2 sm:mb-3">
+          <span className="font-medium text-gray-700 text-xs">Tuition Fee:</span>
+          <span className="text-green-600 font-semibold ml-1 text-xs">{university.tuitionFee}</span>
+        </div>
+        <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">
+          {university.description}
+        </p>
+      </div>
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-auto">
+        <Link to={`/search-results/university-details/${university?._id}`} className="flex-1 bg-blue-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors text-xs font-medium">
+          View Details
+        </Link>
+        <button onClick={() => setIsModalOpen(true)} className="flex-1 bg-green-600 text-white py-2 px-3 sm:px-4 rounded-lg hover:bg-green-700 transition-colors text-xs font-medium">
+          Apply Now
+        </button>
+      </div>
+    </div>
+  )
+
+  const renderEventCard = (event) => (
+    <div key={event._id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-all duration-200 h-full flex flex-col">
+      <div className="flex justify-end mb-3">
+        <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">
+          Available
+        </span>
+      </div>
+      <div className="mb-4 flex-grow">
+        <p className="text-gray-900 font-semibold text-sm mb-1">Event Type: Education Fair</p>
+        <p className="text-gray-900 font-semibold text-sm mb-3">Destination: {event.destination}</p>
+        <p className="text-gray-600 text-sm leading-relaxed">
+          {event.description || `Join our education fair in ${event.city || 'major cities'} to explore study opportunities in ${event.destination}. Meet university representatives, learn about courses, scholarships, and application processes. Perfect for students planning their international education journey.`}
+        </p>
+      </div>
+      <div className="flex gap-3 mt-auto">
+        <Link to={`/search-results/event-details/${event?._id}`} className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+          View Details
+        </Link>
+        <button onClick={() => setIsModalOpen(true)} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+          Apply Now
+        </button>
       </div>
     </div>
   )
@@ -166,8 +269,21 @@ const SearchResults = () => {
     if (!filteredResults || filteredResults.length === 0) return <div className="text-center py-8 sm:py-12">No results found</div>
 
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-        {filteredResults.map(item => renderCourseCard(item))}
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {filteredResults.map(item => {
+          switch (tab) {
+            case 'Courses':
+              return renderCourseCard(item)
+            case 'Scholarships':
+              return renderScholarshipCard(item)
+            case 'Universities':
+              return renderUniversityCard(item)
+            case 'Events':
+              return renderEventCard(item)
+            default:
+              return renderCourseCard(item)
+          }
+        })}
       </div>
     )
   }
