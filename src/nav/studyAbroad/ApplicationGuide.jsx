@@ -6,7 +6,7 @@ import WhyStudyAbroadDetails from '../../component/WhyStudyAbroadDetails'
 import WhyStudyAbroadMoredetails from '../../component/WhyStudyAbroadMoredetails'
 import StudyAbroadQA from '../../component/StudyAbroadQA'
 import abroad1 from "../../assets/abroad.jpg"
-import studentsImage from "../../assets/applicationGuide.jpg"
+import studentsImage from "../../assets/applicationGuides.jpg"
 import graduationImage from "../../assets/graduation.jpg"
 import counsellorImage from "../../assets/graduation.jpg"
 import ContactHome from '../../component/ContactHome'

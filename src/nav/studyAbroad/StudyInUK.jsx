@@ -6,7 +6,7 @@ import WhyStudyAbroadDetails from "../../component/WhyStudyAbroadDetails";
 import WhyStudyAbroadMoredetails from "../../component/WhyStudyAbroadMoredetails";
 import StudyAbroadQA from "../../component/StudyAbroadQA";
 
-import abroadImg from "../../assets/uk.jpg";
+import abroadImg from "../../assets/WhychooseUK.jpg";
 import stepImg from "../../assets/graduation.jpg";
 import guideImg from "../../assets/students.webp";
 import counsellorImg from "../../assets/graduation.jpg";

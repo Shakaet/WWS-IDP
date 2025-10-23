@@ -312,7 +312,14 @@ const Header = () => {
                           {user.email}
                         </p>
                       </div>
-                      <div className="px-4 py-2">
+                      <div className="px-4 py-2 space-y-1">
+                        <Link
+                          to="/dashboard/dashboard-home"
+                          onClick={() => setIsProfileDropdownOpen(false)}
+                          className="w-full text-left text-sm text-slate-700 hover:bg-slate-50 rounded px-3 py-2 transition-colors block"
+                        >
+                          Dashboard
+                        </Link>
                         <button
                           onClick={() => { setIsProfileDropdownOpen(false); handleLogout(); }}
                           className="w-full text-left text-sm text-slate-700 hover:bg-slate-50 rounded px-3 py-2 transition-colors"
@@ -332,27 +339,9 @@ const Header = () => {
                 Sign in
               </Link>
             )}
-
-            {/* Heart icon */}
-            <Link to={`/dashboard/dashboard-home`}
-              type="button"
-              aria-label="Wishlist"
-              className="p-2 rounded-full hover:bg-slate-100 text-orange-600 transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z" />
-              </svg>
-            </Link>
           </div>
-          {/* Mobile: heart and hamburger */}
+          {/* Mobile: hamburger */}
           <div className="lg:hidden flex items-center gap-2">
-            {/* Mobile heart button - goes to dashboard */}
-            <Link to={`/dashboard/dashboard-home`} className="p-2 rounded-full hover:bg-slate-100 text-orange-600 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.949 0-3.622 1.147-4.312 2.789-.69-1.642-2.363-2.79-4.313-2.79C5.1 3.75 3 5.765 3 8.25 3 14.25 12 20.25 12 20.25S21 14.25 21 8.25z" />
-              </svg>
-            </Link>
-
             {/* Mobile hamburger button - shows navigation menu */}
             <button
               type="button"
@@ -387,6 +376,17 @@ const Header = () => {
         
         {/* Menu Content */}
         <div className="relative bg-white border-t border-gray-100 shadow-lg">
+          {/* Close button inside mobile menu */}
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setIsMobileOpen(false)}
+            className="absolute top-3 right-3 inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-300 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           <div className="px-4 py-4 space-y-3 max-h-screen overflow-y-auto">
           {/* Navigation Links */}
           <div className="space-y-1">
@@ -470,12 +470,21 @@ const Header = () => {
           )}
           <div className="mt-3 flex items-center gap-3 px-1">
             {user ? (
-              <button
-                onClick={() => { setIsMobileOpen(false); handleLogout() }}
-                className="flex-1 inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50 transition-colors"
-              >
-                Logout
-              </button>
+              <>
+                <Link
+                  to="/dashboard/dashboard-home"
+                  onClick={() => setIsMobileOpen(false)}
+                  className="flex-1 inline-flex items-center justify-center rounded-full border border-blue-500 px-5 py-2 text-sm text-blue-600 hover:bg-blue-50 transition-colors"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => { setIsMobileOpen(false); handleLogout() }}
+                  className="flex-1 inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-sm text-slate-800 hover:bg-slate-50 transition-colors"
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <Link
                 to="/signin"
