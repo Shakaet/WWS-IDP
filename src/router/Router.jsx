@@ -85,12 +85,6 @@ import AddCourse from "../pages/Dashboard/AddCourse/AddCourse";
 import AddEvents from "../pages/Dashboard/AddEvents/AddEvents";
 import ManageEvents from "../pages/Dashboard/ManageEvents/ManageEvents";
 import ManageCourses from "../pages/ManageCourses/ManageCourses";
-<<<<<<< HEAD
-import AmbassadorRoutes from "./AmbassadorRoutes";
-import AllApplication from "../pages/AllApplication";
-import ManageAmbassador from "../pages/ManageAmbassador";
-import ActivityLog from "../pages/ActivityLog";
-=======
 import SearchLayout from "../layout/SearchLayout";
 import CourseResults from "../pages/CourseResults";
 import DefaultSearchResults from "../pages/DefaultSearchResults/DefaultSearchResults";
@@ -98,7 +92,6 @@ import UniversityResults from "../pages/UniversityResult/UniversityResult";
 import EventsResults from "../pages/EventsResults/EventsResults";
 import ScholarshipsResults from "../pages/ScholarshipsResults/ScholarshipsResults";
 // import UniversityResults from "../layout/SearchLayout";
->>>>>>> 3456b40 (added and solve this)
 // import ManageCourses from "../pages/ManageCourses/ManageCourses";
 
 
@@ -378,18 +371,18 @@ export const router = createBrowserRouter([
 
       },
 
-      {
-        path: "/dashboard/my-application",
-        element: <UserRoutes><MyApplication></MyApplication></UserRoutes>
-      },
-      {
-        path: "/dashboard/manage-application",
-        element: <AdminRoutes><ManageApplication></ManageApplication></AdminRoutes>
-      },
-      {
-        path: "/dashboard/manage-ambassador",
-        element: <AdminRoutes><ManageAmbassador></ManageAmbassador></AdminRoutes>
-      },
+      // {
+      //   path: "/dashboard/my-application",
+      //   element: <UserRoutes><MyApplication></MyApplication></UserRoutes>
+      // },
+      // {
+      //   path: "/dashboard/manage-application",
+      //   element: <AdminRoutes><ManageApplication></ManageApplication></AdminRoutes>
+      // },
+      // {
+      //   path: "/dashboard/manage-ambassador",
+      //   element: <AdminRoutes><ManageAmbassador></ManageAmbassador></AdminRoutes>
+      // },
       {
         path: "/dashboard/add-new-scholarship",
         element: <AdminRoutes requiredAccess="scholarships"><AddNewScholarship></AddNewScholarship></AdminRoutes>
@@ -423,29 +416,29 @@ export const router = createBrowserRouter([
         element: <AdminRoutes requiredAccess="events">
           <ManageEvents />
         </AdminRoutes>
-          
-        
+
+
       },
       {
         path: "/dashboard/manage-courses",
         element: <AdminRoutes requiredAccess="courses">
           <ManageCourses />
-          </AdminRoutes>
-        
+        </AdminRoutes>
+
       },
-      {
-        path: "/dashboard/activity-log",
-        element: <AdminRoutes>
-          <ActivityLog></ActivityLog>
-          </AdminRoutes>
-        
-      },
-      {
-        path: "/dashboard/allApplication",
-        element: <AmbassadorRoutes>
-          <AllApplication/>
-        </AmbassadorRoutes>
-      }
+      // {
+      //   path: "/dashboard/activity-log",
+      //   element: <AdminRoutes>
+      //     <ActivityLog></ActivityLog>
+      //   </AdminRoutes>
+
+      // },
+      // {
+      //   path: "/dashboard/allApplication",
+      //   element: <AmbassadorRoutes>
+      //     <AllApplication />
+      //   </AmbassadorRoutes>
+      // }
     ]
   },
   {

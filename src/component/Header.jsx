@@ -468,9 +468,6 @@ const Header = () => {
                 </div>
               </div>
             )}
-<<<<<<< HEAD
-          </div>
-=======
             <div className="mt-3 flex items-center gap-3 px-1">
               {user ? (
                 <button
@@ -498,7 +495,6 @@ const Header = () => {
                 </svg>
               </button>
             </div>
->>>>>>> 3456b40 (added and solve this)
           </div>
         </div>
       </div>
