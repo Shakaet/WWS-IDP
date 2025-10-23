@@ -8,8 +8,8 @@ const SearchCard = () => {
   const [loading, setLoading] = useState(false)
   const axiosSecure = useAxiosSecure()
 
-  let navigate=useNavigate()
-  
+  let navigate = useNavigate()
+
   const tabs = ['Courses', 'Scholarships', 'Universities', 'Events', 'Guide me', 'Get instant offer']
 
   // Handle tab switching
@@ -41,19 +41,19 @@ const SearchCard = () => {
     destination: ''
   })
 
-  
+
 
   // Handle form submissions
   const handleSearch = async (e) => {
     e.preventDefault()
-    
+
     // For informational tabs, don't submit forms
     if (activeTab === 'Guide me' || activeTab === 'Get instant offer') {
       return
     }
-    
+
     setLoading(true)
-    console.log(coursesForm,scholarshipsForm,universitiesForm)
+    console.log(coursesForm, scholarshipsForm, universitiesForm)
 
     try {
       let endpoint = ''
@@ -81,21 +81,21 @@ const SearchCard = () => {
       }
 
       const response = await axiosSecure.post(endpoint, data)
-      
-       if (response.data.success) {
-      toast.success('Search completed successfully!')
-      // 👉 result data সহ navigate করা
-      navigate('/search-results', { state: { results: response.data.data, tab: activeTab } })
-    } else {
-      toast.error(response.data.message || 'Search failed')
+
+      if (response.data.success) {
+        toast.success('Search completed successfully!')
+        // 👉 result data সহ navigate করা
+        navigate('/search-results', { state: { results: response.data.data, tab: activeTab } })
+      } else {
+        toast.error(response.data.message || 'Search failed')
+      }
+    } catch (error) {
+      console.error('Search error:', error)
+      toast.error('An error occurred during search. Please try again.')
+    } finally {
+      setLoading(false)
     }
-  } catch (error) {
-    console.error('Search error:', error)
-    toast.error('An error occurred during search. Please try again.')
-  } finally {
-    setLoading(false)
   }
-}
 
   // Render different forms based on active tab
   const renderForm = () => {
@@ -110,15 +110,15 @@ const SearchCard = () => {
                 type="text"
                 placeholder="Enter course subject e.g. Law"
                 value={coursesForm.subject}
-                onChange={(e) => setCoursesForm({...coursesForm, subject: e.target.value})}
+                onChange={(e) => setCoursesForm({ ...coursesForm, subject: e.target.value })}
                 className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="lg:col-span-4">
               <label className="sr-only">Study level</label>
-              <select 
+              <select
                 value={coursesForm.studyLevel}
-                onChange={(e) => setCoursesForm({...coursesForm, studyLevel: e.target.value})}
+                onChange={(e) => setCoursesForm({ ...coursesForm, studyLevel: e.target.value })}
                 className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select study level</option>
@@ -131,9 +131,9 @@ const SearchCard = () => {
             </div>
             <div className="lg:col-span-4">
               <label className="sr-only">Study destination</label>
-              <select 
+              <select
                 value={coursesForm.destination}
-                onChange={(e) => setCoursesForm({...coursesForm, destination: e.target.value})}
+                onChange={(e) => setCoursesForm({ ...coursesForm, destination: e.target.value })}
                 className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select a study destination</option>
@@ -148,7 +148,7 @@ const SearchCard = () => {
               </select>
             </div>
             <div className="lg:col-span-12 flex justify-end pt-2">
-              <button 
+              <button
                 type="submit"
                 disabled={loading}
                 className="inline-flex items-center gap-2 rounded-full bg-[#11AD00] px-6 py-3 text-white hover:bg-[#4CADFF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -164,9 +164,9 @@ const SearchCard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3">
             <div className="lg:col-span-6">
               <label className="sr-only">Study level</label>
-              <select 
+              <select
                 value={scholarshipsForm.studyLevel}
-                onChange={(e) => setScholarshipsForm({...scholarshipsForm, studyLevel: e.target.value})}
+                onChange={(e) => setScholarshipsForm({ ...scholarshipsForm, studyLevel: e.target.value })}
                 className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select study level</option>
@@ -178,9 +178,9 @@ const SearchCard = () => {
             </div>
             <div className="lg:col-span-6">
               <label className="sr-only">Study destination</label>
-              <select 
+              <select
                 value={scholarshipsForm.destination}
-                onChange={(e) => setScholarshipsForm({...scholarshipsForm, destination: e.target.value})}
+                onChange={(e) => setScholarshipsForm({ ...scholarshipsForm, destination: e.target.value })}
                 className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select a study destination</option>
@@ -195,7 +195,7 @@ const SearchCard = () => {
               </select>
             </div>
             <div className="lg:col-span-12 flex justify-end pt-2">
-              <button 
+              <button
                 type="submit"
                 disabled={loading}
                 className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -215,15 +215,15 @@ const SearchCard = () => {
                 type="text"
                 placeholder="Search by university name"
                 value={universitiesForm.universityName}
-                onChange={(e) => setUniversitiesForm({...universitiesForm, universityName: e.target.value})}
+                onChange={(e) => setUniversitiesForm({ ...universitiesForm, universityName: e.target.value })}
                 className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="lg:col-span-6">
               <label className="sr-only">Study destination</label>
-              <select 
+              <select
                 value={universitiesForm.destination}
-                onChange={(e) => setUniversitiesForm({...universitiesForm, destination: e.target.value})}
+                onChange={(e) => setUniversitiesForm({ ...universitiesForm, destination: e.target.value })}
                 className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select a study destination</option>
@@ -238,7 +238,7 @@ const SearchCard = () => {
               </select>
             </div>
             <div className="lg:col-span-12 flex justify-end pt-2">
-              <button 
+              <button
                 type="submit"
                 disabled={loading}
                 className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -254,9 +254,9 @@ const SearchCard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3">
             <div className="lg:col-span-4">
               <label className="sr-only">City</label>
-              <select 
+              <select
                 value={eventsForm.city}
-                onChange={(e) => setEventsForm({...eventsForm, city: e.target.value})}
+                onChange={(e) => setEventsForm({ ...eventsForm, city: e.target.value })}
                 className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">City</option>
@@ -269,9 +269,9 @@ const SearchCard = () => {
             </div>
             <div className="lg:col-span-4">
               <label className="sr-only">Month</label>
-              <select 
+              <select
                 value={eventsForm.month}
-                onChange={(e) => setEventsForm({...eventsForm, month: e.target.value})}
+                onChange={(e) => setEventsForm({ ...eventsForm, month: e.target.value })}
                 className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Month</option>
@@ -291,9 +291,9 @@ const SearchCard = () => {
             </div>
             <div className="lg:col-span-4">
               <label className="sr-only">Study destinations</label>
-              <select 
+              <select
                 value={eventsForm.destination}
-                onChange={(e) => setEventsForm({...eventsForm, destination: e.target.value})}
+                onChange={(e) => setEventsForm({ ...eventsForm, destination: e.target.value })}
                 className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Study destinations</option>
@@ -308,7 +308,7 @@ const SearchCard = () => {
               </select>
             </div>
             <div className="lg:col-span-12 flex justify-end pt-2">
-              <button 
+              <button
                 type="submit"
                 disabled={loading}
                 className="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -326,12 +326,12 @@ const SearchCard = () => {
               <div className="mb-6">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">Get Personalized Study Guidance</h3>
                 <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
-                  Our expert counselors are here to help you make the best decisions for your international education journey. 
+                  Our expert counselors are here to help you make the best decisions for your international education journey.
                   Get personalized advice on universities, courses, scholarships, and application processes.
                 </p>
               </div>
-              
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <div className="text-blue-600 text-3xl mb-3">🎓</div>
                   <h4 className="font-semibold text-gray-800 mb-2">University Selection</h4>
@@ -368,11 +368,11 @@ const SearchCard = () => {
               <div className="mb-6">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">Get Your Instant University Offer</h3>
                 <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
-                  Skip the lengthy application process! Get instant conditional offers from top universities worldwide. 
+                  Skip the lengthy application process! Get instant conditional offers from top universities worldwide.
                   Our streamlined process connects you directly with universities that match your profile.
                 </p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <div className="text-blue-600 text-3xl mb-3">⚡</div>
@@ -443,11 +443,10 @@ const SearchCard = () => {
             <button
               key={tab}
               onClick={() => handleTabChange(tab)}
-              className={`pb-3 text-sm sm:text-base whitespace-nowrap border-b-2 -mb-px transition-colors cursor-pointer ${
-                activeTab === tab
+              className={`pb-3 text-sm sm:text-base whitespace-nowrap border-b-2 -mb-px transition-colors cursor-pointer ${activeTab === tab
                   ? 'border-blue-600 text-blue-700'
                   : 'border-transparent text-gray-600 hover:text-blue-600'
-              }`}
+                }`}
             >
               {tab}
             </button>

@@ -14,7 +14,7 @@ const Provider = ({ children }) => {
     const provider = new GoogleAuthProvider();
     let googleSign = () => {
 
-        return signInWithPopup(auth, provider) 
+        return signInWithPopup(auth, provider)
     }
 
 
@@ -73,7 +73,7 @@ const Provider = ({ children }) => {
 
     return (
         <div>
-            <AuthContext.Provider value={val}>
+            <AuthContext.Provider value={val} replace={true}>
                 {children}
             </AuthContext.Provider>
         </div>
