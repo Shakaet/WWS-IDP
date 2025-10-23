@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Links, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import icon from "../assets/wws1.png"
 import useAuth from '../Hooks/useAuth/useAuth'
-import useAdmin from '../Hooks/role/useAdmin'
-import useAmbassador from '../Hooks/role/useAmbassador'
-import useUser from '../Hooks/role/useUser'
+// import useAdmin from '../Hooks/role/useAdmin'
+// import useAmbassador from '../Hooks/role/useAmbassador'
+// import useUser from '../Hooks/role/useUser'
 
 const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
@@ -32,37 +32,41 @@ const Header = () => {
 
   // Navigation functions for different categories
   const handleFindCourses = () => {
-    navigate('/search-results', {
+    navigate('/search-results/courses', {
       state: {
         searchType: 'courses',
-        tab: 'Courses'
+        tab: 'Courses',
+        fromHeader: true
       }
     });
   };
 
   const handleFindScholarships = () => {
-    navigate('/search-results', {
+    navigate('/search-results/scholarships', {
       state: {
         searchType: 'scholarships',
-        tab: 'Scholarships'
+        tab: 'Scholarships',
+        fromHeader: true
       }
     });
   };
 
   const handleFindUniversities = () => {
-    navigate('/search-results', {
+    navigate('/search-results/universities', {
       state: {
         searchType: 'universities',
-        tab: 'Universities'
+        tab: 'Universities',
+        fromHeader: true
       }
     });
   };
 
   const handleFindEvents = () => {
-    navigate('/search-results', {
+    navigate('/search-results/events', {
       state: {
         searchType: 'events',
-        tab: 'Events'
+        tab: 'Events',
+        fromHeader: true
       }
     });
   };
@@ -96,9 +100,9 @@ const Header = () => {
       label: 'Courses',
       to: '/search-results',
       dropdown: [
-        { label: 'Find a course', to: '/search-results/courses' },
-        { label: 'Find a university', to: '/search-results/universities' },
-        { label: 'Find a events', to: '/search-results/events' },
+        { label: 'Find a course', action: handleFindCourses },
+        { label: 'Find a university', action: handleFindUniversities },
+        { label: 'Find a events', action: handleFindEvents },
         { label: 'What is IELTS?', to: '/what-is-ielts' },
         { label: 'Why WWS IELTS?', to: '/why-ielts' },
         { label: 'IELTS Preparation', to: '/ielts-preparation' },
@@ -108,7 +112,7 @@ const Header = () => {
       label: 'Scholarships',
       to: '/',
       dropdown: [
-        { label: 'Find a scholarship', to: "/search-results/scholarships" },
+        { label: 'Find a scholarship', action: handleFindScholarships },
       ]
     },
     {
@@ -171,9 +175,10 @@ const Header = () => {
       .catch(() => { })
   }
 
-  let [isAdmin] = useAdmin()
-  let [isambassador] = useAmbassador()
-  let [isUser] = useUser()
+  // Role hooks - currently unused but may be needed for future role-based features
+  // let [isAdmin] = useAdmin()
+  // let [isambassador] = useAmbassador()
+  // let [isUser] = useUser()
 
   //  console.log(isAdmin,isambassador,isUser)
 
@@ -230,10 +235,10 @@ const Header = () => {
                     }`}>
                     <div className="py-2">
                       {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                        dropdownItem.action || dropdownIndex.to ? (
+                        dropdownItem.action ? (
                           <button
                             key={dropdownIndex}
-                            onClick={dropdownItem.action || dropdownIndex.to}
+                            onClick={dropdownItem.action}
                             className="flex items-center justify-between w-full px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors text-left"
                           >
                             <div className="flex items-center gap-3">

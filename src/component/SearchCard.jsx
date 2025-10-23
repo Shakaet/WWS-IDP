@@ -84,8 +84,24 @@ const SearchCard = () => {
 
       if (response.data.success) {
         toast.success('Search completed successfully!')
-        // 👉 result data সহ navigate করা
-        navigate('/search-results', { state: { results: response.data.data, tab: activeTab } })
+        // 👉 result data সহ specific route এ navigate করা
+        const routeMap = {
+          'Courses': '/search-results/courses',
+          'Scholarships': '/search-results/scholarships', 
+          'Universities': '/search-results/universities',
+          'Events': '/search-results/events'
+        }
+        const targetRoute = routeMap[activeTab] || '/search-results'
+        
+        // Search data এবং filters pass করা
+        navigate(targetRoute, { 
+          state: { 
+            results: response.data.data, 
+            tab: activeTab,
+            searchData: data,
+            searchType: activeTab.toLowerCase()
+          } 
+        })
       } else {
         toast.error(response.data.message || 'Search failed')
       }

@@ -91,6 +91,10 @@ import DefaultSearchResults from "../pages/DefaultSearchResults/DefaultSearchRes
 import UniversityResults from "../pages/UniversityResult/UniversityResult";
 import EventsResults from "../pages/EventsResults/EventsResults";
 import ScholarshipsResults from "../pages/ScholarshipsResults/ScholarshipsResults";
+import ActivityLog from "../pages/ActivityLog";
+import ManageAmbassador from "../pages/ManageAmbassador";
+import AllApplication from "../pages/AllApplication";
+import AmbassadorRoutes from "./AmbassadorRoutes";
 // import UniversityResults from "../layout/SearchLayout";
 // import ManageCourses from "../pages/ManageCourses/ManageCourses";
 
@@ -371,18 +375,18 @@ export const router = createBrowserRouter([
 
       },
 
-      // {
-      //   path: "/dashboard/my-application",
-      //   element: <UserRoutes><MyApplication></MyApplication></UserRoutes>
-      // },
-      // {
-      //   path: "/dashboard/manage-application",
-      //   element: <AdminRoutes><ManageApplication></ManageApplication></AdminRoutes>
-      // },
-      // {
-      //   path: "/dashboard/manage-ambassador",
-      //   element: <AdminRoutes><ManageAmbassador></ManageAmbassador></AdminRoutes>
-      // },
+      {
+        path: "/dashboard/my-application",
+        element: <UserRoutes><MyApplication></MyApplication></UserRoutes>
+      },
+      {
+        path: "/dashboard/manage-application",
+        element: <AdminRoutes><ManageApplication></ManageApplication></AdminRoutes>
+      },
+      {
+        path: "/dashboard/manage-ambassador",
+        element: <AdminRoutes><ManageAmbassador></ManageAmbassador></AdminRoutes>
+      },
       {
         path: "/dashboard/add-new-scholarship",
         element: <AdminRoutes requiredAccess="scholarships"><AddNewScholarship></AddNewScholarship></AdminRoutes>
@@ -426,19 +430,23 @@ export const router = createBrowserRouter([
         </AdminRoutes>
 
       },
-      // {
-      //   path: "/dashboard/activity-log",
-      //   element: <AdminRoutes>
-      //     <ActivityLog></ActivityLog>
-      //   </AdminRoutes>
+      {
+        path: "/dashboard/activity-log",
+        element: <AdminRoutes>
+          <ActivityLog></ActivityLog>
+        </AdminRoutes>
 
-      // },
-      // {
-      //   path: "/dashboard/allApplication",
-      //   element: <AmbassadorRoutes>
-      //     <AllApplication />
-      //   </AmbassadorRoutes>
-      // }
+      },
+      {
+        path: "/dashboard/allApplication",
+        element: <AmbassadorRoutes>
+          <AllApplication></AllApplication>
+
+        </AmbassadorRoutes>
+          
+         
+        
+      }
     ]
   },
   {
