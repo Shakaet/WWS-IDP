@@ -371,7 +371,7 @@ const Header = () => {
       {/* Mobile menu panel */}
       <div
         id="mobile-menu"
-        className={`${isMobileOpen ? 'fixed inset-0 z-40' : 'hidden'} lg:hidden`}
+        className={`${isMobileOpen ? 'fixed inset-0 z-40 mb-40' : 'hidden'} lg:hidden`}
       >
         {/* Backdrop */}
         <div
@@ -471,17 +471,26 @@ const Header = () => {
                   </p>
                 </div>
               </div>
+              {/* Quick actions for mobile: Dashboard + Logout */}
+              <div className="mt-3 space-y-2">
+                <Link
+                  to="/dashboard/dashboard-home"
+                  onClick={() => setIsMobileOpen(false)}
+                  className="w-full inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50 transition-colors"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => { setIsMobileOpen(false); handleLogout(); }}
+                  className="w-full inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50 transition-colors"
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           )}
-          <div className="mt-3 flex items-center gap-3 px-1">
-            {user ? (
-              <button
-                onClick={() => { setIsMobileOpen(false); handleLogout() }}
-                className="flex-1 inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-slate-800 hover:bg-slate-50 transition-colors"
-              >
-                Logout
-              </button>
-            ) : (
+          {!user && (
+            <div className="mt-3 flex items-center gap-3 px-1">
               <Link
                 to="/signin"
                 onClick={() => setIsMobileOpen(false)}
@@ -489,8 +498,8 @@ const Header = () => {
               >
                 Sign in
               </Link>
-            )}
-          </div>
+            </div>
+          )}
           </div>
         </div>
       </div>

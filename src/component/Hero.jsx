@@ -3,10 +3,9 @@ import banner from "../assets/BannerImg.jpg"
 import SearchCard from './SearchCard'
 
 const Hero = () => {
-  const [activeTab, setActiveTab] = useState('Courses')
   const [activeSlide, setActiveSlide] = useState(0)
 
-  const tabs = ['Courses', 'Scholarships', 'Universities', 'Events', 'Guide me', 'Get instant offer']
+  
 
   const slides = [
     {
@@ -35,7 +34,7 @@ const Hero = () => {
     <div>
       <section className="relative min-h-[420px] sm:min-h-[480px] lg:min-h-[560px] mb-5">
         {/* Banner image */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 -z-10 hidden md:block">
           <img
             src={banner}
             alt="Students studying"
@@ -47,6 +46,15 @@ const Hero = () => {
             className="h-full md:hidden w-full  object-left"
           /> */}
           <div className="absolute inset-0 bg-white/20"></div>
+        </div>
+
+        {/* Mobile banner (image on top) */}
+        <div className="block md:hidden">
+          <img
+            src={banner}
+            alt="Students studying"
+            className="w-full object-cover"
+          />
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
