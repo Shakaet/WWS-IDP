@@ -9,7 +9,7 @@ const MyApplication = () => {
     const queryClient = useQueryClient()
 
     const fetchUsers = async () => {
-        const response = await axios.get(`http://localhost:3000/help-from-wws/${user?.email}`);
+        const response = await axios.get(`https://wws-idp-server.vercel.app/help-from-wws/${user?.email}`);
         return response.data;
       };
 
@@ -33,7 +33,7 @@ const MyApplication = () => {
 
         if (result.isConfirmed) {
             try {
-                await axios.delete(`http://localhost:3000/help-from-wws/${applicationId}`);
+                await axios.delete(`https://wws-idp-server.vercel.app/help-from-wws/${applicationId}`);
                 
                 // Invalidate and refetch the query to update the UI
                 queryClient.invalidateQueries([user?.email, "myapp"]);

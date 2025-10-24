@@ -9,7 +9,7 @@ const AllApplication = () => {
     const [statusFilter, setStatusFilter] = useState('all')
 
     const fetchAllApplications = async () => {
-        const response = await axios.get(`http://localhost:3000/help-from-wws`);
+        const response = await axios.get(`https://wws-idp-server.vercel.app/help-from-wws`);
         return response.data;
       };
 

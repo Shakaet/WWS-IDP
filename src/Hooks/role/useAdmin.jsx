@@ -16,7 +16,7 @@ const useAdmin = () => {
 
 
   const fetchUsers = async () => {
-    const response = await axios.get(`http://localhost:3000/getAdmin/${user?.email}`);
+    const response = await axios.get(`https://wws-idp-server.vercel.app/getAdmin/${user?.email}`);
     return response.data?.admin;
   };
 

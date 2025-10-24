@@ -12,7 +12,7 @@ const ManageAmbassador = () => {
   const [updatingPermissions, setUpdatingPermissions] = useState({});
 
   const fetchAmbassadors = async () => {
-		const response = await axios.get(`http://localhost:3000/user/ambassador`);
+		const response = await axios.get(`https://wws-idp-server.vercel.app/user/ambassador`);
 		return response.data;
 	};
 
@@ -63,7 +63,7 @@ const ManageAmbassador = () => {
       };
 
       // Send PATCH request to update database
-      await axios.patch(`http://localhost:3000/user/ambassador/${ambassadorId}`, permissionUpdate);
+      await axios.patch(`https://wws-idp-server.vercel.app/user/ambassador/${ambassadorId}`, permissionUpdate);
       
       // Show success message
       Swal.fire({

@@ -23,7 +23,7 @@ const ScholarshipsResults = () => {
         const fetchScholarships = async () => {
             setLoading(true);
             try {
-                const response = await fetch("http://localhost:3000/api/scholarships");
+                const response = await fetch("https://wws-idp-server.vercel.app/api/scholarships");
                 const data = await response.json();
                 setScholarships(data);
             } catch (error) {

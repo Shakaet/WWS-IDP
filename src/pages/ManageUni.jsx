@@ -12,7 +12,7 @@ const ManageUni = () => {
   const [search, setSearch] = useState('')
 
   const fetchUniversities = async () => {
-    const res = await axios.get('http://localhost:3000/api/search/universities')
+    const res = await axios.get('https://wws-idp-server.vercel.app/api/search/universities')
     return res.data
   }
 
@@ -65,7 +65,7 @@ const ManageUni = () => {
     try {
       const id = editData?._id
       const { _id, ...payload } = editData || {}
-      await axios.put(`http://localhost:3000/api/university/${id}`, payload)
+      await axios.put(`https://wws-idp-server.vercel.app/api/university/${id}`, payload)
       await queryClient.invalidateQueries({ queryKey: ['alluniversities'] })
       handleCloseModal()
       Swal.fire('Updated', 'University updated successfully', 'success')
@@ -87,7 +87,7 @@ const ManageUni = () => {
         confirmButtonText: 'Yes, delete it!'
       })
       if (!result.isConfirmed) return
-      await axios.delete(`http://localhost:3000/api/university/${id}`)
+      await axios.delete(`https://wws-idp-server.vercel.app/api/university/${id}`)
       await queryClient.invalidateQueries({ queryKey: ['alluniversities'] })
       Swal.fire('Deleted', 'University has been deleted.', 'success')
     } catch (err) {

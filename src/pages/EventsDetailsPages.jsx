@@ -10,7 +10,7 @@ const EventsDetailsPages = () => {
    console.log(id)
 
    const fetchEvent = async () => {
-    const res = await fetch(`http://localhost:3000/api/event/${id}`);
+    const res = await fetch(`https://wws-idp-server.vercel.app/api/event/${id}`);
     return res.json();
   };
 

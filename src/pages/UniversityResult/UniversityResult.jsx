@@ -23,7 +23,7 @@ const UniversityResults = () => {
         const fetchUniversities = async () => {
             setLoading(true);
             try {
-                const res = await fetch("http://localhost:3000/api/universities");
+                const res = await fetch("https://wws-idp-server.vercel.app/api/universities");
                 const data = await res.json();
                 setUniversities(data);
             } catch (err) {

@@ -13,7 +13,7 @@ const ManageScholarship = () => {
 	const [search, setSearch] = useState('');
 
 	const fetchScholarships = async () => {
-		const response = await axios.get(`http://localhost:3000/api/search/scholarships`);
+		const response = await axios.get(`https://wws-idp-server.vercel.app/api/search/scholarships`);
 		return response.data;
 	};
 
@@ -73,7 +73,7 @@ const ManageScholarship = () => {
 		try {
 			const id = editData?._id;
 			const { _id, ...payload } = editData || {};
-			await axios.put(`http://localhost:3000/api/scholarship/${id}`, payload);
+			await axios.put(`https://wws-idp-server.vercel.app/api/scholarship/${id}`, payload);
 			await queryClient.invalidateQueries({ queryKey: ["allscholarship"] });
 			handleCloseModal();
 			Swal.fire('Updated', 'Scholarship updated successfully', 'success');
@@ -97,7 +97,7 @@ const ManageScholarship = () => {
 
 			if (!result.isConfirmed) return;
 
-			await axios.delete(`http://localhost:3000/api/scholarship/${id}`);
+			await axios.delete(`https://wws-idp-server.vercel.app/api/scholarship/${id}`);
 			await queryClient.invalidateQueries({ queryKey: ["allscholarship"] });
 			Swal.fire('Deleted', 'Scholarship has been deleted.', 'success');
 		} catch (err) {

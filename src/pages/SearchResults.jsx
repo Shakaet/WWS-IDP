@@ -39,11 +39,11 @@ const SearchResults = () => {
     try {
       let apiEndpoint = ''
       switch (type) {
-        case 'courses': apiEndpoint = 'http://localhost:3000/api/course'; break
-        case 'scholarships': apiEndpoint = 'http://localhost:3000/api/scholarships'; break
-        case 'universities': apiEndpoint = 'http://localhost:3000/api/universities'; break
-        case 'events': apiEndpoint = 'http://localhost:3000/api/events'; break
-        default: apiEndpoint = 'http://localhost:3000/api/course'
+        case 'courses': apiEndpoint = 'https://wws-idp-server.vercel.app/api/course'; break
+        case 'scholarships': apiEndpoint = 'https://wws-idp-server.vercel.app/api/scholarships'; break
+        case 'universities': apiEndpoint = 'https://wws-idp-server.vercel.app/api/universities'; break
+        case 'events': apiEndpoint = 'https://wws-idp-server.vercel.app/api/events'; break
+        default: apiEndpoint = 'https://wws-idp-server.vercel.app/api/course'
       }
       const response = await fetch(apiEndpoint)
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)

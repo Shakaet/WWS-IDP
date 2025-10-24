@@ -23,7 +23,7 @@ const EventsResults = () => {
         const fetchEvents = async () => {
             setLoading(true);
             try {
-                const response = await fetch("http://localhost:3000/api/events");
+                const response = await fetch("https://wws-idp-server.vercel.app/api/events");
                 const data = await response.json();
                 setEvents(data);
             } catch (error) {
