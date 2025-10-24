@@ -281,7 +281,7 @@ const Header = () => {
           <div className="hidden lg:flex items-center gap-3">
             {/* Let's Collaborate Button */}
             <Link to={"/contact"} className="inline-flex items-center rounded-full border-2 border-blue-500 px-5 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 transition-colors">
-              Let's Collaborate!
+              Book a Free Counseling
             </Link>
 
             {user ? (
