@@ -443,7 +443,7 @@ const Header = () => {
           {/* Mobile Let's Collaborate Button */}
           <div className="mt-4">
             <Link to={"/contact"} className="w-full inline-flex items-center justify-center rounded-full border-2 border-blue-500 px-5 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 transition-colors">
-              Let's Collaborate!
+              Book a Free Counseling
             </Link>
           </div>
           
