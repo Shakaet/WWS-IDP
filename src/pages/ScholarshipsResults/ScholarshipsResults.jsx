@@ -1,11 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ContactHome from "../../component/ContactHome";
 import GetOffer from "../../component/GetOffer";
 
 const ScholarshipsResults = () => {
+    const location = useLocation();
+    const navState = location?.state || {};
     const [scholarships, setScholarships] = useState([]);
     const [filters, setFilters] = useState({
         studyLevel: "",
@@ -18,22 +20,42 @@ const ScholarshipsResults = () => {
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // ✅ Fetch scholarships data
+    // ✅ Initialize from navigation state or fetch all
     useEffect(() => {
-        const fetchScholarships = async () => {
+        let cancelled = false;
+        const initialize = async () => {
             setLoading(true);
             try {
-                const response = await fetch("https://wws-idp-server.vercel.app/api/scholarships");
-                const data = await response.json();
-                setScholarships(data);
+                if (Array.isArray(navState.results) && navState.results.length > 0) {
+                    if (!cancelled) setScholarships(navState.results);
+                } else {
+                    const response = await fetch("https://wws-idp-server.vercel.app/api/scholarships");
+                    const data = await response.json();
+                    if (!cancelled) setScholarships(data);
+                }
             } catch (error) {
-                console.error("Error fetching scholarships:", error);
+                console.error("Error loading scholarships:", error);
             } finally {
-                setLoading(false);
+                if (!cancelled) setLoading(false);
             }
         };
-        fetchScholarships();
-    }, []);
+        initialize();
+        return () => {
+            cancelled = true;
+        };
+    }, [navState.results]);
+
+    // ✅ Apply initial filters from search data
+    useEffect(() => {
+        if (navState.searchData) {
+            const { studyLevel, destination } = navState.searchData;
+            setFilters((prev) => ({
+                ...prev,
+                studyLevel: studyLevel || "",
+                destination: destination || "",
+            }));
+        }
+    }, [navState.searchData]);
 
     // ✅ Extract filter options
     const studyLevels = useMemo(() => [...new Set(scholarships.map(s => s.studyLevel).filter(Boolean))], [scholarships]);
@@ -61,10 +83,26 @@ const ScholarshipsResults = () => {
     // ✅ Filtered & sorted results
     const filteredScholarships = useMemo(() => {
         return scholarships.filter(s => {
-            if (filters.studyLevel && s.studyLevel !== filters.studyLevel) return false;
-            if (filters.destination && s.destination !== filters.destination) return false;
-            if (filters.duration && s.duration !== filters.duration) return false;
-            if (filters.coursesIncluded && !s.coursesIncluded.includes(filters.coursesIncluded)) return false;
+            if (filters.studyLevel) {
+                const lvlVal = String(s.studyLevel || "").toLowerCase();
+                const query = String(filters.studyLevel || "").toLowerCase();
+                if (lvlVal !== query) return false;
+            }
+            if (filters.destination) {
+                const destVal = String(s.destination || "").toLowerCase();
+                const query = String(filters.destination || "").toLowerCase();
+                if (destVal !== query) return false;
+            }
+            if (filters.duration) {
+                const durVal = String(s.duration || "").toLowerCase();
+                const query = String(filters.duration || "").toLowerCase();
+                if (durVal !== query) return false;
+            }
+            if (filters.coursesIncluded) {
+                const list = (s.coursesIncluded || []).map(c => String(c).toLowerCase());
+                const query = String(filters.coursesIncluded || "").toLowerCase();
+                if (!list.includes(query)) return false;
+            }
 
             // Donation/Funding filter
             if (filters.tuitionFee.length === 2) {

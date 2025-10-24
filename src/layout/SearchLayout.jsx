@@ -4,6 +4,7 @@ import Result2 from "../component/Result2";
 import ContactHome from "../component/ContactHome";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
+import Nav from "../component/Nav";
 
 const SearchLayout = () => {
     // const location = useLocation()
@@ -16,6 +17,7 @@ const SearchLayout = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
+            <Nav></Nav> 
             <Header />
             <div className="max-w-7xl mx-auto px-4 py-8">
 

@@ -3,37 +3,60 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 // import ContactHome from "../component/ContactHome";
 // import GetOffer from "../component/GetOffer";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ContactHome from "../../component/ContactHome";
 import GetOffer from "../../component/GetOffer";
 
 const UniversityResults = () => {
+    const location = useLocation();
+    const navState = location?.state || {};
     const [universities, setUniversities] = useState([]);
     const [filters, setFilters] = useState({
         destination: "",
         course: "",
+        universityName: "",
         tuitionFee: [0, 100000],
     });
     const [sortBy, setSortBy] = useState("popularity");
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // ✅ Fetch universities from API
+    // ✅ Initialize from navigation state or fetch all
     useEffect(() => {
-        const fetchUniversities = async () => {
+        let cancelled = false;
+        const initialize = async () => {
             setLoading(true);
             try {
-                const res = await fetch("https://wws-idp-server.vercel.app/api/universities");
-                const data = await res.json();
-                setUniversities(data);
+                if (Array.isArray(navState.results) && navState.results.length > 0) {
+                    if (!cancelled) setUniversities(navState.results);
+                } else {
+                    const res = await fetch("https://wws-idp-server.vercel.app/api/universities");
+                    const data = await res.json();
+                    if (!cancelled) setUniversities(data);
+                }
             } catch (err) {
-                console.error("Error fetching universities:", err);
+                console.error("Error loading universities:", err);
             } finally {
-                setLoading(false);
+                if (!cancelled) setLoading(false);
             }
         };
-        fetchUniversities();
-    }, []);
+        initialize();
+        return () => {
+            cancelled = true;
+        };
+    }, [navState.results]);
+
+    // ✅ Apply initial filters from search data
+    useEffect(() => {
+        if (navState.searchData) {
+            const { universityName, destination } = navState.searchData;
+            setFilters((prev) => ({
+                ...prev,
+                universityName: universityName || "",
+                destination: destination || "",
+            }));
+        }
+    }, [navState.searchData]);
 
     // ✅ Extract filter options
     const destinations = useMemo(
@@ -70,9 +93,21 @@ const UniversityResults = () => {
     const filteredUniversities = useMemo(() => {
         return universities
             .filter((u) => {
-                if (filters.universityName && u.universityName !== filters.universityName) return false;
-                if (filters.destination && u.destination !== filters.destination) return false;
-                if (filters.course && !(u.coursesOffered || []).includes(filters.course)) return false;
+                if (filters.universityName) {
+                    const nameVal = String(u.universityName || "").toLowerCase();
+                    const query = String(filters.universityName || "").toLowerCase();
+                    if (!nameVal.includes(query)) return false;
+                }
+                if (filters.destination) {
+                    const destVal = String(u.destination || "").toLowerCase();
+                    const query = String(filters.destination || "").toLowerCase();
+                    if (destVal !== query) return false;
+                }
+                if (filters.course) {
+                    const list = (u.coursesOffered || []).map((c) => String(c).toLowerCase());
+                    const query = String(filters.course || "").toLowerCase();
+                    if (!list.includes(query)) return false;
+                }
                 if (filters.tuitionFee.length === 2) {
                     const [min, max] = filters.tuitionFee;
                     const match = u.tuitionFee?.match(/[\d,]+/g);

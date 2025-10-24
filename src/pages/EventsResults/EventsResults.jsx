@@ -1,11 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ContactHome from "../../component/ContactHome";
 import GetOffer from "../../component/GetOffer";
 
 const EventsResults = () => {
+    const location = useLocation();
+    const navState = location?.state || {};
     const [events, setEvents] = useState([]);
     const [filters, setFilters] = useState({
         city: "",
@@ -18,22 +20,43 @@ const EventsResults = () => {
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // ✅ Fetch real data (from API)
+    // ✅ Initialize from navigation state or fetch all
     useEffect(() => {
-        const fetchEvents = async () => {
+        let cancelled = false;
+        const initialize = async () => {
             setLoading(true);
             try {
-                const response = await fetch("https://wws-idp-server.vercel.app/api/events");
-                const data = await response.json();
-                setEvents(data);
+                if (Array.isArray(navState.results) && navState.results.length > 0) {
+                    if (!cancelled) setEvents(navState.results);
+                } else {
+                    const response = await fetch("https://wws-idp-server.vercel.app/api/events");
+                    const data = await response.json();
+                    if (!cancelled) setEvents(data);
+                }
             } catch (error) {
-                console.error("Error fetching events:", error);
+                console.error("Error loading events:", error);
             } finally {
-                setLoading(false);
+                if (!cancelled) setLoading(false);
             }
         };
-        fetchEvents();
-    }, []);
+        initialize();
+        return () => {
+            cancelled = true;
+        };
+    }, [navState.results]);
+
+    // ✅ Apply initial filters from search data
+    useEffect(() => {
+        if (navState.searchData) {
+            const { city, month, destination } = navState.searchData;
+            setFilters((prev) => ({
+                ...prev,
+                city: city || "",
+                month: month || "",
+                destination: destination || "",
+            }));
+        }
+    }, [navState.searchData]);
 
     // ✅ Extract filter options
     const cities = useMemo(
@@ -67,11 +90,31 @@ const EventsResults = () => {
     // ✅ Filtered & sorted results
     const filteredEvents = useMemo(() => {
         let filtered = events.filter((e) => {
-            if (filters.city && e.city !== filters.city) return false;
-            if (filters.month && e.month !== filters.month) return false;
-            if (filters.destination && e.destination !== filters.destination) return false;
-            if (filters.programType && e.programType !== filters.programType) return false;
-            if (filters.organizer && e.organizer !== filters.organizer) return false;
+            if (filters.city) {
+                const cityVal = String(e.city || "").toLowerCase();
+                const query = String(filters.city || "").toLowerCase();
+                if (cityVal !== query) return false;
+            }
+            if (filters.month) {
+                const monthVal = String(e.month || "").toLowerCase();
+                const query = String(filters.month || "").toLowerCase();
+                if (monthVal !== query) return false;
+            }
+            if (filters.destination) {
+                const destVal = String(e.destination || "").toLowerCase();
+                const query = String(filters.destination || "").toLowerCase();
+                if (destVal !== query) return false;
+            }
+            if (filters.programType) {
+                const typeVal = String(e.programType || "").toLowerCase();
+                const query = String(filters.programType || "").toLowerCase();
+                if (typeVal !== query) return false;
+            }
+            if (filters.organizer) {
+                const orgVal = String(e.organizer || "").toLowerCase();
+                const query = String(filters.organizer || "").toLowerCase();
+                if (orgVal !== query) return false;
+            }
             return true;
         });
 

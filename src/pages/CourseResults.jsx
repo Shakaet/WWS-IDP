@@ -4,9 +4,11 @@ import "rc-slider/assets/index.css";
 import Result2 from "../component/Result2";
 import ContactHome from "../component/ContactHome";
 import GetOffer from "../component/GetOffer";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const CourseResults = () => {
+    const location = useLocation();
+    const navState = location?.state || {};
     const [courses, setCourses] = useState([]);
     const [filters, setFilters] = useState({
         subject: "",
@@ -18,22 +20,43 @@ const CourseResults = () => {
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // ✅ Fetch real data (from API)
+    // ✅ Initialize from navigation state or fetch all
     useEffect(() => {
-        const fetchCourses = async () => {
+        let cancelled = false;
+        const initialize = async () => {
             setLoading(true);
             try {
-                const response = await fetch("https://wws-idp-server.vercel.app/api/course");
-                const data = await response.json();
-                setCourses(data);
+                if (Array.isArray(navState.results) && navState.results.length > 0) {
+                    if (!cancelled) setCourses(navState.results);
+                } else {
+                    const response = await fetch("https://wws-idp-server.vercel.app/api/course");
+                    const data = await response.json();
+                    if (!cancelled) setCourses(data);
+                }
             } catch (error) {
-                console.error("Error fetching courses:", error);
+                console.error("Error loading courses:", error);
             } finally {
-                setLoading(false);
+                if (!cancelled) setLoading(false);
             }
         };
-        fetchCourses();
-    }, []);
+        initialize();
+        return () => {
+            cancelled = true;
+        };
+    }, [navState.results]);
+
+    // ✅ Apply initial filters from search data
+    useEffect(() => {
+        if (navState.searchData) {
+            const { subject, destination, studyLevel } = navState.searchData;
+            setFilters((prev) => ({
+                ...prev,
+                subject: subject || "",
+                destination: destination || "",
+                studyLevel: studyLevel || "",
+            }));
+        }
+    }, [navState.searchData]);
 
     // ✅ Extract filter options
     const subjects = useMemo(
@@ -72,14 +95,24 @@ const CourseResults = () => {
     // ✅ Filtered & sorted results (optimized)
     const filteredCourses = useMemo(() => {
         let filtered = courses.filter((c) => {
-            // Subject
-            if (filters.subject && c.subject !== filters.subject) return false;
-            // Destination
-            if (filters.destination && c.destination !== filters.destination)
-                return false;
-            // Study Level
-            if (filters.studyLevel && c.studyLevel !== filters.studyLevel)
-                return false;
+            // Subject (case-insensitive partial match)
+            if (filters.subject) {
+                const subjectVal = String(c.subject || "").toLowerCase();
+                const query = String(filters.subject || "").toLowerCase();
+                if (!subjectVal.includes(query)) return false;
+            }
+            // Destination (case-insensitive exact)
+            if (filters.destination) {
+                const destVal = String(c.destination || "").toLowerCase();
+                const query = String(filters.destination || "").toLowerCase();
+                if (destVal !== query) return false;
+            }
+            // Study Level (case-insensitive exact)
+            if (filters.studyLevel) {
+                const levelVal = String(c.studyLevel || "").toLowerCase();
+                const query = String(filters.studyLevel || "").toLowerCase();
+                if (levelVal !== query) return false;
+            }
             // Tuition Fee
             if (filters.tuitionFee.length === 2) {
                 const [min, max] = filters.tuitionFee;
