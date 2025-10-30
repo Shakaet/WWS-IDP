@@ -8,9 +8,9 @@ import { getAuth } from "firebase/auth"
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDiMSWYn2wjga_r7WKD9o577dpRB6lvdAE",
-    authDomain: "wws-idp.firebaseapp.com",
-    projectId: "wws-idp",
-    storageBucket: "wws-idp.firebasestorage.app",
+    authDomain: "wws-WWS.firebaseapp.com",
+    projectId: "wws-WWS",
+    storageBucket: "wws-WWS.firebasestorage.app",
     messagingSenderId: "199440018791",
     appId: "1:199440018791:web:f2fba928099091b4a953c2"
 };
