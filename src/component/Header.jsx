@@ -93,7 +93,7 @@ const Header = () => {
       ]
     },
     {
-      label: 'Courses',
+      label: 'Programs',
       to: '/search-results',
       dropdown: [
         { label: 'Find a course', to: '/search-results/courses' },
@@ -112,7 +112,7 @@ const Header = () => {
       ]
     },
     {
-      label: 'Social',
+      label: 'Find us on',
       to: '/',
       dropdown: [
         {
