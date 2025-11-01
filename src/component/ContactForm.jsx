@@ -90,7 +90,7 @@ const ContactForm = () => {
         status: 'pending',
         userEmail: user?.email
       }
-      
+
       console.log(dataToSubmit)
       await axios.post('http://localhost:3000/help-from-wws', dataToSubmit)
 
@@ -178,37 +178,37 @@ const ContactForm = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-slate-700">First name*</label>
-            <input 
-              type="text" 
-              className="mt-1 w-full rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" 
-              placeholder="" 
-              {...register('firstName')} 
+            <input
+              type="text"
+              className="mt-1 w-full rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              placeholder=""
+              {...register('firstName')}
             />
             {errors.firstName && (
               <p className="mt-1 text-sm text-red-600">{errors.firstName.message}</p>
             )}
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-slate-700">Last name*</label>
-            <input 
-              type="text" 
-              className="mt-1 w-full rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" 
-              placeholder="" 
-              {...register('lastName')} 
+            <input
+              type="text"
+              className="mt-1 w-full rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              placeholder=""
+              {...register('lastName')}
             />
             {errors.lastName && (
               <p className="mt-1 text-sm text-red-600">{errors.lastName.message}</p>
             )}
           </div>
-          
+
           <div className="sm:col-span-2">
             <label className="block text-sm font-medium text-slate-700">Email address*</label>
-            <input 
-              type="email" 
-              className="mt-1 w-full rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" 
-              placeholder="" 
-              {...register('email')} 
+            <input
+              type="email"
+              className="mt-1 w-full rounded-md border-1 border-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              placeholder=""
+              {...register('email')}
             />
             {errors.email && (
               <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
@@ -247,7 +247,7 @@ const ContactForm = () => {
               <p className="mt-1 text-sm text-red-600">{errors.destination.message}</p>
             )}
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-slate-700">When would you like to start?*</label>
             <select className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" {...register('startWhen')}>
@@ -273,7 +273,7 @@ const ContactForm = () => {
               <p className="mt-1 text-sm text-red-600">{errors.counsellingMode.message}</p>
             )}
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-slate-700">How would you fund your education?*</label>
             <select className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" {...register('funding')}>
@@ -300,9 +300,9 @@ const ContactForm = () => {
               <p className="mt-1 text-sm text-red-600">{errors.studyLevel.message}</p>
             )}
           </div>
-          
+
           <div>
-            <label className="block text-sm font-medium text-slate-700">Nearest IDP Office*</label>
+            <label className="block text-sm font-medium text-slate-700">Nearest WWS Office*</label>
             <select className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600" {...register('nearestOffice')}>
               <option value="">Select</option>
               <option>Dhaka</option>
@@ -318,12 +318,12 @@ const ContactForm = () => {
           <div className="sm:col-span-2 space-y-3 mt-1">
             <label className="flex items-start gap-3">
               <input type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300" {...register('agreeTerms')} />
-              <span className="text-sm text-slate-700">I agree to IDP Terms and privacy policy *</span>
+              <span className="text-sm text-slate-700">I agree to WWS Terms and privacy policy *</span>
             </label>
             {errors.agreeTerms && (
               <p className="-mt-2 text-sm text-red-600">{errors.agreeTerms.message}</p>
             )}
-            
+
             <label className="flex items-start gap-3">
               <input type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300" {...register('contactConsent')} />
               <span className="text-sm text-slate-700">Please contact me by phone, email or SMS to assist with my enquiry*</span>
@@ -331,25 +331,25 @@ const ContactForm = () => {
             {errors.contactConsent && (
               <p className="-mt-2 text-sm text-red-600">{errors.contactConsent.message}</p>
             )}
-            
+
             <label className="flex items-start gap-3">
               <input type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300" {...register('marketingOptIn')} />
-              <span className="text-sm text-slate-700">I would like to receive updates and offers from IDP</span>
+              <span className="text-sm text-slate-700">I would like to receive updates and offers from WWS</span>
             </label>
           </div>
 
           {/* Submit Button */}
           <div className="sm:col-span-2">
             {user ? (
-              <button 
-                type="submit" 
-                disabled={isSubmitting} 
+              <button
+                type="submit"
+                disabled={isSubmitting}
                 className="inline-flex items-center rounded-full bg-[#11AD00] px-6 py-3 text-white hover:bg-[#4CADFF] disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-200"
               >
                 {isSubmitting ? 'Submitting...' : 'Enquire now'}
               </button>
             ) : (
-              <button 
+              <button
                 type="button"
                 onClick={handleLoginRedirect}
                 className="inline-flex items-center rounded-full bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors duration-200"
