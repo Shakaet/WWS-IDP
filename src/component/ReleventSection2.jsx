@@ -4,7 +4,7 @@ import { motion as Motion } from 'framer-motion'
 const ReleventSection2 = () => {
   // Sample counselor data - you can replace with real data
   const counselors = [
-    {
+    { 
       id: 1,
       name: "Dr. Sarah Johnson",
       email: "abdshakaet@gmail.com",
