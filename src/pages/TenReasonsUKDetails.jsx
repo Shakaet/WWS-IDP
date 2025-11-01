@@ -1,5 +1,5 @@
 import React from "react";
-import f1 from "../assets/bn.jpg";
+import f1 from "../assets/LS_1.jpg";
 import IELTSBanner from "../component/IELTSBanner";
 // import IELTSBanner from "../component/IELTSBanner";
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import banner from "../assets/Banner22.jpg"
+import { Link } from 'react-router-dom'
 
 const Service = () => {
   return (
@@ -98,9 +99,9 @@ const Service = () => {
         <p className="text-gray-300 mb-6 leading-relaxed">
           Luxury design solutions that set you apart from the competition with premium quality.
         </p>
-        <button className="bg-blue-600 hover:bg-[#11AD00] text-white px-6 py-3 rounded-lg font-medium transition-colors">
+        <Link to={"/"} className="bg-blue-600 hover:bg-[#11AD00] text-white px-6 py-3 rounded-lg font-medium transition-colors">
           Learn More
-        </button>
+        </Link>
       </div>
       {/* Growth Package Card */}
       <div className="bg-gray-800 rounded-lg p-8 border border-green-600">
@@ -115,9 +116,9 @@ const Service = () => {
         <p className="text-gray-300 mb-6 leading-relaxed">
           Comprehensive solutions designed to accelerate your business growth and market presence.
         </p>
-        <button className="bg-green-600 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+        <Link to={"/"} className="bg-green-600 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
           Get Started
-        </button>
+        </Link>
       </div>
     </div>
   </div>

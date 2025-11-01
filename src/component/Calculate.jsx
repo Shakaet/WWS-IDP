@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react'
 const Calculate = () => {
   const statistics = [
     {
-      number: 250,
+      number: 80,
       suffix: "+",
-      label: "Projects Completed",
+      label: "Visa Ratio",
       color: "text-blue-800"
     },
     {

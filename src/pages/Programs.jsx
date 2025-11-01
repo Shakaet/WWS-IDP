@@ -1,6 +1,6 @@
 import React from "react";
 import IELTSBanner from "../component/IELTSBanner";
-import icon1 from "../assets/new.jpg"; // replace with actual icon path
+import icon1 from "../assets/LS_1.jpg"; // replace with actual icon path
 
 const Programs = () => {
     const bannerProps = {

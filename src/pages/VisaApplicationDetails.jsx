@@ -1,5 +1,5 @@
 import React from "react";
-import f3 from "../assets/bn.jpg"; // make sure your image path is correct
+import f3 from "../assets/LS_2.jpg"; // make sure your image path is correct
 import IELTSBanner from "../component/IELTSBanner";
 // import IELTSBanner from "../components/IELTSBanner";
 

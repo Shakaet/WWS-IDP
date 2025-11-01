@@ -1,5 +1,5 @@
 import React from "react";
-import f2 from "../assets/bnu.jpg"; // update the path to your real image
+import f2 from "../assets/LS_1.jpg"; // update the path to your real image
 import IELTSBanner from "../component/IELTSBanner";
 // import IELTSBanner from "../components/IELTSBanner";
 

@@ -9,11 +9,11 @@ import useAuth from '../Hooks/useAuth/useAuth'
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../Hooks/useAxiosSecure/useAxiosSecure'
 import axios from 'axios'
- 
 
-let image_hosting_key=import.meta.env.VITE_image_Hosting_key
 
-let image_hosting_API =`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+let image_hosting_key = import.meta.env.VITE_image_Hosting_key
+
+let image_hosting_API = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 export const SignUp = () => {
   const axiosSecure = useAxiosSecure()
 
@@ -62,19 +62,19 @@ export const SignUp = () => {
     if (!formData.password) newErrors.password = 'Password is required'
     if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters'
     if (!formData.agreeTerms) newErrors.agreeTerms = 'You must agree to the Terms and privacy policy'
-    
+
     // Image validation
     if (formData.file) {
       const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']
       const maxSize = 5 * 1024 * 1024 // 5MB
-      
+
       if (!allowedTypes.includes(formData.file.type)) {
         newErrors.file = 'Please upload a valid image file (JPEG, PNG, GIF, or WebP)'
       } else if (formData.file.size > maxSize) {
         newErrors.file = 'Image size must be less than 5MB'
       }
     }
-    
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -120,8 +120,8 @@ export const SignUp = () => {
         allowContact: formData.allowContact,
         allowMarketing: formData.allowMarketing,
         photoURL: photoURL || '',
-        role:"user",
-        power:"false"
+        role: "user",
+        power: "false"
 
       };
       await axiosSecure.post("post-users", dataToSubmit);
@@ -178,7 +178,7 @@ export const SignUp = () => {
           <img src={banner} alt="Create account" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/10 to-black/50"></div>
           <div className="absolute left-5 bottom-4 text-white">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold">Create your IDP account</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold">Create your WWS account</div>
             <div className="opacity-90 text-sm sm:text-base">One account for all your study needs</div>
           </div>
         </div>
@@ -257,12 +257,12 @@ export const SignUp = () => {
 
         <div className="mt-3">
           <label className="block text-sm mb-1">Profile Image</label>
-          <input 
-            type="file" 
-            name="file" 
-            onChange={handleFileChange} 
+          <input
+            type="file"
+            name="file"
+            onChange={handleFileChange}
             accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
-            className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+            className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
           />
           {errors.file && <div className="text-red-600 text-xs mt-1">{errors.file}</div>}
           {formData.file && (

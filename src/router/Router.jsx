@@ -95,6 +95,8 @@ import ActivityLog from "../pages/ActivityLog";
 import ManageAmbassador from "../pages/ManageAmbassador";
 import AllApplication from "../pages/AllApplication";
 import AmbassadorRoutes from "./AmbassadorRoutes";
+import SideMap from "../pages/SideMap";
+import TermsCondition from "../pages/TermsCondition";
 // import UniversityResults from "../layout/SearchLayout";
 // import ManageCourses from "../pages/ManageCourses/ManageCourses";
 
@@ -345,6 +347,14 @@ export const router = createBrowserRouter([
       {
         path: "/agricultures",
         element: <Agriculture />
+      },
+      {
+         path: "/side-map",
+        element: <SideMap></SideMap>
+      },
+      {
+         path: "/terms",
+        element: <TermsCondition></TermsCondition>
       },
       {
         path: "/programs-overview-2023",

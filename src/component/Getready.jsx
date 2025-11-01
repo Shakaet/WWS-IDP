@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Getready = () => {
   return (
@@ -17,9 +18,9 @@ const Getready = () => {
         </p>
         
         {/* CTA Button */}
-        <button className="bg-green-600 hover:bg-[#4CADFF] text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-colors">
+        <Link to={"/"} className="bg-green-600 hover:bg-[#4CADFF] text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-colors">
           Get In Touch Today
-        </button>
+        </Link>
       </div>
     </section>
   )

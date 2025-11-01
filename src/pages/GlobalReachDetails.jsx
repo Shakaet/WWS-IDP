@@ -1,6 +1,6 @@
 import React from "react";
 import IELTSBanner from "../component/IELTSBanner";
-import bannerImg from "../assets/whyielts.jpg";
+import bannerImg from "../assets/LS_2.jpg";
 
 const GlobalReachDetails = () => {
     const bannerProps = {

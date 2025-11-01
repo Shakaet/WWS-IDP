@@ -1,6 +1,6 @@
 import React from "react";
 import IELTSBanner from "../component/IELTSBanner";
-import icon4 from "../assets/f2.jpeg"; 
+import icon4 from "../assets/LS_1.jpg"; 
 
 const Events2023 = () => {
     const bannerProps = {

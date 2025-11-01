@@ -9,14 +9,15 @@ const Footer = () => {
       name: "Penn State Extension",
       college: "College of Agricultural Sciences",
       university: "The Pennsylvania State University",
-      address: "323 Agricultural Administration Building University Park, PA 16802"
+      address: "323 Agricultural Administration Building University Park, PA 16802",
+      copyWrite:"© 2025 World Wise Scholars. All rights reserved."
     },
     aboutExtension: [
       { name: "About", url: "/about-us" },
       { name: "Leadership", url: "/leader-ship" },
       { name: "Careers", url: "/career" },
       { name: "Staff Directory", url: "staff-directory" },
-      { name: "Privacy Policy", url: "/private-policy" },
+      // { name: "Privacy Policy", url: "/private-policy" },
       { name: "Events", url: "our-events" },
       { name: "Contact Us", url: "#" }
     ],
@@ -26,16 +27,21 @@ const Footer = () => {
       { name: "Registration Issues", url: "/register-issue" },
       { name: "Website Feedback", url: "/website-feedback" },
       { name: "Report a Problem", url: "/report-a-problem" },
-      { name: "Accessibility", url: "/accessability" }
+      // { name: "Accessibility", url: "/accessability" }
     ],
     otherPrograms: [
-      { name: "Pennsylvania 4-H", url: "/pennslvania-4-h" },
-      { name: "Better Kid Care", url: "/better-kid-care" },
-      { name: "Master Gardeners", url: "/master-gardeners" },
-      { name: "Food Safety", url: "/food-safety" },
-      { name: "Water Resources", url: "/water-resources" },
-      { name: "Nutrition Links", url: "/nutrition-links" },
-      { name: "Agriculture", url: "/agricultures" }
+      // { name: "Pennsylvania 4-H", url: "/pennslvania-4-h" },
+      // { name: "Better Kid Care", url: "/better-kid-care" },
+      // { name: "Master Gardeners", url: "/master-gardeners" },
+      // { name: "Food Safety", url: "/food-safety" },
+      // { name: "Water Resources", url: "/water-resources" },
+      // { name: "Nutrition Links", url: "/nutrition-links" },
+      // { name: "Agriculture", url: "/agricultures" }
+      { name: "Accessibility", url: "/accessability" },
+      { name: "Side-Map", url: "/side-map" },
+      { name: "Privacy Policy", url: "/private-policy" },
+      { name: "Terms & Condition", url: "/terms" },
+
     ]
   };
 
@@ -63,6 +69,7 @@ const Footer = () => {
             <p className="text-gray-600">{footerData.organization.college}</p>
             <p className="text-gray-600">{footerData.organization.university}</p>
             <p className="text-gray-500 text-sm mt-4">{footerData.organization.address}</p>
+            <p className="text-gray-500 text-sm mt-4">{footerData.organization.copyWrite}</p>
           </motion.div>
 
           {/* Middle Column - About & Customer Service */}

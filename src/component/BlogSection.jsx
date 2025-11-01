@@ -133,7 +133,7 @@ const BlogSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <Link
+            {/* <Link
               to="/blog"
               className="inline-flex items-center gap-2 bg-[#11AD00] hover:bg-[#4CADFF] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
@@ -148,7 +148,7 @@ const BlogSection = () => {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
               </Motion.svg>
-            </Link>
+            </Link> */}
           </Motion.div>
         </Motion.div>
 

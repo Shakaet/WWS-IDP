@@ -1,5 +1,5 @@
 import React from "react";
-import f1 from "../assets/bn.jpg"; // <-- replace with your real image
+import f1 from "../assets/LS_2.jpg"; // <-- replace with your real image
 import IELTSBanner from "../component/IELTSBanner";
 // import IELTSBanner from "../components/IELTSBanner";
 

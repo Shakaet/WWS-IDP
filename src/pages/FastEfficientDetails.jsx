@@ -1,6 +1,6 @@
 import React from "react";
 // import IELTSBanner from "../components/IELTSBanner";
-import bannerImg from "../assets/bn.jpg"
+import bannerImg from "../assets/whyielts.jpg"
 import IELTSBanner from "../component/IELTSBanner";
 
 const FastEfficientDetails = () => {

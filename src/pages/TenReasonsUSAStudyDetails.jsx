@@ -1,5 +1,5 @@
 import React from "react";
-import img2 from "../assets/usa.webp"; // replace with your actual image path
+import img2 from "../assets/LS_1.jpg"; // replace with your actual image path
 import IELTSBanner from "../component/IELTSBanner";
 
 const TenReasonsUSAStudyDetails = () => {
