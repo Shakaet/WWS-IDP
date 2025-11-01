@@ -97,7 +97,7 @@ const Header = () => {
       ]
     },
     {
-      label: 'Courses',
+      label: 'Programs',
       to: '/search-results',
       dropdown: [
         { label: 'Find a course', action: handleFindCourses },
@@ -116,7 +116,7 @@ const Header = () => {
       ]
     },
     {
-      label: 'Social',
+      label: 'Find us on',
       to: '/',
       dropdown: [
         {
@@ -189,7 +189,7 @@ const Header = () => {
         <div className="flex h-16 md:h-18 items-center justify-between">
           {/* Left: Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            <Link to="/" className="flex items-center gap-2" aria-label="IDP home">
+            <Link to="/" className="flex items-center gap-2" aria-label="WWS home">
               <img
                 width={220}
                 height={48}

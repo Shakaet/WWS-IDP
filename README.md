@@ -9,7 +9,7 @@
 
 **Empowering Students to Pursue Global Education Opportunities**
 
-[Live Demo](https://wws-idp-website.vercel.app) 
+[Live Demo](https://wws-WWS-website.vercel.app) 
 
 </div>
 
@@ -101,9 +101,9 @@
 ## 📁 Project Structure
 
 ```
-WWS-IDP-Website/
+WWS-WWS-Website/
 │
-├── WWS-IDP-WEBSITE/              # Frontend Application
+├── WWS-WWS-WEBSITE/              # Frontend Application
 │   ├── src/
 │   │   ├── assets/               # Images and static files
 │   │   ├── AuthProvider/         # Authentication context
@@ -140,7 +140,7 @@ WWS-IDP-Website/
 │   ├── vite.config.js
 │   └── tailwind.config.js
 │
-├── WWS-IDP-server/               # Backend API
+├── WWS-WWS-server/               # Backend API
 │   ├── index.js                  # Express server
 │   ├── package.json
 │   └── vercel.json
@@ -164,28 +164,28 @@ Make sure you have the following installed:
 
 #### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/WWS-IDP-Website.git
-cd WWS-IDP-Website
+git clone https://github.com/yourusername/WWS-WWS-Website.git
+cd WWS-WWS-Website
 ```
 
 #### 2. Setup Frontend
 
 ```bash
-cd WWS-IDP-WEBSITE
+cd WWS-WWS-WEBSITE
 npm install
 ```
 
 #### 3. Setup Backend
 
 ```bash
-cd ../WWS-IDP-server
+cd ../WWS-WWS-server
 npm install
 ```
 
 ### Environment Variables
 
 #### Frontend (.env)
-Create a `.env` file in the `WWS-IDP-WEBSITE` directory:
+Create a `.env` file in the `WWS-WWS-WEBSITE` directory:
 
 ```env
 # Firebase Configuration
@@ -201,7 +201,7 @@ VITE_API_URL=http://localhost:5000
 ```
 
 #### Backend (.env)
-Create a `.env` file in the `WWS-IDP-server` directory:
+Create a `.env` file in the `WWS-WWS-server` directory:
 
 ```env
 # MongoDB
@@ -231,14 +231,14 @@ SECRET_KEY=your_secret_key
 
 #### Start Frontend
 ```bash
-cd WWS-IDP-WEBSITE
+cd WWS-WWS-WEBSITE
 npm run dev
 ```
 Frontend will run on `http://localhost:5173`
 
 #### Start Backend
 ```bash
-cd WWS-IDP-server
+cd WWS-WWS-server
 node index.js
 ```
 Backend will run on `http://localhost:5000`
@@ -247,7 +247,7 @@ Backend will run on `http://localhost:5000`
 
 #### Build Frontend
 ```bash
-cd WWS-IDP-WEBSITE
+cd WWS-WWS-WEBSITE
 npm run build
 npm run preview
 ```
@@ -342,7 +342,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 - 📧 Email: contact@worldwisescholars.com
 - 🌐 Website: [worldwisescholars.com](#)
 
-**Project Link:** [https://github.com/yourusername/WWS-IDP-Website](https://github.com/yourusername/WWS-IDP-Website)
+**Project Link:** [https://github.com/yourusername/WWS-WWS-Website](https://github.com/yourusername/WWS-WWS-Website)
 
 ---
 
