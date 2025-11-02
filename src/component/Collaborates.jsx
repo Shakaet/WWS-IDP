@@ -91,13 +91,7 @@ const Collaborates = () => {
     }
   }
 
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/your-username/30min'
-      })
-    }
-  }
+  
 
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -129,7 +123,7 @@ const Collaborates = () => {
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
             {/* Left Side - Calendly Embed */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100">
+            <div className="relative overflow-hidden bg-white">
               <div className="p-8 h-full flex flex-col">
                 <div className="mb-6">
                   <h2 className="text-2xl font-bold text-gray-800 mb-2">
@@ -142,9 +136,9 @@ const Collaborates = () => {
                 
                 {/* Inline Calendly Widget */}
                 <div 
-                  className="calendly-inline-widget flex-1 min-h-[500px] rounded-lg overflow-hidden shadow-inner" 
+                  className="calendly-inline-widget w-full rounded-lg overflow-hidden shadow-inner" 
                   data-url="https://calendly.com/abdshakaet/30min"
-                  style={{ minWidth: '100%', height: '100%' }}
+                  style={{ minWidth: '320px', height: '900px' }}
                 ></div>
               </div>
             </div>
