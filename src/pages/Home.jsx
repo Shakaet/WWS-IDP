@@ -18,6 +18,7 @@ import Getready from '../component/Getready'
 import Calculate from '../component/Calculate'
 import FloatingWhatsApp from '../component/FloatingWhatsApp'
 import ReleventSection3 from './ReleventSection3'
+import FloatingMessenger from '../component/FloatingMessenger'
 
 
 const Home = () => {
@@ -157,7 +158,9 @@ const Home = () => {
         </Motion.div> */}
       </Motion.div>
     </Motion.div>
+    <FloatingMessenger page="worldwisesocial" className="bottom-24"></FloatingMessenger>
     <FloatingWhatsApp phone="+8801336485736" message="Hello! I would like to know more." />
+    
     </>
   )
 }

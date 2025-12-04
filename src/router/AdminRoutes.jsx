@@ -84,7 +84,7 @@ const AdminRoutes = ({ children, requiredAccess }) => {
   const location = useLocation();
 
   if (loading || adminLoading || ambassadorDataLoading) {
-    return <progress className="progress w-56"></progress>;
+    return null;
   }
 
   // Admin has full access

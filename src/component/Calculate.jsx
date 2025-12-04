@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react'
 
 const Calculate = () => {
   const statistics = [
-    {
-      number: 80,
+     {
+      number: 5,
       suffix: "+",
+      label: "Years Experience",
+      color: "text-blue-500"
+    },
+    {
+      number: 99,
+      suffix: "%",
       label: "Visa Ratio",
       color: "text-blue-800"
     },
@@ -14,12 +20,7 @@ const Calculate = () => {
       label: "Client Satisfaction", 
       color: "text-green-600"
     },
-    {
-      number: 5,
-      suffix: "+",
-      label: "Years Experience",
-      color: "text-blue-500"
-    },
+    
     {
       number: 24,
       suffix: "/7",

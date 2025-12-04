@@ -1,27 +1,15 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState, useEffect, useCallback } from 'react'
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
-import useAdmin from '../Hooks/role/useAdmin'
-import useAmbassador from '../Hooks/role/useAmbassador'
-import useUser from '../Hooks/role/useUser'
 import useAuth from '../Hooks/useAuth/useAuth'
-import useAmbassadorAccess from '../Hooks/role/useAmbassadorAccess'
+import { useRole } from '../Context/RoleContext.jsx'
 
 
 const DashboardLayout = () => {
-   let [ambassadorData,ambassadorDataLoading, error] = useAmbassadorAccess();
-  // console.log(ambassadorData?.role)
-  let ambassadorRole= ambassadorData?.role
-  let ambassadorAccess=ambassadorData?.access
- 
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const [isAdmin, adminLoading] = useAdmin()
-  const [isambassador, ambassadorLoading] = useAmbassador()
-  const [isUser, userLoading] = useUser()
   const { signOuts, user } = useAuth()
-  console.log(user)
+  const { role, roleLoading, ambassadorAccess } = useRole()
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
@@ -31,22 +19,22 @@ const DashboardLayout = () => {
     setIsSidebarOpen(false)
   }
 
-  const handleLogout = async () => {
+  const handleLogout = React.useCallback(async () => {
     try {
       await signOuts()
       navigate('/')
     } catch (error) {
       console.error('Logout error:', error)
     }
-  }
+  }, [signOuts, navigate])
 
-  const getMenuItems = () => {
+  const getMenuItems = useCallback(() => {
     const commonItems = [
       { name: 'Dashboard Home', path: '/dashboard/dashboard-home', icon: '🏠' },
 
     ]
 
-    if (isUser && !userLoading) {
+    if (role === 'user') {
       return [
         ...commonItems,
         { name: 'My Applications', path: '/dashboard/my-application', icon: '📋' },
@@ -115,58 +103,50 @@ const DashboardLayout = () => {
     //   ]
     // }
 
+    if (role === 'ambassador') {
+      const menuItems = [
+        ...commonItems,
+        { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
+      ];
 
-    if (ambassadorRole && !ambassadorDataLoading) {
-  // common menu items
-  const menuItems = [
-    ...commonItems,
-    { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
-  ];
+      if (ambassadorAccess?.scholarships) {
+        menuItems.push(
+          { name: 'Add New Scholarship', path: '/dashboard/add-new-scholarship', icon: '🎓' },
+          { name: 'Manage Scholarships', path: '/dashboard/manage-scholarships', icon: '🎓' }
+        );
+      }
 
-  // scholarship-related
-  if (ambassadorAccess?.scholarships) {
-    menuItems.push(
-      { name: 'Add New Scholarship', path: '/dashboard/add-new-scholarship', icon: '🎓' },
-      { name: 'Manage Scholarships', path: '/dashboard/manage-scholarships', icon: '🎓' }
-    );
-  }
+      if (ambassadorAccess?.courses) {
+        menuItems.push(
+          { name: 'Add New Courses', path: '/dashboard/add-course', icon: '📚' },
+          { name: 'Manage Courses', path: '/dashboard/manage-courses', icon: '📚' }
+        );
+      }
 
-  // courses-related
-  if (ambassadorAccess?.courses) {
-    menuItems.push(
-      { name: 'Add New Courses', path: '/dashboard/add-course', icon: '📚' },
-      { name: 'Manage Courses', path: '/dashboard/manage-courses', icon: '📚' }
-    );
-  }
+      if (ambassadorAccess?.events) {
+        menuItems.push(
+          { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
+          { name: 'Manage Events', path: '/dashboard/manage-events', icon: '📅' }
+        );
+      }
 
-  // events-related
-  if (ambassadorAccess?.events) {
-    menuItems.push(
-      { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
-      { name: 'Manage Events', path: '/dashboard/manage-events', icon: '📅' }
-    );
-  }
+      if (ambassadorAccess?.universities) {
+        menuItems.push(
+          { name: 'Add New University', path: '/dashboard/add-new-university', icon: '🏛️' },
+          { name: 'Manage Universities', path: '/dashboard/manage-universities', icon: '🏛️' }
+        );
+      }
 
-  // universities-related
-  if (ambassadorAccess?.universities) {
-    menuItems.push(
-      { name: 'Add New University', path: '/dashboard/add-new-university', icon: '🏛️' },
-      { name: 'Manage Universities', path: '/dashboard/manage-universities', icon: '🏛️' }
-    );
-  }
+      menuItems.push(
+        { name: 'Collaborate', path: '/contact', icon: '🤝' },
+        { name: 'Home', path: '/', icon: '🏡' },
+        { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
+      );
 
-  // finally add common footer links
-  menuItems.push(
-    { name: 'Collaborate', path: '/contact', icon: '🤝' },
-    { name: 'Home', path: '/', icon: '🏡' },
-    { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
-  );
+      return menuItems;
+    }
 
-  return menuItems;
-}
-
-
-    if (isAdmin && !adminLoading) {
+    if (role === 'admin') {
       return [
         ...commonItems,
         { name: 'Add New Scholarship', path: '/dashboard/add-new-scholarship', icon: '🎓' },
@@ -186,31 +166,53 @@ const DashboardLayout = () => {
     }
 
     return commonItems
-  }
+  }, [role, ambassadorAccess, handleLogout])
 
-  const menuItems = getMenuItems()
+  const menuItems = useMemo(() => getMenuItems(), [getMenuItems])
+
+  // Cache pour un rendu fluide pendant les transitions
+  const [stableMenuItems, setStableMenuItems] = useState([])
+  const [hasResolvedRole, setHasResolvedRole] = useState(false)
+
+  useEffect(() => {
+    if (!roleLoading) {
+      setStableMenuItems(menuItems)
+      setHasResolvedRole(true)
+    }
+  }, [roleLoading, menuItems])
 
   const getUserRole = () => {
-    if (isAdmin && !adminLoading) return 'Admin'
-    if (isambassador && !ambassadorLoading) return 'Ambassador'
-    if (isUser && !userLoading) return 'User'
-    if (adminLoading || ambassadorLoading || userLoading) return "Loading"
+    if (role === 'admin') return 'Admin'
+    if (role === 'ambassador') return 'Ambassador'
+    if (role === 'user') return 'User'
+    if (roleLoading) return "Loading"
     if (!user) return "Loading"
     return 'Loading...'
   }
 
   const getRoleColor = () => {
-    if (isAdmin && !adminLoading) return 'from-red-500 to-red-600'
-    if (isambassador && !ambassadorLoading) return 'from-green-500 to-green-600'
+    if (role === 'admin') return 'from-red-500 to-red-600'
+    if (role === 'ambassador') return 'from-green-500 to-green-600'
     return 'from-blue-500 to-blue-600'
   }
 
   const getRoleBadgeColor = () => {
-    if (isAdmin && !adminLoading) return 'bg-red-100 text-red-800 border-red-200'
-    if (isambassador && !ambassadorLoading) return 'bg-green-100 text-green-800 border-green-200'
+    if (role === 'admin') return 'bg-red-100 text-red-800 border-red-200'
+    if (role === 'ambassador') return 'bg-green-100 text-green-800 border-green-200'
     return 'bg-blue-100 text-blue-800 border-blue-200'
   }
 
+  // Guard d'accès: rediriger si route dashboard non autorisée
+  useEffect(() => {
+    // Attendre la première résolution pour éviter les redirections agressives
+    if (!hasResolvedRole) return
+    const effectiveMenu = roleLoading ? stableMenuItems : menuItems
+    const allowedPaths = new Set(effectiveMenu.filter(i => !i.action).map(i => i.path))
+    const isDashboardPath = location.pathname.startsWith('/dashboard')
+    if (isDashboardPath && !allowedPaths.has(location.pathname)) {
+      navigate('/dashboard/dashboard-home', { replace: true })
+    }
+  }, [hasResolvedRole, roleLoading, stableMenuItems, menuItems, location.pathname, navigate])
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Gorgeous Sidebar */}

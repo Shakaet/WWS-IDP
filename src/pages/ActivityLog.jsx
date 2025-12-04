@@ -17,7 +17,7 @@ const ActivityLog = () => {
 
   const fetchUsers = async () => {
     const response = await axios.get(`https://wws-idp-server.vercel.app/users`)
-    return response.data
+    return response.data.data
   }
 
   const { data: allUsers = [], isLoading: usersLoading } = useQuery({

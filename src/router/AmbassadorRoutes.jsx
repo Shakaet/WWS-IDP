@@ -13,8 +13,8 @@ const AmbassadorRoutes = ({children}) => {
 
              let location= useLocation()
 
-    if(loading || ambassadorLoading){
-        return <progress className="progress w-56"></progress>
+   if(loading || ambassadorLoading){
+        return null
     }
 
 

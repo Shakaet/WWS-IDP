@@ -10,6 +10,7 @@ const Header = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [openMobileDropdowns, setOpenMobileDropdowns] = useState({});
   const navigate = useNavigate();
 
   let { user, signOuts } = useAuth()
@@ -394,50 +395,72 @@ const Header = () => {
           </button>
           <div className="px-4 py-4 space-y-3 max-h-screen overflow-y-auto">
           {/* Navigation Links */}
-          <div className="space-y-1">
-            {navItems.map((item) => (
-              <div key={item.label}>
-                <Link
-                  to={item.to}
-                  onClick={() => setIsMobileOpen(false)}
-                  className="block rounded-lg px-3 py-3 text-base text-slate-700 hover:bg-slate-50 transition-colors"
-                >
-                  {item.label}
-                </Link>
-                {/* Mobile Dropdown */}
-                {item.dropdown && (
-                  <div className="ml-4 space-y-1">
-                    {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                      dropdownItem.action ? (
-                        <button
-                          key={dropdownIndex}
-                          onClick={() => {
-                            setIsMobileOpen(false);
-                            dropdownItem.action();
-                          }}
-                          className="flex items-center gap-3 w-full text-left rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
-                        >
-                          {dropdownItem.icon && dropdownItem.icon}
-                          {dropdownItem.label}
-                        </button>
-                      ) : (
-                        <Link
-                          key={dropdownIndex}
-                          to={dropdownItem.to}
-                          target={item.label === 'Social' ? "_blank" : undefined}
-                          rel={item.label === 'Social' ? "noopener noreferrer" : undefined}
-                          onClick={() => setIsMobileOpen(false)}
-                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
-                        >
-                          {dropdownItem.icon && dropdownItem.icon}
-                          {dropdownItem.label}
-                        </Link>
-                      )
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+          <div className="space-y-1 mt-5">
+            {navItems.map((item, index) => {
+              const isOpen = !!openMobileDropdowns[index];
+              return (
+                <div key={item.label}>
+                  {item.dropdown ? (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setOpenMobileDropdowns((prev) => ({ ...prev, [index]: !prev[index] }))
+                      }
+                      className="flex items-center justify-between w-full rounded-lg px-3 py-3 text-base text-slate-700 hover:bg-slate-50 transition-colors"
+                    >
+                      <span className="flex items-center gap-3">{item.label}</span>
+                      <svg
+                        className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  ) : (
+                    <Link
+                      to={item.to}
+                      onClick={() => setIsMobileOpen(false)}
+                      className="block rounded-lg px-3 py-3 text-base text-slate-700 hover:bg-slate-50 transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                  {item.dropdown && isOpen && (
+                    <div className="ml-4 space-y-1">
+                      {item.dropdown.map((dropdownItem, dropdownIndex) =>
+                        dropdownItem.action ? (
+                          <button
+                            key={dropdownIndex}
+                            onClick={() => {
+                              setIsMobileOpen(false);
+                              dropdownItem.action();
+                            }}
+                            className="flex items-center gap-3 w-full text-left rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                          >
+                            {dropdownItem.icon && dropdownItem.icon}
+                            {dropdownItem.label}
+                          </button>
+                        ) : (
+                          <Link
+                            key={dropdownIndex}
+                            to={dropdownItem.to}
+                            target={item.label === 'Social' ? "_blank" : undefined}
+                            rel={item.label === 'Social' ? "noopener noreferrer" : undefined}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                          >
+                            {dropdownItem.icon && dropdownItem.icon}
+                            {dropdownItem.label}
+                          </Link>
+                        )
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
           
           {/* Mobile Let's Collaborate Button */}

@@ -11,8 +11,8 @@ const UserRoutes = ({children}) => {
 
              let location= useLocation()
 
-    if(loading || userLoading){
-        return <progress className="progress w-56"></progress>
+   if(loading || userLoading){
+        return null
     }
 
 
