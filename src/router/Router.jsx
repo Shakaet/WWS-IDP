@@ -97,6 +97,7 @@ import AllApplication from "../pages/AllApplication";
 import AmbassadorRoutes from "./AmbassadorRoutes";
 import SideMap from "../pages/SideMap";
 import TermsCondition from "../pages/TermsCondition";
+import ResultsPage from "../pages/ResultsPage";
 // import UniversityResults from "../layout/SearchLayout";
 // import ManageCourses from "../pages/ManageCourses/ManageCourses";
 
@@ -111,6 +112,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>
+      },
+      {
+        path:"/results",
+        element:<ResultsPage></ResultsPage>
       },
       {
         path: "signin",

@@ -80,7 +80,7 @@ const AddEvents = () => {
     return (
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8">
             <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
-                <div className="px-6 sm:px-8 py-6 border-b border-gray-100 bg-gradient-to-r from-white to-blue-50">
+                <div className="px-6 sm:px-8 py-6 border-b border-gray-100">
                     <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
                         Add New Event
                     </h1>

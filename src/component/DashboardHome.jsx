@@ -14,7 +14,7 @@ const DashboardHome = () => {
 
       {/* User Profile Card */}
       <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-        <div className="bg-gradient-to-r from-gray-50 to-blue-50 px-6 py-4 border-b border-gray-200">
+        <div className=" px-6 py-4 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-800">Profile Information</h2>
         </div>
         

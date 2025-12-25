@@ -1,13 +1,16 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react'
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import useAuth from '../Hooks/useAuth/useAuth'
 import { useRole } from '../Context/RoleContext.jsx'
 
 
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [theme, setTheme] = useState('light')
   const location = useLocation()
   const navigate = useNavigate()
+
   const { signOuts, user } = useAuth()
   const { role, roleLoading, ambassadorAccess } = useRole()
 
@@ -17,6 +20,49 @@ const DashboardLayout = () => {
 
   const closeSidebar = () => {
     setIsSidebarOpen(false)
+  }
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('dashboardTheme')
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+      setTheme(storedTheme)
+      return
+    }
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(prefersDark ? 'dark' : 'light')
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('dashboardTheme', theme)
+    const isDashboardPath = location.pathname.startsWith('/dashboard')
+    if (isDashboardPath && theme === 'dark') {
+      document.documentElement.classList.add('dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
+      return
+    }
+    document.documentElement.classList.remove('dark')
+    document.documentElement.setAttribute('data-theme', 'light')
+  }, [theme, location.pathname])
+
+  const handleProtectedNavigate = useCallback(async (to) => {
+    const isDashboardTarget = to.startsWith('/dashboard')
+    if (theme === 'dark' && !isDashboardTarget) {
+      await Swal.fire({
+        icon: 'warning',
+        title: 'Dark Mode Restricted',
+        text: 'Dark mode is available only in the Dashboard. We will switch to Light Mode before leaving the Dashboard.',
+        confirmButtonText: 'OK'
+      })
+
+      document.documentElement.classList.remove('dark')
+      document.documentElement.setAttribute('data-theme', 'light')
+    }
+
+    navigate(to)
+  }, [navigate, theme])
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
   }
 
   const handleLogout = React.useCallback(async () => {
@@ -43,65 +89,6 @@ const DashboardLayout = () => {
         { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
       ]
     }
-
-    // if (isambassador && !ambassadorLoading) {
-    //   return [
-    //     ...commonItems,
-    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
-    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
-    //     { name: 'Home', path: '/', icon: '🏡' },
-    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
-    //   ]
-    // }
-
-
-    //  if ( ambassadorRole && !ambassadorDataLoading && ambassadorAccess?.scholarships) {
-    //   return [
-    //     ...commonItems,
-    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
-    //     { name: 'Add New Scholarship', path: '/dashboard/add-new-scholarship', icon: '🎓' },
-    //     { name: 'Manage Scholarships', path: '/dashboard/manage-scholarships', icon: '🎓' },
-    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
-    //     { name: 'Home', path: '/', icon: '🏡' },
-    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
-    //   ]
-    // }
-
-    //  if ( ambassadorRole && !ambassadorDataLoading && ambassadorAccess?.courses) {
-    //   return [
-    //     ...commonItems,
-    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
-    //     { name: 'Add New Courses', path: '/dashboard/add-course', icon: '📚' },
-    //      { name: 'Manage Courses', path: '/dashboard/manage-courses', icon: '📚' },
-    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
-    //     { name: 'Home', path: '/', icon: '🏡' },
-    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
-    //   ]
-    // }
-
-    //  if ( ambassadorRole && !ambassadorDataLoading && ambassadorAccess?.events) {
-    //   return [
-    //     ...commonItems,
-    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
-    //      { name: 'Add New Events', path: '/dashboard/add-events', icon: '📅' },
-    //      { name: 'Manage Events', path: '/dashboard/manage-events', icon: '📅' },
-    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
-    //     { name: 'Home', path: '/', icon: '🏡' },
-    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
-    //   ]
-    // }
-
-    //  if ( ambassadorRole && !ambassadorDataLoading && ambassadorAccess?.universities) {
-    //   return [
-    //     ...commonItems,
-    //     { name: 'All Applications', path: '/dashboard/allApplication', icon: '📊' },
-    //     { name: 'Add New University', path: '/dashboard/add-new-university', icon: '🏛️' },
-    //     { name: 'Manage Universities', path: '/dashboard/manage-universities', icon: '🏛️' },
-    //     { name: 'Collaborate', path: '/contact', icon: '🤝' },
-    //     { name: 'Home', path: '/', icon: '🏡' },
-    //     { name: 'Logout', path: '#', icon: '🚪', action: handleLogout }
-    //   ]
-    // }
 
     if (role === 'ambassador') {
       const menuItems = [
@@ -214,10 +201,10 @@ const DashboardLayout = () => {
     }
   }, [hasResolvedRole, roleLoading, stableMenuItems, menuItems, location.pathname, navigate])
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="dashboard-scope flex min-h-screen text-slate-900 dark:text-slate-100 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900">
       {/* Gorgeous Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:relative w-72 bg-white/95 backdrop-blur-sm shadow-2xl border-r border-gray-200/50 transition-transform duration-300 ease-in-out z-50 overflow-hidden`}
+        className={`fixed inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:relative w-72 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm shadow-2xl border-r border-gray-200/50 dark:border-slate-700/50 transition-transform duration-300 ease-in-out z-50 overflow-hidden`}
       >
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -241,19 +228,30 @@ const DashboardLayout = () => {
                   <p className="text-xs text-blue-200 opacity-80">Workforce Worldwide Solutions</p>
                 </div>
               </div>
-              <button
-                onClick={closeSidebar}
-                className="md:hidden p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
+                  aria-label="Toggle theme"
+                  type="button"
+                >
+                  <span className="text-base">{theme === 'dark' ? '☀️' : '🌙'}</span>
+                </button>
+                <button
+                  onClick={closeSidebar}
+                  className="md:hidden p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
+                  type="button"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 
           {/* User Profile Section */}
-          <div className="relative p-6 bg-gradient-to-br from-gray-50 to-white border-b border-gray-100">
+          <div className="relative p-6 bg-gradient-to-br from-gray-50 to-white dark:from-slate-900 dark:to-slate-900/60 border-b border-gray-100 dark:border-slate-700/50">
             <div className="flex items-center space-x-4">
               <div className={`relative w-14 h-14 bg-gradient-to-br ${getRoleColor()} rounded-2xl flex items-center justify-center shadow-lg overflow-hidden`}>
                 {user?.photoURL ? (
@@ -270,16 +268,14 @@ const DashboardLayout = () => {
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 border-2 border-white rounded-full"></div>
               </div>
               <div className="flex-1">
-                <h3 className="text-sm font-semibold text-gray-900">Welcome Back!</h3>
-                <p className="text-xs text-gray-600 mb-2">{user?.displayName}</p>
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-slate-100">Welcome Back!</h3>
+                <p className="text-xs text-gray-600 dark:text-slate-300 mb-2">{user?.displayName}</p>
                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getRoleBadgeColor()}`}>
                   {getUserRole()}
                 </span>
               </div>
             </div>
           </div>
-
-
 
           {/* Enhanced Navigation */}
           <nav className="flex-1 px-4 py-6 overflow-y-auto">
@@ -292,9 +288,10 @@ const DashboardLayout = () => {
                       closeSidebar()
                       item.action()
                     }}
-                    className="group relative flex items-center w-full px-4 py-3.5 text-sm font-medium rounded-xl transition-all duration-200 text-gray-700 hover:bg-gradient-to-r hover:from-gray-100 hover:to-red-50 hover:text-red-700"
+                    className="group relative flex items-center w-full px-4 py-3.5 text-sm font-medium rounded-xl transition-all duration-200 text-gray-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-gray-100 hover:to-red-50 hover:text-red-700 dark:hover:from-slate-800 dark:hover:to-red-900/30 dark:hover:text-red-300"
+                    type="button"
                   >
-                    <div className="flex items-center justify-center w-8 h-8 rounded-lg mr-3 bg-gray-100 text-gray-500 group-hover:bg-red-100 group-hover:text-red-600 transition-all duration-200">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-lg mr-3 bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-300 group-hover:bg-red-100 group-hover:text-red-600 dark:group-hover:bg-red-900/40 dark:group-hover:text-red-300 transition-all duration-200">
                       <span className="text-sm">{item.icon}</span>
                     </div>
                     <span className="truncate">{item.name}</span>
@@ -303,15 +300,21 @@ const DashboardLayout = () => {
                   <Link
                     key={index}
                     to={item.path}
-                    onClick={closeSidebar}
+                    onClick={(e) => {
+                      closeSidebar()
+                      if (theme === 'dark' && !item.path.startsWith('/dashboard')) {
+                        e.preventDefault()
+                        handleProtectedNavigate(item.path)
+                      }
+                    }}
                     className={`group relative flex items-center px-4 py-3.5 text-sm font-medium rounded-xl transition-all duration-200 ${location.pathname === item.path
                       ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/25'
-                      : 'text-gray-700 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 hover:text-blue-700'
+                      : 'text-gray-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 hover:text-blue-700 dark:hover:from-slate-800 dark:hover:to-blue-900/30 dark:hover:text-blue-200'
                       }`}
                   >
                     <div className={`flex items-center justify-center w-8 h-8 rounded-lg mr-3 ${location.pathname === item.path
                       ? 'bg-white/20 text-white'
-                      : 'bg-gray-100 text-gray-500 group-hover:bg-blue-100 group-hover:text-blue-600'
+                      : 'bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-300 group-hover:bg-blue-100 group-hover:text-blue-600 dark:group-hover:bg-blue-900/40 dark:group-hover:text-blue-200'
                       } transition-all duration-200`}>
                       <span className="text-sm">{item.icon}</span>
                     </div>
@@ -326,10 +329,10 @@ const DashboardLayout = () => {
           </nav>
 
           {/* Footer */}
-          <div className="px-6 py-4 bg-gradient-to-r from-gray-50 to-white border-t border-gray-100">
+          <div className="px-6 py-4 bg-gradient-to-r from-gray-50 to-white dark:from-slate-900 dark:to-slate-900/60 border-t border-gray-100 dark:border-slate-700/50">
             <div className="text-center">
-              <p className="text-xs text-gray-500">© 2024 WWS Platform</p>
-              <p className="text-xs text-gray-400">Version 2.0.1</p>
+              <p className="text-xs text-gray-500 dark:text-slate-300">&copy; 2024 WWS Platform</p>
+              <p className="text-xs text-gray-400 dark:text-slate-400">Version 2.0.1</p>
             </div>
           </div>
         </div>
@@ -346,22 +349,34 @@ const DashboardLayout = () => {
       {/* Main Content - Perfectly Aligned */}
       <div className="flex-1 md:ml-0">
         {/* Mobile Menu Button */}
-        <div className="md:hidden sticky top-0 z-20 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 py-3">
-          <button
-            onClick={toggleSidebar}
-            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <span className="font-medium">Menu</span>
-          </button>
+        <div className="md:hidden sticky top-0 z-20 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-slate-700 px-4 py-3">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={toggleSidebar}
+              className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+              type="button"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <span className="font-medium">Menu</span>
+            </button>
+
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl border border-gray-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900/60 text-gray-700 dark:text-slate-200 shadow-sm"
+              aria-label="Toggle theme"
+              type="button"
+            >
+              <span className="text-base">{theme === 'dark' ? '☀️' : '🌙'}</span>
+            </button>
+          </div>
         </div>
 
         {/* Content Area */}
         <main className="min-h-screen p-4 md:p-6 lg:p-8">
           <div className="max-w-7xl mx-auto">
-            <div className=" backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 min-h-[calc(100vh-8rem)] md:min-h-[calc(100vh-6rem)]">
+            <div className="bg-white/70 dark:bg-slate-900/60 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 dark:border-slate-700/50 min-h-[calc(100vh-8rem)] md:min-h-[calc(100vh-6rem)]">
               <div className="h-full p-6 md:p-8 lg:p-10">
                 <Outlet />
               </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useAxiosSecure from '../Hooks/useAxiosSecure/useAxiosSecure'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import AdvancedSearchModal from './AdvancedSearchModal'
 
 const SearchCard = () => {
   const [activeTab, setActiveTab] = useState('Courses')
@@ -473,10 +474,14 @@ const SearchCard = () => {
         <div className="px-4 sm:px-6 pb-5 pt-4">
           {activeTab === 'Guide me' || activeTab === 'Get instant offer' ? (
             renderForm()
-          ) : (
+          ) : (<>
             <form key={activeTab} onSubmit={handleSearch}>
               {renderForm()}
+              
             </form>
+            {/* <button className='inline-flex items-center gap-2 rounded-full bg-[#11AD00] px-6 py-3 text-white hover:bg-[#4CADFF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed'>Advanced Search</button> */}
+            <AdvancedSearchModal></AdvancedSearchModal>
+            </>
           )}
         </div>
       </div>
