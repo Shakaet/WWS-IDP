@@ -17,7 +17,7 @@ const useAmbassador = () => {
 
 
     const fetchUsers = async () => {
-        const response = await axios.get(`https://wws-idp-server.vercel.app/getAmbassador/${user?.email}`);
+        const response = await axios.get(`http://localhost:3000/getAmbassador/${user?.email}`);
         return response.data?.ambassador;
       };
 

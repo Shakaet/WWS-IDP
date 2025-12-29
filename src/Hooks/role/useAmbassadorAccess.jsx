@@ -10,7 +10,7 @@ const useAmbassadorAccess = () => {
   const fetchAmbassadorAccess = async () => {
     if (!user?.email) return null;
     const { data } = await axios.get(
-      `https://wws-idp-server.vercel.app/ambassador/access/${user.email}`
+      `http://localhost:3000/ambassador/access/${user.email}`
     );
     return data; // data = { role, access }
   };

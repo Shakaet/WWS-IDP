@@ -11,7 +11,7 @@ const ManageApplication = () => {
   const [statusFilter, setStatusFilter] = useState('all')
 
   const fetchUsers = async () => {
-    const response = await axios.get(`https://wws-idp-server.vercel.app/help-from-wws`)
+    const response = await axios.get(`http://localhost:3000/help-from-wws`)
     return response.data
   }
 
@@ -33,7 +33,7 @@ const ManageApplication = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`https://wws-idp-server.vercel.app/help-from-wws/${applicationId}`)
+        await axios.delete(`http://localhost:3000/help-from-wws/${applicationId}`)
         queryClient.invalidateQueries(['allApp'])
         Swal.fire('Deleted!', 'Application has been deleted.', 'success')
       } catch (error) {
@@ -45,7 +45,7 @@ const ManageApplication = () => {
 
   const handleStatusChange = async (applicationId, newStatus) => {
     try {
-      await axios.patch(`https://wws-idp-server.vercel.app/help-from-wws/${applicationId}`, { status: newStatus })
+      await axios.patch(`http://localhost:3000/help-from-wws/${applicationId}`, { status: newStatus })
       queryClient.invalidateQueries(['allApp'])
       Swal.fire({
         icon: 'success',

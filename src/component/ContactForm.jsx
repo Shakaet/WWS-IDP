@@ -92,7 +92,7 @@ const ContactForm = () => {
       }
 
       console.log(dataToSubmit)
-      await axios.post('https://wws-idp-server.vercel.app/help-from-wws', dataToSubmit)
+      await axios.post('http://localhost:3000/help-from-wws', dataToSubmit)
 
       // Show success SweetAlert
       Swal.fire({

@@ -29,7 +29,7 @@ const EventsResults = () => {
                 if (Array.isArray(navState.results) && navState.results.length > 0) {
                     if (!cancelled) setEvents(navState.results);
                 } else {
-                    const response = await fetch("https://wws-idp-server.vercel.app/api/events");
+                    const response = await fetch("http://localhost:3000/api/events");
                     const data = await response.json();
                     if (!cancelled) setEvents(data);
                 }

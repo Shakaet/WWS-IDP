@@ -19,7 +19,7 @@ const StudyInCanada = () => {
         breadcrumbItems: ["WWS Bangladesh", "Destinations", "Canada"],
         title: "Study in Canada – A Gateway to Quality Education",
         description:
-            "Canada is one of the safest, most welcoming countries for international students. With top-ranked universities, innovative research opportunities, and a multicultural environment, Canada offers an ideal balance of academics, work, and life.",
+            ".",
         buttonText: "Begin Your Canadian Journey",
         buttonAction: () => console.log("Start Canada Journey"),
         image: abroadImg,
@@ -28,7 +28,7 @@ const StudyInCanada = () => {
     /** ---------- Paragraph ---------- **/
     const paragraphProps = {
         mainText:
-            "Canada’s universities and colleges are globally renowned for their academic excellence and cutting-edge research. Whether you want to pursue Computer Science, Engineering, Healthcare, Environmental Studies, or Arts, you’ll find programs designed to meet the needs of a rapidly evolving job market. Beyond academics, Canada captivates students with its breathtaking natural beauty — from the Rocky Mountains to Niagara Falls — and its inclusive, supportive communities. Studying here means gaining not just a prestigious qualification but also valuable skills through internships, co-op programs, and part-time work opportunities.",
+            "Canada is well-regarded for high quality of education,multicultural environment, and post-study work & immigration opportunities. It’s increasingly popular among Bangladeshi students Canada’s universities and colleges are globally renowned for their academic excellence and cutting-edge research. Whether you want to pursue Computer Science, Engineering, Healthcare, Environmental Studies, or Arts, you’ll find programs designed to meet the needs of a rapidly evolving job market. Beyond academics, Canada captivates students with its breathtaking natural beauty — from the Rocky Mountains to Niagara Falls — and its inclusive, supportive communities.",
         image1: stepImg,
         image2: guideImg,
         image1Alt: "Canadian landscapes",

@@ -29,7 +29,7 @@ const ScholarshipsResults = () => {
                 if (Array.isArray(navState.results) && navState.results.length > 0) {
                     if (!cancelled) setScholarships(navState.results);
                 } else {
-                    const response = await fetch("https://wws-idp-server.vercel.app/api/scholarships");
+                    const response = await fetch("http://localhost:3000/api/scholarships");
                     const data = await response.json();
                     if (!cancelled) setScholarships(data);
                 }

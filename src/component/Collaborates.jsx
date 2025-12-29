@@ -76,7 +76,7 @@ const Collaborates = () => {
     setSubmitStatus('')
     
     try {
-      const response = await axios.post('https://wws-idp-server.vercel.app/collaborate', formData)
+      const response = await axios.post('http://localhost:3000/collaborate', formData)
       
       if (response.status === 200) {
         setSubmitStatus('success')

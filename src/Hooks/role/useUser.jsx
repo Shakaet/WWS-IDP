@@ -17,7 +17,7 @@ const useUser = () => {
 
 
     const fetchUsers = async () => {
-        const response = await axios.get(`https://wws-idp-server.vercel.app/getUser/${user?.email}`);
+        const response = await axios.get(`http://localhost:3000/getUser/${user?.email}`);
         return response.data?.user;
       };
 

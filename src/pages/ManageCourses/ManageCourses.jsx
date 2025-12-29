@@ -13,7 +13,7 @@ const ManageCourses = () => {
 
     // Fetch courses
     const fetchCourses = async () => {
-        const res = await axios.get('https://wws-idp-server.vercel.app/api/course')
+        const res = await axios.get('http://localhost:3000/api/course')
         return res.data
     }
 
@@ -63,7 +63,7 @@ const ManageCourses = () => {
         try {
             const id = editData?._id
             const { _id, ...payload } = editData
-            await axios.put(`https://wws-idp-server.vercel.app/api/course/${id}`, payload)
+            await axios.put(`http://localhost:3000/api/course/${id}`, payload)
             await queryClient.invalidateQueries({ queryKey: ['allcourses'] })
             Swal.fire('Updated', 'Course updated successfully', 'success')
             handleCloseModal()
@@ -85,7 +85,7 @@ const ManageCourses = () => {
                 confirmButtonText: 'Yes, delete it!'
             })
             if (!result.isConfirmed) return
-            await axios.delete(`https://wws-idp-server.vercel.app/api/course/${id}`)
+            await axios.delete(`http://localhost:3000/api/course/${id}`)
             await queryClient.invalidateQueries({ queryKey: ['allcourses'] })
             Swal.fire('Deleted', 'Course deleted successfully.', 'success')
         } catch (err) {

@@ -12,7 +12,7 @@ const ManageEvents = () => {
     const [search, setSearch] = useState('') // <-- search state
 
     const fetchEvents = async () => {
-        const res = await axios.get('https://wws-idp-server.vercel.app/api/events')
+        const res = await axios.get('http://localhost:3000/api/events')
         return res.data
     }
 
@@ -63,7 +63,7 @@ const ManageEvents = () => {
         try {
             const id = editData?._id
             const { _id, ...payload } = editData || {}
-            await axios.put(`https://wws-idp-server.vercel.app/api/event/${id}`, payload)
+            await axios.put(`http://localhost:3000/api/event/${id}`, payload)
             await queryClient.invalidateQueries({ queryKey: ['allevents'] })
             handleCloseModal()
             Swal.fire('Updated', 'Event updated successfully', 'success')
@@ -85,7 +85,7 @@ const ManageEvents = () => {
                 confirmButtonText: 'Yes, delete it!'
             })
             if (!result.isConfirmed) return
-            await axios.delete(`https://wws-idp-server.vercel.app/api/event/${id}`)
+            await axios.delete(`http://localhost:3000/api/event/${id}`)
             await queryClient.invalidateQueries({ queryKey: ['allevents'] })
             Swal.fire('Deleted', 'Event has been deleted.', 'success')
         } catch (err) {

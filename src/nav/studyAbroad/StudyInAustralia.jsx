@@ -46,7 +46,7 @@ const StudyInAustralia = () => {
     const bookNowProps = {
         title: "Meet an Australian Education Mentor",
         description:
-            "Have questions about tuition fees, scholarships, visas, or lifestyle? Book a free one-on-one session with our certified Australian education mentors. They’ll share insider tips about choosing courses, arranging accommodation, and preparing financially.",
+            "Australia is a popular destination for international students including those from Bangladesh. It offers a strong education system, good work-while-studying rights, and a multicultural environmentHave questions about tuition fees, scholarships, visas, or lifestyle? Book a free one-on-one session with our certified Australian education mentors.",
         buttonText: "Book Your Session",
         buttonAction: () => console.log("Mentor session booked"),
         image: counsellorImg,

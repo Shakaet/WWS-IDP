@@ -30,7 +30,7 @@ const UniversityResults = () => {
                 if (Array.isArray(navState.results) && navState.results.length > 0) {
                     if (!cancelled) setUniversities(navState.results);
                 } else {
-                    const res = await fetch("https://wws-idp-server.vercel.app/api/universities");
+                    const res = await fetch("http://localhost:3000/api/universities");
                     const data = await res.json();
                     if (!cancelled) setUniversities(data);
                 }

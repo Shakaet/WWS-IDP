@@ -10,7 +10,7 @@ const UniversityDetailsPages = () => {
    console.log(id)
 
    const fetchUniversity = async () => {
-    const res = await fetch(`https://wws-idp-server.vercel.app/api/university/${id}`);
+    const res = await fetch(`http://localhost:3000/api/university/${id}`);
     return res.json();
   };
 

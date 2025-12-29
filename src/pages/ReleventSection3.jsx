@@ -10,8 +10,8 @@ const ReleventSection3 = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
-      title: "Study Abroad Guidance",
-      description: "Comprehensive support for international education applications, visa processing, and university selection. We help students navigate the complex process of studying abroad with personalized guidance and expert advice."
+      title: "Personalized Study Destination Guidance",
+      description: "Navigating the vast array of global study options with our expert advice, we help you identify the best destinations that align with your academic goals, cultural preferences, and career aspirations"
     },
     {
       icon: (
@@ -19,8 +19,8 @@ const ReleventSection3 = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
         </svg>
       ),
-      title: "Academic Excellence",
-      description: "Our academic support services ensure students achieve their highest potential. From course selection to research opportunities, we provide comprehensive academic guidance to help students excel in their chosen fields."
+      title: "Scholarship and Financial Aid Assistance",
+      description: "Our team provides up-to-date information on scholarships, grants, and financial aid options available worldwide"
     },
     {
       icon: (
@@ -29,8 +29,8 @@ const ReleventSection3 = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       ),
-      title: "Global Opportunities",
-      description: "Connecting students with world-class universities and career opportunities worldwide. We help build international networks and provide access to global education markets for a truly international experience."
+      title: "Visa and Immigration Advisory",
+      description: "We offer expert advice on visa requirements, documentation, and immigration procedures to help you stay compliant and stress-free."
     }
   ]
 
@@ -72,7 +72,7 @@ const ReleventSection3 = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Our <span className="text-yellow-400">Expert</span> Services
+           Our <span className="text-yellow-100">Top-Notch</span> Services
         </Motion.h2>
 
         {/* Description */}
@@ -83,9 +83,8 @@ const ReleventSection3 = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          Specializing in <strong className="text-yellow-400">study abroad guidance</strong> and <strong className="text-yellow-400">academic excellence</strong>, 
-          we work with students and families to create a professional educational experience that communicates <strong className="text-yellow-400">value</strong> to their future. 
-          Through research, guidance, and support, we help build <strong className="text-yellow-400">modern, successful academic careers.</strong>
+          Specializing in <strong className="text-yellow-400">study destination guidance</strong> and <strong className="text-yellow-400">scholarship and financial aid assistance</strong>, 
+          and visa and immigration advisory, we partner with students and families to craft a professional and meaningful educational journey that<strong className="text-yellow-400">set</strong> the stage for future success. Through expert guidance, thoughtful research, and ongoing support from our team,<strong className="text-yellow-400"> we help shape modern, thriving academic careers</strong>
         </Motion.p>
 
         {/* Services Grid */}
@@ -138,7 +137,7 @@ const ReleventSection3 = () => {
           viewport={{ once: true }}
         >
           <button className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-            Get Started Today
+            Start Your Scholarship Journey Today
           </button>
         </Motion.div>
       </div>

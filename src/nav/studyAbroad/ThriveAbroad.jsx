@@ -59,10 +59,10 @@ const bookNowProps = {
 const detailsProps = {
   introText1: "Studying abroad isn’t just about academics — it’s about learning how to live independently, manage challenges, and grow as a person. Many students face difficulties such as homesickness, culture shock, or financial struggles. But with the right mindset and guidance, you can turn these challenges into stepping stones for success.",
   introText2: "Here’s how you can thrive abroad and make the most of your international experience.",
-  mainHeading: "How to Thrive Abroad",
-  mainDescription: "Thriving abroad requires a mix of academic discipline, emotional resilience, cultural adaptability, and smart planning. Let’s break down the key areas you need to focus on.",
-  sectionHeading: "Academic Success",
-  sectionText1: "Stay proactive in your classes. Attend lectures regularly, take part in group discussions, and don’t hesitate to ask professors for guidance. Universities abroad often encourage interactive and research-based learning, so be prepared to participate actively.",
+  mainHeading: "Pre-departure orientation",
+  mainDescription: "Before you board the plane, join our live orientation session. You’ll receive essential advice on visas, packing smartly, travel insurance, budgeting, and what to expect in your destination country. Be prepared. Travel with peace of mind.",
+  sectionHeading: "Arrival & settling in",
+  sectionText1: "Touching down is just the start. We’ll support you with airport pickup, first-week check-ins, opening bank accounts, securing mobile plans, and finding local resources. We want you to feel at home from day one.",
   sectionText2: "Make use of libraries, online resources, and academic workshops offered by your institution. Balancing studies with part-time work requires discipline, but effective time management will help you achieve both academic excellence and financial stability.",
   buttonText: "Explore Student Support",
   buttonAction: () => {
@@ -72,19 +72,19 @@ const detailsProps = {
 
 // More Details
 const moreDetailsProps = {
-  mainHeading: "Life Beyond Academics",
-  globalPerspectiveText: "Thriving abroad is about embracing every aspect of life — from academics to friendships, from cultural integration to professional growth.",
+  mainHeading: "Academic engagement & support",
+  globalPerspectiveText: "Once classes begin, staying on top of your academics while adapting to a new system is key. From orientation to study groups, we’ll connect you with mentors, help you understand academic expectations and build habits for success.",
   
-  careerHeading: "Building a Global Network",
+  careerHeading: "Cultural integration & networks",
   careerParagraphs: [
-    "Networking is one of the most valuable aspects of studying abroad. Your classmates, professors, and mentors can become lifelong connections that help you in your career.",
+    "Beyond coursework, your overseas experience is enriched by friendships, clubs, local culture and global networks. We’ll guide you to join student societies, participate in community events and build meaningful relationships",
     "Join clubs, societies, and student organizations to meet people with similar interests. Attend workshops, career fairs, and alumni events to connect with professionals in your field.",
     "Remember: the friendships and connections you build today could open doors to opportunities worldwide in the future."
   ],
 
-  migrationHeading: "Managing Finances & Work-Life Balance",
+  migrationHeading: "Career readiness & future planning",
   migrationParagraphs: [
-    "Living abroad can be expensive. Create a realistic budget for rent, food, transport, and personal expenses. Avoid unnecessary spending and take advantage of student discounts.",
+    "As your studies progress, it’s never too early to think about life beyond the classroom. We’ll provide support with CVs, internship opportunities, job fairs and alumni networks so that you’re ready to step into the professional world in a global style.",
     "Most international students are allowed to work part-time (usually 20 hours per week). This not only helps financially but also gives you valuable work experience.",
     "Balancing studies, part-time jobs, and personal life requires strong time management skills. Avoid burnout by prioritizing rest, healthy eating, and exercise."
   ],
@@ -129,8 +129,8 @@ const moreDetailsProps = {
     }
   ],
 
-  finalHeading: "Your Journey to Thriving Abroad",
-  finalText: "Thriving abroad is about balance — excelling in academics, building a strong network, adapting to cultural differences, and growing as an individual. Every challenge you face becomes a chance to become stronger, more independent, and globally minded. Remember, you’re not alone in this journey — we are here to guide you every step of the way with free counselling, expert advice, and a supportive community.",
+  finalHeading: "Why follow this journey with us?",
+  finalText: "With World Wise Scholars, you don’t just apply abroad; you thrive abroad. From your very first idea until you walk across that graduation stage, we’re always by your side!",
   buttonText: "Join Our Thrive Abroad Community",
   buttonAction: () => {
     console.log("Join Thrive Community clicked");

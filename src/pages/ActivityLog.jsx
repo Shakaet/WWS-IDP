@@ -16,7 +16,7 @@ const ActivityLog = () => {
   const [isAdmin, adminLoading] = useAdmin()
 
   const fetchUsers = async () => {
-    const response = await axios.get(`https://wws-idp-server.vercel.app/users`)
+    const response = await axios.get(`http://localhost:3000/users`)
     return response.data.data
   }
 
@@ -27,7 +27,7 @@ const ActivityLog = () => {
 
   const handleRoleChange = async (userId, newRole) => {
     try {
-      await axios.patch(`https://wws-idp-server.vercel.app/users/${userId}`, { role: newRole })
+      await axios.patch(`http://localhost:3000/users/${userId}`, { role: newRole })
       queryClient.invalidateQueries(['allUsers'])
       Swal.fire({
         icon: 'success',
@@ -55,7 +55,7 @@ const ActivityLog = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`https://wws-idp-server.vercel.app/users/${userId}`)
+        await axios.delete(`http://localhost:3000/users/${userId}`)
         queryClient.invalidateQueries(['allUsers'])
         Swal.fire('Deleted!', 'User has been deleted.', 'success')
       } catch (error) {

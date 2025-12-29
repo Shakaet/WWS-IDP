@@ -9,21 +9,21 @@ const ReleventSection2 = () => {
       name: "Dr. Sarah Johnson",
       email: "abdshakaet@gmail.com",
       image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&crop=face&auto=format",
-      specialty: "Study Abroad Specialist"
+      // specialty: "Study Abroad Specialist"
     },
     {
       id: 2,
       name: "Michael Chen",
       email: "michael.chen@worldwisescholars.com",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face&auto=format",
-      specialty: "University Admissions Expert"
+      // specialty: "University Admissions Expert"
     },
     {
       id: 3,
       name: "Dr. Emily Rodriguez",
       email: "emily.rodriguez@worldwisescholars.com",
       image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face&auto=format",
-      specialty: "Career Guidance Counselor"
+      // specialty: "Career Guidance Counselor"
     }
   ]
 
@@ -100,9 +100,9 @@ const ReleventSection2 = () => {
                     {counselor.name}
                   </Motion.h3>
                   
-                  <p className="text-sm font-medium text-yellow-600 mb-3 uppercase tracking-wide">
+                  {/* <p className="text-sm font-medium text-yellow-600 mb-3 uppercase tracking-wide">
                     {counselor.specialty}
-                  </p>
+                  </p> */}
                   
                   <Motion.div 
                     className="flex items-center text-gray-600 group-hover:text-gray-900 transition-colors duration-300"

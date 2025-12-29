@@ -28,7 +28,7 @@ const AdvancedSearchModal = () => {
   useEffect(() => {
     if (isModalOpen) {
       setLoading(true);
-      axios.get('https://wws-idp-server.vercel.app/popular')
+      axios.get('http://localhost:3000/popular')
         .then(response => {
           setCourses(response.data);
           setLoading(false);
@@ -89,7 +89,7 @@ const AdvancedSearchModal = () => {
       });
       
       // Make API call to get filtered results
-      const response = await axios.get(`https://wws-idp-server.vercel.app/popular/courses?${queryParams.toString()}`);
+      const response = await axios.get(`http://localhost:3000/popular/courses?${queryParams.toString()}`);
       
       // Store results in sessionStorage to pass to results page
       sessionStorage.setItem('searchResults', JSON.stringify(response.data));

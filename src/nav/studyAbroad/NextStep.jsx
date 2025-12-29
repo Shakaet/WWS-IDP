@@ -60,12 +60,12 @@ const NextStep = () => {
             "Before you submit applications, it’s important to understand what each university expects. Missing documents or incomplete forms can delay admission or cause rejection.",
         introText2:
             "Preparation is the key. Collect academic records, test scores, recommendation letters, and personal statements ahead of time. Understand deadlines, scholarship criteria, and visa requirements.",
-        mainHeading: "How to Prepare for Each Step",
+        mainHeading: "Explore your options",
         mainDescription:
-            "This section provides actionable advice to make your study abroad journey smoother, organised, and effective.",
-        sectionHeading: "Organise Documents and Deadlines",
+            "Thinking about studying abroad? At World Wise Scholars, you’ll begin by discovering many destinations, universities and programmes that align with your aspirations. Whether you’re aiming for a vibrant city campus or a serene campus environment, we’re here to help you map out your path.",
+        sectionHeading: "Assess eligibility & prerequisites",
         sectionText1:
-            "Start early: gather transcripts, degree certificates, passport, visa, and recommendation letters. Scan all documents and save digital copies securely. Maintain a checklist for each application.",
+            "Once the dream destination is clear, next you’ll check the critical entry requirements: academic transcripts, language tests, financial readiness and any programme-specific criteria. No worries at all. We’ll be guiding you through each checklist so that you’re fully prepared.",
         sectionText2:
             "Prepare strong statements of purpose and tailor your application essays to each university. Review eligibility requirements and ensure all forms are complete before submission.",
         buttonText: "Download Full Preparation Guide",
@@ -74,13 +74,12 @@ const NextStep = () => {
 
     /** ---------- More Details ---------- **/
     const moreDetailsProps = {
-        mainHeading: "Master Every Step of Your Journey",
+        mainHeading: "Prepare key documents",
         globalPerspectiveText:
-            "Studying abroad is not just about academics – it’s about building global competencies, developing resilience, and gaining experiences that enhance both your personal and professional growth.",
-        careerHeading: "Career & Academic Focus",
+            "This stage is where the heavy lifting begins.For example: gathering transcripts, writing a strong personal statement, securing recommendation letters, and organising your finances and visa documents. We’ll support you every step of the way. Because we always believe that proper preparation builds confidence and success.",
+        careerHeading: "Submit application",
         careerParagraphs: [
-            "Select courses that align with your long-term career goals. Research professors, labs, and research opportunities that match your interests.",
-            "Internships and part-time work experience abroad can significantly improve employability after graduation. Learn about opportunities early and plan accordingly.",
+            "With your documents in place, it’s time to press submit. We’ll help ensure your application is complete, free of errors and aligned with deadlines. Then you wait for that exciting offer,",
             "Build a strong resume highlighting skills, certifications, and relevant experiences.",
         ],
         migrationHeading: "Visa, Immigration, and Legal Compliance",
@@ -125,9 +124,9 @@ const NextStep = () => {
                 ],
             },
         ],
-        finalHeading: "You’re Ready to Begin",
+        finalHeading: "Secure offer & plan logistics",
         finalText:
-            "With preparation, organisation, and guidance, you can confidently take the next step. From applications to flights and settling abroad, every action you take now ensures a smoother and more rewarding journey.",
+            "Congratulations! When your offer letter arrives, you’ll begin planning the final logistics: accepting the offer, arranging accommodation, planning travel, and preparing for your new academic journey abroad. Your adventure is about to begin!",
         buttonText: "Start Your Journey",
         buttonAction: () => console.log("Next step started"),
     };

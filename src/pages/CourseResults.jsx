@@ -29,7 +29,7 @@ const CourseResults = () => {
                 if (Array.isArray(navState.results) && navState.results.length > 0) {
                     if (!cancelled) setCourses(navState.results);
                 } else {
-                    const response = await fetch("https://wws-idp-server.vercel.app/api/course");
+                    const response = await fetch("http://localhost:3000/api/course");
                     const data = await response.json();
                     if (!cancelled) setCourses(data);
                 }

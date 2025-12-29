@@ -28,7 +28,7 @@ const StudyInIreland = () => {
     /** ---------- Paragraph ---------- **/
     const paragraphProps = {
         mainText:
-            "Irish universities consistently earn high global rankings thanks to their strong focus on research, innovation, and student success. Whether you’re interested in Computer Science, Engineering, Business Analytics, Literature, Medicine, or Creative Arts, Ireland provides cutting-edge programs aligned with industry needs. The country is home to leading global corporations in technology, finance, pharmaceuticals, and media, making it an ideal launchpad for your career. Beyond academics, Ireland enchants visitors with its lush green landscapes, centuries-old castles, lively music scenes, and friendly communities. Studying here means combining world-class learning with unforgettable cultural immersion and career-defining experiences through internships, research assistantships, and part-time work opportunities.",
+            "Ireland is an English-speaking destination with strong ties to global tech & pharma industries, making it attractive for international students. It offers generous post-study work opportunities and is becoming more popular for students from Asia.",
         image1: stepImg,
         image2: guideImg,
         image1Alt: "Irish countryside",

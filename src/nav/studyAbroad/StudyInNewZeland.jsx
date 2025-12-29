@@ -28,7 +28,7 @@ const StudyInNewZeland = () => {
     /** ---------- Paragraph ---------- **/
     const paragraphProps = {
         mainText:
-            "New Zealand's education system is consistently ranked among the world's best, with universities offering cutting-edge programs in fields like Agriculture, Environmental Science, Engineering, Business, Medicine, and Creative Arts. The country's innovative approach to education emphasizes practical learning, research, and industry collaboration. New Zealand is home to world-leading research institutions and offers excellent post-study work opportunities. Beyond academics, students can explore stunning landscapes, from snow-capped mountains to pristine beaches, while enjoying a relaxed lifestyle and friendly Kiwi culture. The country's commitment to sustainability, innovation, and work-life balance makes it an ideal destination for students seeking both personal growth and professional development.",
+            "New Zealand offers a high-quality education system, globally recognised qualifications, and a safe, welcoming environment for international studentsNew Zealand's education system is consistently ranked among the world's best, with universities offering cutting-edge programs in fields like Agriculture, Environmental Science, Engineering, Business, Medicine, and Creative Arts. The country's innovative approach to education emphasizes practical learning, research, and industry collaboration. New Zealand is home to world-leading research institutions and offers excellent post-study work opportunities.",
         image1: stepImg,
         image2: guideImg,
         image1Alt: "New Zealand landscape",

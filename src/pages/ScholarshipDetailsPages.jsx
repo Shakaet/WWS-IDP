@@ -10,7 +10,7 @@ const ScholarshipDetailsPages = () => {
    console.log(id)
 
    const fetchScholarship = async () => {
-    const res = await fetch(`https://wws-idp-server.vercel.app/api/scholarship/${id}`);
+    const res = await fetch(`http://localhost:3000/api/scholarship/${id}`);
     return res.json();
   };
 
