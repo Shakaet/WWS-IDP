@@ -81,7 +81,7 @@ const Service = () => {
         <span className="text-white">Premium </span>
         <span className="text-white">Services</span>
       </h2>
-      <p className="text-[#7A828E] text-lg">Elevate your brand with our exclusive offerings</p>
+      <p className="text-[#7A828E] text-lg">Finding safe and comfortable accommodation is a major concern for students and parents</p>
     </div>
   
     {/* Service Cards */}

@@ -7,14 +7,14 @@ const Getready = () => {
       <div className="max-w-4xl mx-auto text-center">
         {/* Main Heading */}
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-          <span className="text-white">Ready to Begin Your Study Abroad Journey?</span>
+          <span className="text-white">Top Universities We Work With</span>
           <span className="text-white"></span>
           <span className="text-white"></span>
         </h2>
         
         {/* Subtitle */}
         <p className="text-white text-lg sm:text-xl mb-8 leading-relaxed max-w-3xl mx-auto">
-          Let’s plan your global future together with expert guidance and complete support
+          We work with recognized, accredited universities and institutions across our destination countries
         </p>
         
         {/* CTA Button */}

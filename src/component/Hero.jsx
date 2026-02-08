@@ -1,22 +1,24 @@
 import React, { useState, useRef } from 'react'
 import banner from "../assets/BannersF.jpg"
 import SearchCard from './SearchCard'
+import ContactHome from './ContactHome'
 
 const Hero = () => {
   const [activeSlide, setActiveSlide] = useState(0)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const tabs = ['Courses', 'Scholarships', 'Universities', 'Events', 'Guide me', 'Get instant offer']
 
   const slides = [
     {
-      titleLine1: 'Trusted by students ambitious for studying abroad',
+      titleLine1: 'Global Education Guidance You Can Trust',
       titleLine2: '',
-      desc: 'Start your study abroad Journey with confidence and join the students who achieved their global dreams with World Wise Scholars.'
+      desc: 'At World Wise Scholars, we provide end-to-end study abroad guidance for students aspiring to study in the UK, Canada Malaysia, Australia, and other leading destinations'
     },
     {
-      titleLine1: 'Achieve Your future abroad dreams with confidence',
+      titleLine1: 'Guiding Students & Families Toward a Smarter Global Future',
       titleLine2: '',
-      desc: 'Discover top universities and courses worldwide. Let our expert advisors help you shape your international education pathway.'
+      desc: 'With a strong commitment to transparency, ethics, and student success, we support not only students—but also their families—at every stage of the journey.'
     },
     {
       titleLine1: 'Master your IELTS preparation',
@@ -29,6 +31,19 @@ const Hero = () => {
       desc: 'Explore scholarship opportunities and learn how to make your study abroad journey both affordable and stress-free.'
     },
   ]
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true)
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden'
+    buttonAction() // Call the original button action if provided
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    // Restore body scroll when modal is closed
+    document.body.style.overflow = 'unset'
+  }
 
   return (
     <div>
@@ -88,8 +103,8 @@ const Hero = () => {
                 {slides[activeSlide].desc}
               </p>
               <div className="">
-                <button className="inline-flex items-center rounded-full bg-[#11AD00] hover:bg-[#4CADFF] px-6 py-3 text-white transition-colors">
-                  Register Now
+                <button onClick={handleButtonClick} className="inline-flex items-center rounded-full bg-[#11AD00] hover:bg-[#4CADFF] px-6 py-3 text-white transition-colors">
+                  Apply Now
                 </button>
               </div>
               <div className="mt-4 flex items-center gap-3 ms-5 select-none">
@@ -111,6 +126,27 @@ const Hero = () => {
           </div>
         </div>
       </section>
+
+           {/* Fullscreen Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[9999] bg-white">
+          {/* Close Button - Fixed Position */}
+          <button
+            onClick={closeModal}
+            className="fixed top-4 right-4 z-[10000] bg-gray-100 hover:bg-gray-200 rounded-full p-3 transition-colors shadow-lg"
+            aria-label="Close modal"
+          >
+            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          {/* Modal Content - Fullscreen without scrollbars */}
+          <div className="w-full h-full overflow-x-hidden">
+            <ContactHome />
+          </div>
+        </div>
+      )}
 
       <div className="opacity-95">
         <SearchCard />

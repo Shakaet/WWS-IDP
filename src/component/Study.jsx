@@ -19,9 +19,9 @@ const Study = () => {
   return (
     <section className="bg-white mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="mb-6 sm:mb-10">
-        <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">Your Ideal Study Destination is Calling</h2>
+        <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">Choose Your Study Destination</h2>
         <div className="mt-2 h-1 w-10 rounded bg-blue-600" />
-        <p className="mt-3 text-gray-600">Discover Your Next Academic Home: Vibrant, Welcoming, Unforgettable!</p>
+        <p className="mt-3 text-gray-600">Choosing to study abroad is a life-changing decision. At World Wise Scholars, we simplify the process by offering personalized counseling, verified university options, and structured visa guidance, ensuring students make informed and achievable choices based on their academic profile, career goals, and financial capacity</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

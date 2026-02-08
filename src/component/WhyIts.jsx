@@ -76,10 +76,11 @@ const WhyIts = () => {
   return (
     <section className="bg-white mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="mb-6 sm:mb-10">
-        <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">What Makes Us Different
+        <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight">What Makes World Wise Scholars Different
+
         </h2>
         <div className="mt-2 h-1 w-10 rounded bg-purple-600" />
-        <p className="mt-2 text-[#7A828E] text-lg">We fuse creativity and technology to shape ideas into <br /> innovative realities. Fueled by passion, we deliver excellence that stands out and makes an impact.
+        <p className="mt-2 text-[#7A828E] text-lg">We are not sales-driven—we are student-driven, We fuse creativity and technology to shape ideas into <br /> innovative realities. Fueled by passion, we deliver excellence that stands out and makes an impact.
         </p>
       </div>
 

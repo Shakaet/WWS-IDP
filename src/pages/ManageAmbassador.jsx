@@ -30,12 +30,71 @@ const ManageAmbassador = () => {
           scholarships: ambassador.scholarships || false,
           courses: ambassador.courses || false,
           events: ambassador.events || false,
-          universities: ambassador.universities || false
+          universities: ambassador.universities || false,
+           show: ambassador.show ?? false // 🔥 NEW
         };
       });
       setSelectedRoutes(initialPermissions);
     }
   }, [ambassadors]);
+
+
+  const handleShowToggle = async (ambassadorId) => {
+  try {
+    setUpdatingPermissions(prev => ({
+      ...prev,
+      [`${ambassadorId}-show`]: true
+    }));
+
+    const currentValue = selectedRoutes[ambassadorId]?.show ?? true;
+    const newValue = !currentValue;
+
+    // Optimistic UI
+    setSelectedRoutes(prev => ({
+      ...prev,
+      [ambassadorId]: {
+        ...prev[ambassadorId],
+        show: newValue
+      }
+    }));
+
+    await axios.patch(
+      `http://localhost:3000/user/ambassador/${ambassadorId}/show`,
+      { show: newValue }
+    );
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Updated',
+      text: `Show status ${newValue ? 'enabled' : 'disabled'}`,
+      timer: 1200,
+      showConfirmButton: false
+    });
+
+    // queryClient.invalidateQueries(['manageAmbassador']);
+  } catch (err) {
+    // revert on error
+    setSelectedRoutes(prev => ({
+      ...prev,
+      [ambassadorId]: {
+        ...prev[ambassadorId],
+        show: !prev[ambassadorId]?.show
+      }
+    }));
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Failed',
+      text: 'Could not update show status'
+    });
+  } finally {
+    setUpdatingPermissions(prev => ({
+      ...prev,
+      [`${ambassadorId}-show`]: false
+    }));
+  }
+};
+
 
   const handleRouteToggle = async (ambassadorId, route) => {
     try {
@@ -75,7 +134,7 @@ const ManageAmbassador = () => {
       });
 
       // Refresh the data to get updated permissions from server
-      queryClient.invalidateQueries(['manageAmbassador']);
+      // queryClient.invalidateQueries(['manageAmbassador']);
       
     } catch (error) {
       console.error('Permission update error:', error);
@@ -199,7 +258,7 @@ const ManageAmbassador = () => {
             <div className="hidden lg:block overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
-                  <tr>
+                  <tr><th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Show</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
@@ -214,6 +273,45 @@ const ManageAmbassador = () => {
                       className="hover:bg-gray-50 cursor-pointer"
                       onClick={() => handleRowClick(ambassador)}
                     >
+                      <td
+  className="px-6 py-4 whitespace-nowrap"
+  onClick={(e) => e.stopPropagation()}
+>
+  <label className="relative inline-flex items-center cursor-pointer">
+    <input
+      type="checkbox"
+      className="sr-only peer"
+      checked={!!selectedRoutes[ambassador._id]?.show}
+      disabled={updatingPermissions[`${ambassador._id}-show`]}
+      onChange={() => handleShowToggle(ambassador._id)}
+    />
+
+    {/* Track */}
+    <div
+      className="
+        w-11 h-6 bg-gray-300 rounded-full
+        peer peer-checked:bg-green-500
+        peer-focus:ring-2 peer-focus:ring-green-300
+        transition-all
+      "
+    ></div>
+
+    {/* Thumb */}
+    <div
+      className="
+        absolute left-1 top-1
+        w-4 h-4 bg-white rounded-full
+        transition-all
+        peer-checked:translate-x-5
+      "
+    ></div>
+  </label>
+
+  {updatingPermissions[`${ambassador._id}-show`] && (
+    <span className="ml-2 text-xs text-gray-400">Updating...</span>
+  )}
+</td>
+
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900">
                         #{ambassador._id?.slice(-6) || 'N/A'}
                       </td>

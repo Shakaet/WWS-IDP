@@ -447,9 +447,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/activity-log",
-        element: <AdminRoutes>
+        element: 
+        // <AdminRoutes>
           <ActivityLog></ActivityLog>
-        </AdminRoutes>
+        // </AdminRoutes>
 
       },
       {

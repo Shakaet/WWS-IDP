@@ -20,10 +20,16 @@ const ActivityLog = () => {
     return response.data.data
   }
 
+  
+
   const { data: allUsers = [], isLoading: usersLoading } = useQuery({
     queryKey: ['allUsers'],
     queryFn: fetchUsers
   })
+
+  console.log(allUsers);
+  
+  
 
   const handleRoleChange = async (userId, newRole) => {
     try {

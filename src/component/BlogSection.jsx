@@ -123,8 +123,8 @@ const BlogSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Study abroad tips, insights{' '}
-            <span className="text-[#11AD00]">and student experiences</span>
+            Your Complete{' '}
+            <span className="text-[#11AD00]">Guide to Study Abroad</span>
           </Motion.h2>
 
           <Motion.div

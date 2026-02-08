@@ -46,7 +46,7 @@ const ManageApplication = () => {
   const handleStatusChange = async (applicationId, newStatus) => {
     try {
       await axios.patch(`http://localhost:3000/help-from-wws/${applicationId}`, { status: newStatus })
-      queryClient.invalidateQueries(['allApp'])
+      // queryClient.invalidateQueries(['allApp'])
       Swal.fire({
         icon: 'success',
         title: 'Status Updated',

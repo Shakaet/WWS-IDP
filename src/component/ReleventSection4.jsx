@@ -31,7 +31,7 @@ const ReveventSection4 = () => {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="text-4xl md:text-6xl font-bold text-center text-white mb-8 tracking-wider"
         >
-          Shape Your Future with Global Education
+          Guidance for Parents
         </motion.h1>
         
         {/* Content */}
@@ -42,8 +42,7 @@ const ReveventSection4 = () => {
           className="text-white/90 text-lg md:text-xl leading-relaxed mb-12"
         >
           <p className="mb-4">
-            We guide students to explore top universities, courses, and career opportunities worldwide.
-             From application to visa, our expert support makes your study abroad journey simple and stress-free.
+            We understand that studying abroad is a family decision. World Wise Scholars ensures parents are informed, involved, and confident throughout the process.
           </p>
           
         </motion.div>
