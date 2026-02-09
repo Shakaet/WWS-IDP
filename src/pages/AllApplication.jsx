@@ -71,20 +71,20 @@ const AllApplication = () => {
             </div>
 
             {/* Filters */}
-            <div className="bg-white rounded-xl shadow p-4 md:p-6">
+            <div className="bg-white dark:bg-slate-900 rounded-xl shadow p-4 md:p-6">
                 <div className="flex flex-col md:flex-row gap-4">
                     <div className="flex-1">
-                        <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">Search Applications</label>
+                        <label htmlFor="search" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Search Applications</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <svg className="h-5 w-5 text-gray-400 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
                                 </svg>
                             </div>
                             <input
                                 type="text"
                                 id="search"
-                                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400"
                                 placeholder="Search by full name, email, or destination..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -92,10 +92,10 @@ const AllApplication = () => {
                         </div>
                     </div>
                     <div className="w-full md:w-48">
-                        <label htmlFor="status-filter" className="block text-sm font-medium text-gray-700 mb-1">Filter by Status</label>
+                        <label htmlFor="status-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Filter by Status</label>
                         <select
                             id="status-filter"
-                            className="block w-full py-2 px-3 border border-gray-300 bg-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                            className="block w-full py-2 px-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
                         >
@@ -110,10 +110,10 @@ const AllApplication = () => {
             </div>
 
             {/* Applications Table */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                <div className="bg-gradient-to-r from-gray-50 to-blue-50 px-6 py-4 border-b border-gray-200">
-                    <h2 className="text-lg font-semibold text-gray-800">Application History</h2>
-                    <p className="text-sm text-gray-600 mt-1">Showing {filteredApps.length} of {allApplications.length} applications</p>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+                <div className="bg-gradient-to-r from-gray-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 px-6 py-4 border-b border-gray-200 dark:border-slate-700">
+                    <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Application History</h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Showing {filteredApps.length} of {allApplications.length} applications</p>
                 </div>
 
                 {filteredApps.length === 0 ? (

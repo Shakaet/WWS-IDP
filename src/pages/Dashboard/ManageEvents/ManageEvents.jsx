@@ -48,7 +48,7 @@ const ManageEvents = () => {
         return createPortal(
             <div className="fixed inset-0 z-[9999] grid place-items-center bg-black/60 p-4" onClick={onClose}>
                 <div
-                    className="bg-white w-full max-w-4xl rounded-lg shadow-2xl p-6 max-h-[90vh] overflow-y-auto"
+                    className="bg-white dark:bg-gray-900 dark:text-gray-100 w-full max-w-4xl rounded-lg shadow-2xl p-6 max-h-[90vh] overflow-y-auto"
                     onClick={(e) => e.stopPropagation()}
                 >
                     {children}
@@ -62,7 +62,8 @@ const ManageEvents = () => {
         e.preventDefault()
         try {
             const id = editData?._id
-            const { _id, ...payload } = editData || {}
+            const formData = new FormData(e.currentTarget)
+            const payload = Object.fromEntries(formData.entries())
             await axios.put(`http://localhost:3000/api/event/${id}`, payload)
             await queryClient.invalidateQueries({ queryKey: ['allevents'] })
             handleCloseModal()
@@ -198,9 +199,9 @@ const ManageEvents = () => {
                             <label className="flex flex-col text-sm" key={key}>
                                 <span className="mb-1">{label}</span>
                                 <input
+                                    name={key}
                                     type={key === 'contactEmail' ? 'email' : key === 'applicationLink' ? 'url' : 'text'}
-                                    value={editData[key] || ''}
-                                    onChange={(e) => setEditData(prev => ({ ...prev, [key]: e.target.value }))}
+                                    defaultValue={editData[key] || ''}
                                     className="border rounded px-2 py-2"
                                 />
                             </label>
@@ -210,8 +211,8 @@ const ManageEvents = () => {
                             <label className="flex flex-col text-sm sm:col-span-2" key={key}>
                                 <span className="mb-1">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
                                 <textarea
-                                    value={editData[key] || ''}
-                                    onChange={(e) => setEditData(prev => ({ ...prev, [key]: e.target.value }))}
+                                    name={key}
+                                    defaultValue={editData[key] || ''}
                                     className="border rounded px-2 py-2 h-24"
                                 />
                             </label>
@@ -220,9 +221,9 @@ const ManageEvents = () => {
                         <label className="flex flex-col text-sm">
                             <span className="mb-1">Deadline</span>
                             <input
+                                name="deadline"
                                 type="date"
-                                value={editData.deadline?.split('T')[0] || ''}
-                                onChange={(e) => setEditData(prev => ({ ...prev, deadline: e.target.value }))}
+                                defaultValue={editData.deadline?.split('T')[0] || ''}
                                 className="border rounded px-2 py-2"
                             />
                         </label>

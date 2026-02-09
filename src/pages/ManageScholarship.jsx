@@ -60,7 +60,7 @@ const ManageScholarship = () => {
 	const Modal = ({ children, onClose }) => {
 		return createPortal(
 			<div className="fixed inset-0 z-[9999] grid place-items-center bg-black/60 p-4" onClick={onClose}>
-				<div className="bg-white w-full max-w-2xl rounded-lg shadow-2xl p-6 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+				<div className="bg-white dark:bg-gray-900 dark:text-gray-100 w-full max-w-2xl rounded-lg shadow-2xl p-6 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
 					{children}
 				</div>
 			</div>,
@@ -72,7 +72,14 @@ const ManageScholarship = () => {
 		e.preventDefault();
 		try {
 			const id = editData?._id;
-			const { _id, ...payload } = editData || {};
+			const formData = new FormData(e.currentTarget);
+			const payload = Object.fromEntries(formData.entries());
+			if (typeof payload.coursesIncluded === 'string') {
+				payload.coursesIncluded = payload.coursesIncluded
+					.split(',')
+					.map(s => s.trim())
+					.filter(Boolean);
+			}
 			await axios.put(`http://localhost:3000/api/scholarship/${id}`, payload);
 			await queryClient.invalidateQueries({ queryKey: ["allscholarship"] });
 			handleCloseModal();
@@ -201,7 +208,7 @@ const ManageScholarship = () => {
 					<form onSubmit={handleUpdate} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 						<label className="flex flex-col text-sm">
 							<span className="mb-1">Study Level</span>
-							<select value={editData.studyLevel || ''} onChange={(e) => setEditData({ ...editData, studyLevel: e.target.value })} className="border rounded px-2 py-2">
+							<select name="studyLevel" defaultValue={editData.studyLevel || ''} className="border rounded px-2 py-2">
 								<option value="">Select study level</option>
 								<option>Undergraduate</option>
 								<option>Postgraduate</option>
@@ -212,7 +219,7 @@ const ManageScholarship = () => {
 						</label>
 						<label className="flex flex-col text-sm">
 							<span className="mb-1">Destination</span>
-							<select value={editData.destination || ''} onChange={(e) => setEditData({ ...editData, destination: e.target.value })} className="border rounded px-2 py-2">
+							<select name="destination" defaultValue={editData.destination || ''} className="border rounded px-2 py-2">
 								<option value="">Select destination</option>
 								<option>USA</option>
 								<option>UK</option>
@@ -224,31 +231,31 @@ const ManageScholarship = () => {
 						</label>
 							<label className="flex flex-col text-sm sm:col-span-2">
 								<span className="mb-1">Description</span>
-								<textarea value={editData.description || ''} onChange={(e) => setEditData({ ...editData, description: e.target.value })} className="border rounded px-2 py-1 h-24" />
+								<textarea name="description" defaultValue={editData.description || ''} className="border rounded px-2 py-1 h-24" />
 							</label>
 						<label className="flex flex-col text-sm">
 							<span className="mb-1">Eligibility</span>
-							<input value={editData.eligibility || ''} onChange={(e) => setEditData({ ...editData, eligibility: e.target.value })} className="border rounded px-2 py-2" placeholder="e.g., High school diploma, IELTS/TOEFL" />
+							<input name="eligibility" defaultValue={editData.eligibility || ''} className="border rounded px-2 py-2" placeholder="e.g., High school diploma, IELTS/TOEFL" />
 						</label>
 						<label className="flex flex-col text-sm">
 							<span className="mb-1">Duration</span>
-							<input value={editData.duration || ''} onChange={(e) => setEditData({ ...editData, duration: e.target.value })} className="border rounded px-2 py-2" placeholder="e.g., 3-4 years" />
+							<input name="duration" defaultValue={editData.duration || ''} className="border rounded px-2 py-2" placeholder="e.g., 3-4 years" />
 						</label>
 						<label className="flex flex-col text-sm">
 							<span className="mb-1">Tuition Fee</span>
-							<input value={editData.tuitionFee || ''} onChange={(e) => setEditData({ ...editData, tuitionFee: e.target.value })} className="border rounded px-2 py-2" placeholder="e.g., $25,000 - $55,000 per year" />
+							<input name="tuitionFee" defaultValue={editData.tuitionFee || ''} className="border rounded px-2 py-2" placeholder="e.g., $25,000 - $55,000 per year" />
 						</label>
 						<label className="flex flex-col text-sm sm:col-span-2">
 							<span className="mb-1">Courses Included (comma separated)</span>
-							<input value={Array.isArray(editData.coursesIncluded) ? editData.coursesIncluded.join(', ') : (editData.coursesIncluded || '')} onChange={(e) => setEditData({ ...editData, coursesIncluded: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })} className="border rounded px-2 py-2" placeholder="e.g., Engineering, Business Administration, Computer Science" />
+							<input name="coursesIncluded" defaultValue={Array.isArray(editData.coursesIncluded) ? editData.coursesIncluded.join(', ') : (editData.coursesIncluded || '')} className="border rounded px-2 py-2" placeholder="e.g., Engineering, Business Administration, Computer Science" />
 						</label>
 						<label className="flex flex-col text-sm">
 							<span className="mb-1">Application Link (optional)</span>
-							<input type="url" value={editData.applicationLink || ''} onChange={(e) => setEditData({ ...editData, applicationLink: e.target.value })} className="border rounded px-2 py-2" placeholder="https://example.com/apply" />
+							<input name="applicationLink" type="url" defaultValue={editData.applicationLink || ''} className="border rounded px-2 py-2" placeholder="https://example.com/apply" />
 						</label>
 						<label className="flex flex-col text-sm">
 							<span className="mb-1">Contact Email</span>
-							<input type="email" value={editData.contactEmail || ''} onChange={(e) => setEditData({ ...editData, contactEmail: e.target.value })} className="border rounded px-2 py-2" placeholder="e.g., admissions@university.edu" />
+							<input name="contactEmail" type="email" defaultValue={editData.contactEmail || ''} className="border rounded px-2 py-2" placeholder="e.g., admissions@university.edu" />
 						</label>
 							<div className="sm:col-span-2 flex justify-end gap-2 mt-2">
 								<button type="button" onClick={handleCloseModal} className="px-3 py-1.5 text-sm rounded bg-gray-100 hover:bg-gray-200">Cancel</button>

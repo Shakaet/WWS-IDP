@@ -1,5 +1,6 @@
 // AdvancedSearchModal.js
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -117,15 +118,17 @@ const AdvancedSearchModal = () => {
         Advanced Search
       </button>
       
-      {isModalOpen && (
-  <div className="fixed  inset-0 bg-white bg-opacity-95 flex items-center justify-center p-4">
-    <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      {isModalOpen && createPortal(
+  <div className="fixed inset-0 z-[10000] bg-black/60 flex items-center justify-center p-4" onClick={closeModal}>
+    <div className="relative z-[10001] bg-white rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
       <div className="p-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">Advanced Search</h2>
           <button 
             onClick={closeModal}
             className="text-gray-500 hover:text-gray-700 focus:outline-none"
+            type="button"
+            aria-label="Close"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -291,7 +294,8 @@ const AdvancedSearchModal = () => {
         </form>
       </div>
     </div>
-  </div>
+  </div>,
+  document.body
 )}
     </>
   );

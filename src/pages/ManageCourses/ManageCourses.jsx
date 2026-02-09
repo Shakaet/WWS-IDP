@@ -49,7 +49,7 @@ const ManageCourses = () => {
     const Modal = ({ children, onClose }) => createPortal(
         <div className="fixed inset-0 z-[9999] grid place-items-center bg-black/60 p-4" onClick={onClose}>
             <div
-                className="bg-white w-full max-w-5xl rounded-lg shadow-2xl p-6 max-h-[90vh] overflow-y-auto"
+                className="bg-white dark:bg-gray-900 dark:text-gray-100 w-full max-w-5xl rounded-lg shadow-2xl p-6 max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
             >
                 {children}
@@ -62,7 +62,8 @@ const ManageCourses = () => {
         e.preventDefault()
         try {
             const id = editData?._id
-            const { _id, ...payload } = editData
+            const formData = new FormData(e.currentTarget)
+            const payload = Object.fromEntries(formData.entries())
             await axios.put(`http://localhost:3000/api/course/${id}`, payload)
             await queryClient.invalidateQueries({ queryKey: ['allcourses'] })
             Swal.fire('Updated', 'Course updated successfully', 'success')
@@ -189,9 +190,9 @@ const ManageCourses = () => {
                             <label key={key} className="flex flex-col text-sm">
                                 <span className="mb-1">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
                                 <input
+                                    name={key}
                                     type={key === 'contactEmail' ? 'email' : 'text'}
-                                    value={editData[key] || ''}
-                                    onChange={(e) => setEditData(prev => ({ ...prev, [key]: e.target.value }))}
+                                    defaultValue={editData[key] || ''}
                                     className="border rounded px-2 py-2"
                                 />
                             </label>
@@ -200,8 +201,8 @@ const ManageCourses = () => {
                             <label key={key} className="flex flex-col text-sm sm:col-span-2">
                                 <span className="mb-1">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
                                 <textarea
-                                    value={editData[key] || ''}
-                                    onChange={(e) => setEditData(prev => ({ ...prev, [key]: e.target.value }))}
+                                    name={key}
+                                    defaultValue={editData[key] || ''}
                                     className="border rounded px-2 py-2 h-24"
                                 />
                             </label>
